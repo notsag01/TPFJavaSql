@@ -1,0 +1,31 @@
+Seguro Hogar,,,,,Parcial,-,-,Heladera,-,-,-,null,-,-,null
+Seguro Hogar,11111111111,Fulan DeTal,null,null,Parcial,Total,-,Cocina,-,null,-,null,-,Televisor,1
+Seguro Vida,,,null,null,Muerte,Muerte Accidental,-,null,-,Roberto,Conyuge,Juan,Hijo/a,,,,
+Seguro Automotor,11111111111,Fulan DeTal,null,null,123456,FIAT,PULSE,2022,Tercero Completo,Responsabilidad Civil,-,-,-,
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,-,-,-,-,-,-,-,null,-,-,null
+Seguro Hogar,22222222222,null null,null,null,-,-,-,-,-,-,-,null,-,-,null
+Seguro Hogar,88888888888,null null,null,null,-,-,-,-,-,-,-,null,-,-,null
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,-,-,-,Cocina,null,null,-,null,-,-,null
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,-,-,-,-,-,-,Noteboks,5,-,-,null
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,-,-,-,-,-,-,-,5,-,-,null
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,-,-,-,Cocina,-,-,Noteboks,3,Consola Games,Televisor,3
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,-,-,-,Heladera,-,-,-,3,-,-,3
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,-,-,-,Lavarropas,-,-,-,3,-,-,3
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,-,-,-,Cocina,-,-,-,3,-,-,3
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,-,-,-,Heladera,-,-,-,3,-,-,3
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,-,-,-,-,-,-,Noteboks,1,Consola Games,-,3
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,-,-,-,Cocina,-,-,-,1,-,Televisor,55
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,-,-,-,Cocina,-,-,-,1,-,-,55
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,-,-,-,Cocina,null,null,-,null,-,-,null
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,-,-,-,Heladera,Lavarropas,Cocina,-,null,-,-,null
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,-,-,-,-,-,-,-,null,-,-,null
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,Parcial,-,-,-,-,-,-,null,-,-,null
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,Total,-,-,-,-,-,-,null,-,-,null
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,Total,-,-,-,-,-,-,null,-,-,null
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,Parcial,-,-,-,-,-,-,null,-,-,null
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,Total,-,-,-,-,-,-,null,-,-,null
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,Parcial,Parcial,Parcial,-,-,-,-,null,-,-,null
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,Total,-,Parcial,-,-,-,-,null,-,-,null
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,Parcial,-,-,-,-,-,-,null,-,-,null
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,Parcial,-,-,-,-,-,-,null,-,-,null
+Seguro Hogar,11111111111,Gaston Cordoba,null,null,Total,-,-,-,-,-,-,null,-,-,null

@@ -1,0 +1,3 @@
+11111111111,Gaston,Cordoba,gast@gast.com,22091981,MASCULINO,Cordoba 444,Capital,Capital Federal,SOLTERO,2
+22222222222,Gerardo,Mendoza,ger@men.com,14102023,MASCULINO,Casero 666,Capital Federal,Capital Federal,SOLTERO,1
+33333333333,Facundo,Cabral,facu@cabral.com,22121958,MASCULINO,Uspallata 10,Capital Federal,Capital Federal,SOLTERO,3
