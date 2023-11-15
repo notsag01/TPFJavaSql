@@ -1,26 +1,35 @@
 -- Tabla Usuarios
-CREATE TABLE Usuarios (
-    UsuarioID INT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Usuarios (
+    UsuarioID INT AUTO_INCREMENT PRIMARY KEY,
     Nombre VARCHAR(50),
     Apellido VARCHAR(50)
 );
 
 -- Tabla Clientes
-CREATE TABLE Clientes (
-    ClienteID INT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Clientes (
+    ClienteID INT AUTO_INCREMENT PRIMARY KEY,
     Nombre VARCHAR(50),
-    Apellido VARCHAR(50)
+    Apellido VARCHAR(50),
+    FechaNacimiento DATE,
+    Genero VARCHAR(10),
+    Cuil VARCHAR(20),
+    Domicilio VARCHAR(100),
+    Localidad VARCHAR(50),
+    Provincia VARCHAR(50),
+    EstadoCivil VARCHAR(20),
+    CantHijos INT,
+    Mail VARCHAR(100)
 );
 
 -- Tabla Servicios
-CREATE TABLE Servicios (
-    ServicioID INT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Servicios (
+    ServicioID INT AUTO_INCREMENT PRIMARY KEY,
     TipoServicio VARCHAR(50)
 );
 
 -- Tabla CambioMoneda
-CREATE TABLE CambioMoneda (
-    CambioMonedaID INT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS CambioMoneda (
+    CambioMonedaID INT AUTO_INCREMENT PRIMARY KEY,
     UsuarioID INT,
     ClienteID INT,
     ServicioID INT,
@@ -31,8 +40,8 @@ CREATE TABLE CambioMoneda (
 );
 
 -- Tabla Prestamos
-CREATE TABLE Prestamos (
-    PrestamoID INT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Prestamos (
+    PrestamoID INT AUTO_INCREMENT PRIMARY KEY,
     UsuarioID INT,
     ClienteID INT,
     ServicioID INT,
@@ -43,8 +52,8 @@ CREATE TABLE Prestamos (
 );
 
 -- Tabla SeguroVida
-CREATE TABLE SeguroVida (
-    SeguroVidaID INT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS SeguroVida (
+    SeguroVidaID INT AUTO_INCREMENT PRIMARY KEY,
     UsuarioID INT,
     ClienteID INT,
     ServicioID INT,
@@ -55,8 +64,8 @@ CREATE TABLE SeguroVida (
 );
 
 -- Tabla SeguroVehiculo
-CREATE TABLE SeguroVehiculo (
-    SeguroVehiculoID INT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS SeguroVehiculo (
+    SeguroVehiculoID INT AUTO_INCREMENT PRIMARY KEY,
     UsuarioID INT,
     ClienteID INT,
     ServicioID INT,
@@ -67,8 +76,8 @@ CREATE TABLE SeguroVehiculo (
 );
 
 -- Tabla SeguroHogar
-CREATE TABLE SeguroHogar (
-    SeguroHogarID INT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS SeguroHogar (
+    SeguroHogarID INT AUTO_INCREMENT PRIMARY KEY,
     UsuarioID INT,
     ClienteID INT,
     ServicioID INT,
@@ -77,3 +86,12 @@ CREATE TABLE SeguroHogar (
     FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID),
     FOREIGN KEY (ServicioID) REFERENCES Servicios(ServicioID)
 );
+
+-- Insertar datos en la tabla Servicios
+INSERT INTO Servicios (ServicioID, TipoServicio) VALUES
+(1, 'Cambio de Moneda'),
+(2, 'Préstamos'),
+(3, 'Seguro de Vida'),
+(4, 'Seguro de Vehículo'),
+(5, 'Seguro de Hogar');
+
