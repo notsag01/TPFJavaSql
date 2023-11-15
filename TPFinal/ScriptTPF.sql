@@ -47,12 +47,25 @@ CREATE TABLE IF NOT EXISTS Servicios (
     TipoServicio VARCHAR(50)
 );
 
+-- Insertar datos en la tabla Servicios
+INSERT INTO Servicios (ServicioID, TipoServicio) VALUES
+(1, 'Cambio de Moneda'),
+(2, 'Préstamos'),
+(3, 'Seguro de Vida'),
+(4, 'Seguro de Vehículo'),
+(5, 'Seguro de Hogar');
+
 -- Tabla CambioMoneda
 CREATE TABLE IF NOT EXISTS CambioMoneda (
     CambioMonedaID INT AUTO_INCREMENT PRIMARY KEY,
     UsuarioID INT,
     ClienteID INT,
     ServicioID INT,
+    CantPesos INT,
+    TipoMoneda varchar(25),
+    ImpPais int,
+    ImpGcias int,
+    Cambio int,
     -- Otros campos específicos para el servicio de cambio de moneda
     FOREIGN KEY (UsuarioID) REFERENCES Usuarios(UsuarioID),
     FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID),
@@ -107,11 +120,5 @@ CREATE TABLE IF NOT EXISTS SeguroHogar (
     FOREIGN KEY (ServicioID) REFERENCES Servicios(ServicioID)
 );
 
--- Insertar datos en la tabla Servicios
-INSERT INTO Servicios (ServicioID, TipoServicio) VALUES
-(1, 'Cambio de Moneda'),
-(2, 'Préstamos'),
-(3, 'Seguro de Vida'),
-(4, 'Seguro de Vehículo'),
-(5, 'Seguro de Hogar');
+
 
