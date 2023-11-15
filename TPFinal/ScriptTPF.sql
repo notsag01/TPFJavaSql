@@ -78,6 +78,11 @@ CREATE TABLE IF NOT EXISTS Prestamos (
     UsuarioID INT,
     ClienteID INT,
     ServicioID INT,
+    Capital int,
+    Tiempo int,
+    Interes int,
+    Cuota int,
+    Monto int,
     -- Otros campos específicos para el servicio de préstamos
     FOREIGN KEY (UsuarioID) REFERENCES Usuarios(UsuarioID),
     FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID),
