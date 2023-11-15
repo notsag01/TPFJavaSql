@@ -32,6 +32,15 @@ CREATE TABLE IF NOT EXISTS Clientes (
     Mail VARCHAR(100)
 );
 
+-- Insertar clientes en la tabla Clientes
+INSERT INTO Clientes (Nombre, Apellido, FechaNacimiento, Genero, Cuil, Domicilio, Localidad, Provincia, EstadoCivil, CantHijos, Mail)
+VALUES
+('Juan', 'Pérez', '1985-05-10', 'Masculino', '20345678901', 'Calle 123', 'Ciudad A', 'Provincia X', 'Casado', 2, 'juan@example.com'),
+('María', 'García', '1990-08-15', 'Femenino', '20456789012', 'Avenida 456', 'Ciudad B', 'Provincia Y', 'Soltera', 0, 'maria@example.com'),
+('Pedro', 'López', '1982-02-20', 'Masculino', '20567890123', 'Boulevard 789', 'Ciudad C', 'Provincia Z', 'Viudo', 3, 'pedro@example.com'),
+('Ana', 'Martínez', '1978-11-25', 'Femenino', '20678901234', 'Ruta 101', 'Ciudad D', 'Provincia W', 'Casado', 1, 'ana@example.com'),
+('Carlos', 'Fernández', '1989-07-05', 'Masculino', '20789012345', 'Calle Principal', 'Ciudad E', 'Provincia V', 'Soltero', 0, 'carlos@example.com');
+
 -- Tabla Servicios
 CREATE TABLE IF NOT EXISTS Servicios (
     ServicioID INT AUTO_INCREMENT PRIMARY KEY,
