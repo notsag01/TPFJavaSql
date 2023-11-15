@@ -1,9 +1,20 @@
 -- Tabla Usuarios
 CREATE TABLE IF NOT EXISTS Usuarios (
     UsuarioID INT AUTO_INCREMENT PRIMARY KEY,
+    UserName VARCHAR(50),
+    Contraseña VARCHAR(50),
     Nombre VARCHAR(50),
     Apellido VARCHAR(50)
 );
+
+-- Insertar usuarios en la tabla Usuarios
+INSERT INTO Usuarios (UserName, Contraseña, Nombre, Apellido)
+VALUES
+('admin', 'admin', 'Admin', 'Admin'),
+('juanito', 'juan123', 'Juan', 'Gómez'),
+('maria123', 'maria456', 'María', 'Rodríguez'),
+('carlitos', 'carlos789', 'Carlos', 'Fernández');
+
 
 -- Tabla Clientes
 CREATE TABLE IF NOT EXISTS Clientes (
