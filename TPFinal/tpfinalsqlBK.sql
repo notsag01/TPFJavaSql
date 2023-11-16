@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3307
--- Tiempo de generación: 16-11-2023 a las 15:05:30
+-- Tiempo de generación: 16-11-2023 a las 19:47:29
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -185,21 +185,22 @@ INSERT INTO `servicios` (`ServicioID`, `TipoServicio`) VALUES
 
 CREATE TABLE `usuarios` (
   `UsuarioID` int(11) NOT NULL,
-  `UserName` varchar(50) DEFAULT NULL,
-  `Contraseña` varchar(50) DEFAULT NULL,
   `Nombre` varchar(50) DEFAULT NULL,
-  `Apellido` varchar(50) DEFAULT NULL
+  `Apellido` varchar(50) DEFAULT NULL,
+  `UserName` varchar(50) DEFAULT NULL,
+  `Contraseña` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`UsuarioID`, `UserName`, `Contraseña`, `Nombre`, `Apellido`) VALUES
-(1, 'admin', 'admin', 'Admin', 'Admin'),
-(2, 'juanito', 'juan123', 'Juan', 'Gómez'),
-(3, 'maria123', 'maria456', 'María', 'Rodríguez'),
-(4, 'carlitos', 'carlos789', 'Carlos', 'Fernández');
+INSERT INTO `usuarios` (`UsuarioID`, `Nombre`, `Apellido`, `UserName`, `Contraseña`) VALUES
+(1, 'Admin', 'Admin', 'admin', 'admin'),
+(2, 'Juan', 'Gómez', 'juanito', 'juan123'),
+(3, 'María', 'Rodríguez', 'maria123', 'maria456'),
+(4, 'Carlos', 'Fernández', 'carlitos', 'carlos789'),
+(5, 'Gaston', 'Cordoba', 'Gast', 'Gast123');
 
 --
 -- Índices para tablas volcadas
@@ -318,7 +319,7 @@ ALTER TABLE `servicios`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `UsuarioID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `UsuarioID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
