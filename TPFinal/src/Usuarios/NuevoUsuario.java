@@ -12,6 +12,11 @@ public class NuevoUsuario extends javax.swing.JFrame {
         contrasenia=jTextField_contrasenia.getText();
         
         Usuarios usuario = ConexionUsuarios.crearUsuario(nombre,apellido,userName,contrasenia);
+        
+        jTextField_nombre.setText("");
+        jTextField_apellido.setText("");
+        jTextField_userName.setText("");
+        jTextField_contrasenia.setText("");
     }
     
     public NuevoUsuario() {

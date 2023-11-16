@@ -29,7 +29,13 @@ public class ConexionUsuarios {
             sq.setString(4, usuario.getUserName());
             sq.setString(5, usuario.getContrasenia());
             
-            sq.executeUpdate();
+            int resultado = sq.executeUpdate();
+            
+            if(resultado>0){
+                JOptionPane.showMessageDialog(null, "El Usuario fue registrado Correctamente");                
+            }else{
+                JOptionPane.showMessageDialog(null, "El Usuario no a podido ser registrado Correctamente");
+            }
             
             
             
