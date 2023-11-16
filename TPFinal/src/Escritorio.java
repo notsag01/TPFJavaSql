@@ -54,7 +54,6 @@ public class Escritorio extends javax.swing.JFrame {
         if(usuario.equals("ADMIN")){
             TablasInformacion tablaClientes = new TablasInformacion("clientes");
             tablaClientes.setVisible(true);
-            jPanel_escritorio.add(tablaClientes);
         }else{
             JOptionPane.showMessageDialog(null, "No tiene acceso a está del código");
         }
