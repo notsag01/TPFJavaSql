@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3307
--- Tiempo de generación: 16-11-2023 a las 13:43:58
+-- Tiempo de generación: 16-11-2023 a las 15:05:30
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -140,7 +140,19 @@ CREATE TABLE `segurovida` (
   `SeguroVidaID` int(11) NOT NULL,
   `UsuarioID` int(11) DEFAULT NULL,
   `ClienteID` int(11) DEFAULT NULL,
-  `ServicioID` int(11) DEFAULT NULL
+  `ServicioID` int(11) DEFAULT NULL,
+  `CoberturaMuerte` tinyint(4) DEFAULT NULL,
+  `CoberturaMuerteAcc` tinyint(4) DEFAULT NULL,
+  `DiasInternacion` tinyint(4) DEFAULT NULL,
+  `Paralisis` tinyint(4) DEFAULT NULL,
+  `Beneficiario1` varchar(45) DEFAULT NULL,
+  `Beneficiario1paret` varchar(45) DEFAULT NULL,
+  `Beneficiario2` varchar(45) DEFAULT NULL,
+  `Beneficiario2paret` varchar(45) DEFAULT NULL,
+  `Beneficiario3` varchar(45) DEFAULT NULL,
+  `Beneficiario3parent` varchar(45) DEFAULT NULL,
+  `Beneficiario4` varchar(45) DEFAULT NULL,
+  `Beneficiar4parent` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
