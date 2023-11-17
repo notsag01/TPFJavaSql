@@ -1,5 +1,7 @@
 
+import Usuarios.ConexionUsuarios;
 import Usuarios.NuevoUsuario;
+import Usuarios.Usuarios;
 import javax.swing.JOptionPane;
 
 
@@ -10,46 +12,55 @@ public class Login extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Login");
         
+        String[] listaUsuarios = ConexionUsuarios.obtenerUsuarios();
+        for(String nombreUsuario : listaUsuarios){
+            jComboBox_usuarios.addItem(nombreUsuario);
+        }
     }
     
     private void abrirEscritorio(String usuario){
         Escritorio escritorio = new Escritorio(usuario);
         escritorio.setVisible(true);
         this.setVisible(false);
+        
+        
     }
     
     private void ingresar(){
         
-        String usuario = jComboBox_usuarios.getSelectedItem().toString().toUpperCase();
-        char[] password=jPasswordField_contrasenia.getPassword();
-        String contrasenia= new String (password);
         
-        switch(usuario){
-            case "ADMIN": if(contrasenia.equals("admin")){
-                            abrirEscritorio(usuario);
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Contraseña incorrecta.\n Intentelo nuevamente");
-                        }
-            break;
-            case "CHAVO": if(contrasenia.equals("123")){
-                            abrirEscritorio(usuario);
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Contraseña incorrecta.\n Intentelo nuevamente");
-                        }
-            break;
-            case "CHAPULIN": if(contrasenia.equals("123")){
-                            abrirEscritorio(usuario);
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Contraseña incorrecta.\n Intentelo nuevamente");
-                        }
-            break;
-            case "DON RAMON": if(contrasenia.equals("123")){
-                            abrirEscritorio(usuario);
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Contraseña incorrecta.\n Intentelo nuevamente");
-                        }
-            break;
-        }
+        
+        
+//        String usuario = jComboBox_usuarios.getSelectedItem().toString().toUpperCase();
+//        char[] password=jPasswordField_contrasenia.getPassword();
+//        String contrasenia= new String (password);
+//        
+//        switch(usuario){
+//            case "ADMIN": if(contrasenia.equals("admin")){
+//                            abrirEscritorio(usuario);
+//                        }else{
+//                            JOptionPane.showMessageDialog(null, "Contraseña incorrecta.\n Intentelo nuevamente");
+//                        }
+//            break;
+//            case "CHAVO": if(contrasenia.equals("123")){
+//                            abrirEscritorio(usuario);
+//                        }else{
+//                            JOptionPane.showMessageDialog(null, "Contraseña incorrecta.\n Intentelo nuevamente");
+//                        }
+//            break;
+//            case "CHAPULIN": if(contrasenia.equals("123")){
+//                            abrirEscritorio(usuario);
+//                        }else{
+//                            JOptionPane.showMessageDialog(null, "Contraseña incorrecta.\n Intentelo nuevamente");
+//                        }
+//            break;
+//            case "DON RAMON": if(contrasenia.equals("123")){
+//                            abrirEscritorio(usuario);
+//                        }else{
+//                            JOptionPane.showMessageDialog(null, "Contraseña incorrecta.\n Intentelo nuevamente");
+//                        }
+//            break;
+//        }
     }
 
     @SuppressWarnings("unchecked")
@@ -100,7 +111,6 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(750, 600));
 
         jComboBox_usuarios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBox_usuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Admin", "Chavo", "Chapulin", "Don Ramon" }));
         jComboBox_usuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_usuariosActionPerformed(evt);
@@ -186,7 +196,7 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jPasswordField_contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

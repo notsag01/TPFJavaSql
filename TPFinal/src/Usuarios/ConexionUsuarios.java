@@ -1,11 +1,13 @@
 
 package Usuarios;
 
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -44,6 +46,28 @@ public class ConexionUsuarios {
         }
         
         return usuario;
+    }
+    
+    public static String[] obtenerUsuarios(){
+        ArrayList<String> listaUsuarios = new ArrayList<>();
+        
+        try {
+            Connection conexion = DriverManager.getConnection(url,usser,pw);
+            String query="SELECT UserName FROM usuarios";
+            PreparedStatement sq = conexion.prepareStatement(query);
+            
+            ResultSet rs = sq.executeQuery();
+            
+            while(rs.next()){
+                String usuarios = rs.getString("UserName");
+                listaUsuarios.add(usuarios);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexionUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return listaUsuarios.toArray(new String[0]);
     }
       
 }
