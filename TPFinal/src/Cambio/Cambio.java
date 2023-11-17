@@ -31,37 +31,41 @@ public class Cambio extends javax.swing.JInternalFrame {
         }
         private void calcularCambio(){
             id=jTextField_id.getText();
-            cantidadPesos = Double.parseDouble(jTextField_pesos.getText());
-            //System.out.println(cantidadPesos);
-    
-        double alicuotaImpPais=0.30;
-        double alicuotaGcias=0.35; 
-        double tasaCambio= 0.00;
-        
-        eleccionMoneda= jComboBox_moneda.getSelectedIndex();
-        //System.out.println(eleccionMoneda);
-        switch(eleccionMoneda){
-            case(0): JOptionPane.showMessageDialog(null, "Debe ingresar una Opciòn");
-            break;
-            case(1): tasaCambio =  dolarOficial;
-            break;
-            case(2): tasaCambio = euro; 
-            break;
-            case(3): tasaCambio = real;
-            break;
-            case(4): tasaCambio =  dolarBlue;
-                     alicuotaImpPais=0.00;
-                     alicuotaGcias=0.00;
-            break;
+            try{
+                cantidadPesos = Double.parseDouble(jTextField_pesos.getText());
+                //System.out.println(cantidadPesos);
 
-        }
-        double impPais = calcularImpuestoPais(cantidadPesos, tasaCambio,alicuotaImpPais);
-        double impGcias= calcularImpuestoGanancias(cantidadPesos, tasaCambio, alicuotaGcias);
-        double cambio =  calcularCambio(cantidadPesos , tasaCambio) + impPais + impGcias;
-        
-        jTextField_impuestoPais.setText(String.format("$%,.2f", impPais));
-        jTextField_impuestosGcias.setText(String.format("$%,.2f", impGcias));
-        jTextField_cambio.setText(String.format("$%,.2f", cambio));
+                double alicuotaImpPais=0.30;
+                double alicuotaGcias=0.35; 
+                double tasaCambio= 0.00;
+
+                eleccionMoneda= jComboBox_moneda.getSelectedIndex();
+                //System.out.println(eleccionMoneda);
+                switch(eleccionMoneda){
+                    case(0): JOptionPane.showMessageDialog(null, "Debe ingresar una Opciòn");
+                    break;
+                    case(1): tasaCambio =  dolarOficial;
+                    break;
+                    case(2): tasaCambio = euro; 
+                    break;
+                    case(3): tasaCambio = real;
+                    break;
+                    case(4): tasaCambio =  dolarBlue;
+                             alicuotaImpPais=0.00;
+                             alicuotaGcias=0.00;
+                    break;
+
+                }
+                double impPais = calcularImpuestoPais(cantidadPesos, tasaCambio,alicuotaImpPais);
+                double impGcias= calcularImpuestoGanancias(cantidadPesos, tasaCambio, alicuotaGcias);
+                double cambio =  calcularCambio(cantidadPesos , tasaCambio) + impPais + impGcias;
+
+                jTextField_impuestoPais.setText(String.format("$%,.2f", impPais));
+                jTextField_impuestosGcias.setText(String.format("$%,.2f", impGcias));
+                jTextField_cambio.setText(String.format("$%,.2f", cambio));
+            }catch(NumberFormatException e){
+            
+            }
         }
 
     public Cambio(String usuario) {
@@ -241,6 +245,7 @@ public class Cambio extends javax.swing.JInternalFrame {
         jLabel6.setText("Cambio:");
 
         jTextField_pesos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextField_pesos.setText("0,00");
 
         jComboBox_moneda.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jComboBox_moneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "DOLAR OFICIAL", "EUROS", "REALES", "DOLAR BLUE" }));
@@ -252,6 +257,7 @@ public class Cambio extends javax.swing.JInternalFrame {
 
         jTextField_impuestoPais.setEditable(false);
         jTextField_impuestoPais.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField_impuestoPais.setText("0,00");
         jTextField_impuestoPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_impuestoPaisActionPerformed(evt);
@@ -260,9 +266,16 @@ public class Cambio extends javax.swing.JInternalFrame {
 
         jTextField_impuestosGcias.setEditable(false);
         jTextField_impuestosGcias.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField_impuestosGcias.setText("0,00");
+        jTextField_impuestosGcias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_impuestosGciasActionPerformed(evt);
+            }
+        });
 
         jTextField_cambio.setEditable(false);
         jTextField_cambio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField_cambio.setText("0,00");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -329,6 +342,11 @@ public class Cambio extends javax.swing.JInternalFrame {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Limpiar");
         jButton2.setPreferredSize(new java.awt.Dimension(90, 25));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(102, 102, 255));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -441,15 +459,22 @@ public class Cambio extends javax.swing.JInternalFrame {
     private void jTextField_idFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_idFocusLost
         if(jTextField_id.getText().length()==11){
             String cliente = ArchivoClientes.buscarCliente(jTextField_id.getText());
-            System.out.println(cliente);
-//            String id=jTextField_id.getText();
-//            buscarID(id);
+            
+            jTextField_nombreCliente.setText(cliente);
         }
     }//GEN-LAST:event_jTextField_idFocusLost
 
     private void jTextField_nombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_nombreClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_nombreClienteActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        limpiarInformacion();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField_impuestosGciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_impuestosGciasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_impuestosGciasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
