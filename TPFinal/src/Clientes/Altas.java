@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 public class Altas extends javax.swing.JInternalFrame {
     boolean arroba=false,punto=false;       
-    String id, nombre,apellido,mail,fechaNacimiento,genero,domicilio,localidad,provincia,estadoCivil,hijos;
+    String id, nombre,apellido,fechaNacimiento,genero,cuil,domicilio,localidad,provincia,estadoCivil,hijos,mail;
     private String usuario;
     
     
@@ -120,35 +120,35 @@ public class Altas extends javax.swing.JInternalFrame {
         id=jTextField_cuil.getText();        
         nombre=jTextField_nombre.getText();        
         apellido=jTextField_apellido.getText();        
-        mail=jTextField_mail.getText();        
         fechaNacimiento=jTextField_fechaNacimiento.getText();        
+        genero=(String)jComboBox_genero.getSelectedItem();
+        cuil=jTextField_cuil.getText();
         domicilio=jTextField_domicilio.getText();        
         localidad=jTextField_localidad.getText();        
         localidad=jTextField_localidad.getText();        
         provincia=(String)jComboBox_provincias.getSelectedItem();
-        genero=(String)jComboBox_genero.getSelectedItem();
         estadoCivil=(String)jComboBox_estadoCivil.getSelectedItem();
         hijos=jTextField_hijos.getText();        
+        mail=jTextField_mail.getText();        
         
         guardarCliente();
     }
     //    String id, nombre,apellido,mail,fechaNacimiento,domicilio,localidad,provincia,estadoCivil,hijos;
     private void guardarCliente(){
-        Clientes cliente = new Clientes(
+        Clientes cliente = ArchivoClientes.nuevoCliente(
                 id,
                 nombre,
                 apellido,
-                mail,
                 fechaNacimiento,
                 genero,
+                cuil,
                 domicilio,
                 localidad,
                 provincia,
                 estadoCivil,
-                hijos
+                hijos,
+                mail
         );
-        ArchivoClientes archivoClientes=new ArchivoClientes();
-        archivoClientes.escribirArchivo(cliente);
     }
 
     /**

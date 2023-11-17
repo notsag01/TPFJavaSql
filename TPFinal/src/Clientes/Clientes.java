@@ -3,31 +3,33 @@ package Clientes;
 
 
 public class Clientes {
-    String id,nombre,apellido,mail,fechaNacimiento,genero,domicilio,localidad,provincia,estadoCivil,hijos;
+    private String id,nombre,apellido,fechaNacimiento,genero,cuil,domicilio,localidad,provincia,estadoCivil,hijos,mail;
     
     public Clientes(
             String id,
             String nombre, 
             String apellido, 
-            String mail, 
             String fechaNacimiento, 
             String genero, 
+            String cuil,
             String domicilio, 
             String localidad, 
             String provincia, 
             String estadoCivil, 
-            String hijos){
+            String hijos,
+            String mail){
         this.id=id;
         this.nombre=nombre;
         this.apellido=apellido;
-        this.mail=mail;
         this.fechaNacimiento=fechaNacimiento;
         this.genero=genero;
+        this.cuil=cuil;
         this.domicilio=domicilio;
         this.localidad=localidad;
         this.provincia=provincia;
         this.estadoCivil=estadoCivil;
         this.hijos=hijos;
+        this.mail=mail;
     }
 
     public String getId() {
@@ -72,6 +74,10 @@ public class Clientes {
 
     public String getHijos() {
         return hijos;
+    }
+
+    public String getCuil() {
+        return cuil;
     }
     
 }
