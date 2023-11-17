@@ -30,34 +30,12 @@ public class Login extends javax.swing.JFrame {
         String contrasenia= new String (password);
         
         boolean permitir = ConexionUsuarios.verificarCredenciales(usuario, contrasenia);
-        System.out.println(permitir);
-//        
-//        switch(usuario){
-//            case "ADMIN": if(contrasenia.equals("admin")){
-//                            abrirEscritorio(usuario);
-//                        }else{
-//                            JOptionPane.showMessageDialog(null, "Contraseña incorrecta.\n Intentelo nuevamente");
-//                        }
-//            break;
-//            case "CHAVO": if(contrasenia.equals("123")){
-//                            abrirEscritorio(usuario);
-//                        }else{
-//                            JOptionPane.showMessageDialog(null, "Contraseña incorrecta.\n Intentelo nuevamente");
-//                        }
-//            break;
-//            case "CHAPULIN": if(contrasenia.equals("123")){
-//                            abrirEscritorio(usuario);
-//                        }else{
-//                            JOptionPane.showMessageDialog(null, "Contraseña incorrecta.\n Intentelo nuevamente");
-//                        }
-//            break;
-//            case "DON RAMON": if(contrasenia.equals("123")){
-//                            abrirEscritorio(usuario);
-//                        }else{
-//                            JOptionPane.showMessageDialog(null, "Contraseña incorrecta.\n Intentelo nuevamente");
-//                        }
-//            break;
-//        }
+        //System.out.println(permitir);
+        if(permitir){
+            abrirEscritorio(usuario);
+        }else{
+            JOptionPane.showMessageDialog(null, "Contraseña Incorrecta");
+        }
     }
 
     @SuppressWarnings("unchecked")

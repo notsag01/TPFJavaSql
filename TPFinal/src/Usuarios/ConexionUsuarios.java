@@ -84,7 +84,6 @@ public class ConexionUsuarios {
                 
                 return contrasenia.equals(contraseniaEncontrada);
             }else{
-                JOptionPane.showMessageDialog(null, "La contraseña es incorrecta");
                 return false;
             }
             
