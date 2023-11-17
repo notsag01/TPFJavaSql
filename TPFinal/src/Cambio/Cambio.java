@@ -2,6 +2,8 @@ package Cambio;
 
 
 import Archivo.Archivo;
+import Clientes.ArchivoClientes;
+import Clientes.Clientes;
 import Clientes.EncontrarClientes;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -184,6 +186,11 @@ public class Cambio extends javax.swing.JInternalFrame {
 
         jTextField_nombreCliente.setEditable(false);
         jTextField_nombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextField_nombreCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_nombreClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -433,10 +440,16 @@ public class Cambio extends javax.swing.JInternalFrame {
 
     private void jTextField_idFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_idFocusLost
         if(jTextField_id.getText().length()==11){
-            String id=jTextField_id.getText();
-            buscarID(id);
+            String cliente = ArchivoClientes.buscarCliente(jTextField_id.getText());
+            System.out.println(cliente);
+//            String id=jTextField_id.getText();
+//            buscarID(id);
         }
     }//GEN-LAST:event_jTextField_idFocusLost
+
+    private void jTextField_nombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_nombreClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_nombreClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

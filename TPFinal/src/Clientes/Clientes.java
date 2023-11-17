@@ -5,6 +5,8 @@ package Clientes;
 public class Clientes {
     private String id,nombre,apellido,fechaNacimiento,genero,cuil,domicilio,localidad,provincia,estadoCivil,hijos,mail;
     
+    Clientes(){};
+    
     public Clientes(
             String id,
             String nombre, 

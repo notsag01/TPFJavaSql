@@ -74,5 +74,30 @@ public class ArchivoClientes {
         
         return null;
     }
+    public static String buscarCliente(String cuil){
+
+        try {
+            Connection conexion = DriverManager.getConnection(url,usser,pw);
+            String query="SELECT Nombre, Apellido FROM clientes WHERE Cuil=?";
+            PreparedStatement sq = conexion.prepareStatement(query);
+            
+            sq.setString(1, cuil);
+            ResultSet rs = sq.executeQuery();
+            
+            if(rs.next()){
+                String nombre = rs.getString("Nombre");
+                String apellido = rs.getString("Apellido");
+                return nombre + " " + apellido;
+            }
+            
+
+            
+            sq.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ArchivoClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     
 }

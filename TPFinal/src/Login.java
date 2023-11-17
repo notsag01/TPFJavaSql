@@ -93,6 +93,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         jLabel_imagenUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_imagenUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario.png"))); // NOI18N
         jLabel_imagenUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 180)));
 
         jLabel1.setText("Ingrese su Usuario");
