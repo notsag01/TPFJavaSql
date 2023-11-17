@@ -237,7 +237,6 @@ public class Login extends javax.swing.JFrame {
     private void jButton_nuevoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_nuevoUsuarioActionPerformed
         NuevoUsuario nu = new NuevoUsuario();
         nu.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_jButton_nuevoUsuarioActionPerformed
 
     /**
