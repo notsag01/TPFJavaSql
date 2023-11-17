@@ -21,19 +21,16 @@ public class Login extends javax.swing.JFrame {
     private void abrirEscritorio(String usuario){
         Escritorio escritorio = new Escritorio(usuario);
         escritorio.setVisible(true);
-        this.setVisible(false);
-        
-        
+        this.setVisible(false);               
     }
     
-    private void ingresar(){
+    private void ingresar(){        
+        String usuario = jComboBox_usuarios.getSelectedItem().toString().toUpperCase();
+        char[] password=jPasswordField_contrasenia.getPassword();
+        String contrasenia= new String (password);
         
-        
-        
-        
-//        String usuario = jComboBox_usuarios.getSelectedItem().toString().toUpperCase();
-//        char[] password=jPasswordField_contrasenia.getPassword();
-//        String contrasenia= new String (password);
+        boolean permitir = ConexionUsuarios.verificarCredenciales(usuario, contrasenia);
+        System.out.println(permitir);
 //        
 //        switch(usuario){
 //            case "ADMIN": if(contrasenia.equals("admin")){

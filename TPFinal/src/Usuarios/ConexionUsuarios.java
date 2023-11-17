@@ -69,5 +69,30 @@ public class ConexionUsuarios {
         
         return listaUsuarios.toArray(new String[0]);
     }
-      
+     
+    public static boolean verificarCredenciales(String usuario, String contrasenia){
+        try {
+            Connection conexion = DriverManager.getConnection(url,usser,pw);
+            String query="SELECT contraseña FROM usuarios WHERE UserNAme=?";
+            PreparedStatement sq = conexion.prepareStatement(query);
+            
+            sq.setString(1,usuario);
+            ResultSet rs = sq.executeQuery();
+            
+            if(rs.next()){
+                String contraseniaEncontrada = rs.getString("Contraseña");
+                
+                return contrasenia.equals(contraseniaEncontrada);
+            }else{
+                JOptionPane.showMessageDialog(null, "La contraseña es incorrecta");
+                return false;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexionUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return false;
+    }
 }
