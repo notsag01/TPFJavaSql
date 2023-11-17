@@ -13,6 +13,8 @@ public class Altas extends javax.swing.JInternalFrame {
     String id, nombre,apellido,fechaNacimiento,genero,cuil,domicilio,localidad,provincia,estadoCivil,hijos,mail;
     private String usuario;
     
+    SimpleDateFormat formatoEntrada = new SimpleDateFormat("ddMMyy");
+    SimpleDateFormat formatoSalida = new SimpleDateFormat("yyyy-MM-dd");
     
     public Altas(String usuario) {
         initComponents();
@@ -120,7 +122,14 @@ public class Altas extends javax.swing.JInternalFrame {
         id=jTextField_cuil.getText();        
         nombre=jTextField_nombre.getText();        
         apellido=jTextField_apellido.getText();        
-        fechaNacimiento=jTextField_fechaNacimiento.getText();        
+        String fecha=jTextField_fechaNacimiento.getText();    
+        Date fechaEntrada;
+        try {
+            fechaEntrada = formatoEntrada.parse(fecha);
+            fechaNacimiento= formatoSalida.format(fechaEntrada);
+        } catch (ParseException ex) {
+            Logger.getLogger(Altas.class.getName()).log(Level.SEVERE, null, ex);
+        }
         genero=(String)jComboBox_genero.getSelectedItem();
         cuil=jTextField_cuil.getText();
         domicilio=jTextField_domicilio.getText();        
@@ -616,4 +625,12 @@ public class Altas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField_mail;
     private javax.swing.JTextField jTextField_nombre;
     // End of variables declaration//GEN-END:variables
+
+    private Date formatoEntrada(String fechaNacimiento) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private String formatoSalida(Date fecha) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
