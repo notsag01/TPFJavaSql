@@ -1,10 +1,15 @@
 
 package Archivo;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -13,6 +18,10 @@ import javax.swing.table.DefaultTableModel;
 public class TablasInformacion extends javax.swing.JFrame {
     DefaultTableModel dtm = new DefaultTableModel();
     String tipoTabla;
+    
+    private static final String url="jdbc:mysql://localhost:3307/tpfinalsql";
+    private static final String usser="root";
+    private static final String pw="Notsag10";
 
 
     public TablasInformacion(String tipoTabla) {
@@ -51,27 +60,37 @@ public class TablasInformacion extends javax.swing.JFrame {
         dtm.addColumn("ESTADO CIVIL");
         dtm.addColumn("HIJOS");
         
-        jTable_tabla.setModel(dtm);
-        
-        String fila[];
-        String linea;
+        jTable_tabla.setModel(dtm);        
         
         try {
-            BufferedReader escribir = new BufferedReader(new FileReader("archivoClientes.txt"));
-            try {
-                linea=escribir.readLine();
-                while(linea!=null){
-                    fila=linea.split(",");
-                    dtm.addRow(fila);
-                    linea=escribir.readLine();
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(TablasInformacion.class.getName()).log(Level.SEVERE, null, ex);
-                
+            Connection conexion = DriverManager.getConnection(url,usser,pw);
+            String query="SELECT * FROM clientes";
+            PreparedStatement sq = conexion.prepareStatement(query);
+            
+            ResultSet rs = sq.executeQuery();
+            
+            while(rs.next()){
+                Object[]fila={
+                    rs.getString("ClienteID"),
+                    rs.getString("Nombre"),
+                    rs.getString("Apellido"),
+                    rs.getString("FechaNacimiento"),
+                    rs.getString("Genero"),
+                    rs.getString("Cuil"),
+                    rs.getString("Domicilio"),
+                    rs.getString("Localidad"),
+                    rs.getString("Provincia"),
+                    rs.getString("EstadoCivil"),
+                    rs.getString("CantHijos"),
+                    rs.getString("Mail"),                                                    
+                };
+                dtm.addRow(fila);
             }
-        } catch (FileNotFoundException ex) {
+            
+        } catch (SQLException ex) {
             Logger.getLogger(TablasInformacion.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //return dtm;
     }
     private void tablaSegVida(){
         dtm.addColumn("TIPO SEGURO");
@@ -95,21 +114,21 @@ public class TablasInformacion extends javax.swing.JFrame {
         
         String fila[];
         String linea;
-        try {
-            BufferedReader escribir = new BufferedReader(new FileReader("segurosHogar.txt"));            
-            try {
-                linea=escribir.readLine();
-                while(linea!=null){
-                    fila=linea.split(",");
-                    dtm.addRow(fila);
-                    linea=escribir.readLine();
-                }
-            } catch (IOException ex) {
-                System.out.println(ex);
-            }            
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex);
-        }
+//        try {
+//            BufferedReader escribir = new BufferedReader(new FileReader("segurosHogar.txt"));            
+//            try {
+//                linea=escribir.readLine();
+//                while(linea!=null){
+//                    fila=linea.split(",");
+//                    dtm.addRow(fila);
+//                    linea=escribir.readLine();
+//                }
+//            } catch (IOException ex) {
+//                System.out.println(ex);
+//            }            
+//        } catch (FileNotFoundException ex) {
+//            System.out.println(ex);
+//        }
     }
     private void tablaSegAuto(){
         dtm.addColumn("TIPO SEGURO");
@@ -135,21 +154,21 @@ public class TablasInformacion extends javax.swing.JFrame {
         
         String fila[];
         String linea;
-        try {
-            BufferedReader escribir = new BufferedReader(new FileReader("segurosAutomotor.txt"));            
-            try {
-                linea=escribir.readLine();
-                while(linea!=null){
-                    fila=linea.split(",");
-                    dtm.addRow(fila);
-                    linea=escribir.readLine();
-                }
-            } catch (IOException ex) {
-                System.out.println(ex);
-            }            
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex);
-        }
+//        try {
+//            BufferedReader escribir = new BufferedReader(new FileReader("segurosAutomotor.txt"));            
+//            try {
+//                linea=escribir.readLine();
+//                while(linea!=null){
+//                    fila=linea.split(",");
+//                    dtm.addRow(fila);
+//                    linea=escribir.readLine();
+//                }
+//            } catch (IOException ex) {
+//                System.out.println(ex);
+//            }            
+//        } catch (FileNotFoundException ex) {
+//            System.out.println(ex);
+//        }
     }
     
     private void tablaSegHogar(){
@@ -176,21 +195,21 @@ public class TablasInformacion extends javax.swing.JFrame {
         
         String fila[];
         String linea;
-        try {
-            BufferedReader escribir = new BufferedReader(new FileReader("segurosHogar.txt"));            
-            try {
-                linea=escribir.readLine();
-                while(linea!=null){
-                    fila=linea.split(",");
-                    dtm.addRow(fila);
-                    linea=escribir.readLine();
-                }
-            } catch (IOException ex) {
-                System.out.println(ex);
-            }            
-        } catch (FileNotFoundException ex) {
-            System.out.println(ex);
-        }
+//        try {
+//            BufferedReader escribir = new BufferedReader(new FileReader("segurosHogar.txt"));            
+//            try {
+//                linea=escribir.readLine();
+//                while(linea!=null){
+//                    fila=linea.split(",");
+//                    dtm.addRow(fila);
+//                    linea=escribir.readLine();
+//                }
+//            } catch (IOException ex) {
+//                System.out.println(ex);
+//            }            
+//        } catch (FileNotFoundException ex) {
+//            System.out.println(ex);
+//        }
     }
         
     
