@@ -1,6 +1,7 @@
 
 package Clientes;
 
+import ConexionSQL.Conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,10 +15,6 @@ import javax.swing.JOptionPane;
 
 
 public class ArchivoClientes {
-
-    private static final String url="jdbc:mysql://localhost:3307/tpfinalsql";
-    private static final String usser="root";
-    private static final String pw="Notsag10";
     
     public static Clientes nuevoCliente(
             String id,
@@ -48,7 +45,7 @@ public class ArchivoClientes {
                 mail
         );
         try {
-            Connection conexion = DriverManager.getConnection(url,usser,pw);
+            Connection conexion = Conexion.obtenerConexion();
             String query="INSERT INTO clientes VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement sq = conexion.prepareStatement(query);
             
@@ -77,7 +74,7 @@ public class ArchivoClientes {
     public static String buscarCliente(String cuil){
 
         try {
-            Connection conexion = DriverManager.getConnection(url,usser,pw);
+            Connection conexion = Conexion.obtenerConexion();
             String query="SELECT Nombre, Apellido FROM clientes WHERE Cuil=?";
             PreparedStatement sq = conexion.prepareStatement(query);
             
