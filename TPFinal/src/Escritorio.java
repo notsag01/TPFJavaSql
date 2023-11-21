@@ -10,13 +10,15 @@ import javax.swing.JOptionPane;
 
 public class Escritorio extends javax.swing.JFrame {
     private String usuario;
+    private String idUsuario;
 
-    public Escritorio(String usuario) {
+    public Escritorio(String usuario,String idUsuario) {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setResizable(false);        
         
         this.usuario=usuario;
+        this.idUsuario=idUsuario;
         jLabel_usuario.setText("Usuario: " + usuario);
     }
 
@@ -71,7 +73,7 @@ public class Escritorio extends javax.swing.JFrame {
     }
     
     private void calcularCambio(){
-        Cambio cambio = new Cambio(usuario);
+        Cambio cambio = new Cambio(usuario,idUsuario);
         cambio.setVisible(true);
         jPanel_escritorio.add(cambio);
     }

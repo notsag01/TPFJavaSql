@@ -18,8 +18,8 @@ public class Login extends javax.swing.JFrame {
         }
     }
     
-    private void abrirEscritorio(String usuario){
-        Escritorio escritorio = new Escritorio(usuario);
+    private void abrirEscritorio(String usuario, String idUsuario){
+        Escritorio escritorio = new Escritorio(usuario,idUsuario);
         escritorio.setVisible(true);
         this.setVisible(false);               
     }
@@ -28,11 +28,13 @@ public class Login extends javax.swing.JFrame {
         String usuario = jComboBox_usuarios.getSelectedItem().toString().toUpperCase();
         char[] password=jPasswordField_contrasenia.getPassword();
         String contrasenia= new String (password);
+        String idUsuario=ConexionUsuarios.getUsuarioId(usuario);
+        System.out.println(idUsuario);
         
         boolean permitir = ConexionUsuarios.verificarCredenciales(usuario, contrasenia);
         //System.out.println(permitir);
         if(permitir){
-            abrirEscritorio(usuario);
+            abrirEscritorio(usuario,idUsuario);
         }else{
             JOptionPane.showMessageDialog(null, "Contraseña Incorrecta");
         }
@@ -211,16 +213,16 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_usuariosActionPerformed
-        switch(jComboBox_usuarios.getSelectedItem().toString()){
-            case "Admin": jLabel_imagenUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario.png")));
-            break;
-            case "Chavo": jLabel_imagenUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chavo.png")));
-            break;
-            case "Chapulin": jLabel_imagenUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chapulin.png")));
-            break;
-            case "Don Ramon": jLabel_imagenUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/donRamon.jpg")));
-            break;
-        }
+//        switch(jComboBox_usuarios.getSelectedItem().toString()){
+//            case "Admin": jLabel_imagenUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario.png")));
+//            break;
+//            case "Chavo": jLabel_imagenUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chavo.png")));
+//            break;
+//            case "Chapulin": jLabel_imagenUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/chapulin.png")));
+//            break;
+//            case "Don Ramon": jLabel_imagenUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/donRamon.jpg")));
+//            break;
+//        }
     }//GEN-LAST:event_jComboBox_usuariosActionPerformed
 
     private void jButton_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_loginActionPerformed

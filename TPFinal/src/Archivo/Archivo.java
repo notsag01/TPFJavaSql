@@ -176,21 +176,21 @@ public class Archivo {
             break;
         }    
     }
-        public void guardarInfo(CambioClientes cambioClientes){    
-            try {
-                BufferedWriter bw = new BufferedWriter(new FileWriter("ArchivoCambio.txt",true));
-                bw.write(
-                        cambioClientes.getUsuario() + "," +
-                        cambioClientes.getId() + "," +
-                        cambioClientes.getNombre() + "," +
-                        cambioClientes.getApellido()
-                );
-                bw.newLine();
-                bw.close();
-            } catch (IOException ex) {
-                System.out.println(ex);
-            }
-        }
+//        public void guardarInfo(CambioClientes cambioClientes){    
+//            try {
+//                BufferedWriter bw = new BufferedWriter(new FileWriter("ArchivoCambio.txt",true));
+//                bw.write(
+//                        cambioClientes.getUsuario() + "," +
+//                        cambioClientes.getId() + "," +
+//                        cambioClientes.getNombre() + "," +
+//                        cambioClientes.getApellido()
+//                );
+//                bw.newLine();
+//                bw.close();
+//            } catch (IOException ex) {
+//                System.out.println(ex);
+//            }
+//        }
     
     
 }

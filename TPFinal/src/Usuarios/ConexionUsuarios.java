@@ -91,4 +91,27 @@ public class ConexionUsuarios {
         
         return false;
     }
+    public static String getUsuarioId(String userName){
+        try {
+            Connection conexion = Conexion.obtenerConexion();
+            String query="SELECT UsuarioID FROM usuarios WHERE UserNAme=?";
+            PreparedStatement sq = conexion.prepareStatement(query);
+            
+            sq.setString(1,userName);
+            ResultSet rs = sq.executeQuery();
+            
+            if(rs.next()){
+                String idUsuario = rs.getString("UsuarioID");
+                
+                return idUsuario;
+            }else{
+                //return false;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexionUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return userName;
+    }
 }

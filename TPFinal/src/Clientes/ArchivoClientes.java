@@ -96,5 +96,26 @@ public class ArchivoClientes {
         }
         return null;
     }
+    public static String buscarIdCliente(String cuil){
+
+        try {
+            Connection conexion = Conexion.obtenerConexion();
+            String query="SELECT ClienteID FROM clientes WHERE Cuil=?";
+            PreparedStatement sq = conexion.prepareStatement(query);
+            
+            sq.setString(1, cuil);
+            ResultSet rs = sq.executeQuery();
+            
+            if(rs.next()){
+                String idCliente = rs.getString("ClienteID");
+                return idCliente;
+            }            
+            sq.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ArchivoClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     
 }

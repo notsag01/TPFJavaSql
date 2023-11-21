@@ -14,9 +14,10 @@ public class Cambio extends javax.swing.JInternalFrame {
     double dolarBlue=522, dolarOficial=281.5, euro=297.28, real=55.22;
     double cantidadPesos, cambio, impPais, impGcias;
     int eleccionMoneda;
-    String id,nombre,apellido;
+    String cuil,cliente,apellido,clienteId,servicioId="1";
     
     private String usuario;
+    private String idUsuario;
     
      private double calcularCambio(double cantidadPesos, double tasaCambio){
             return cantidadPesos * tasaCambio;
@@ -30,7 +31,7 @@ public class Cambio extends javax.swing.JInternalFrame {
             return cantMonedaExtranjera * alicuotaGcias;
         }
         private void calcularCambio(){
-            id=jTextField_id.getText();
+            cuil=jTextField_id.getText();
             try{
                 cantidadPesos = Double.parseDouble(jTextField_pesos.getText());
                 //System.out.println(cantidadPesos);
@@ -68,29 +69,29 @@ public class Cambio extends javax.swing.JInternalFrame {
             }
         }
 
-    public Cambio(String usuario) {
+    public Cambio(String usuario, String idUsuario) {
         initComponents();
         
         this.usuario=usuario;
+        this.idUsuario=idUsuario;
     }
     
-    public void buscarID(String id){
-        EncontrarClientes encontrarCliente = new EncontrarClientes(id);
-            encontrarCliente.buscarCliente();
-            if(encontrarCliente.isEncontrado()){
-                jTextField_nombreCliente.setText(encontrarCliente.getNombre() + " " + encontrarCliente.getApellido());
-            }else{
-                jTextField_nombreCliente.setText("");
-                jTextField_id.setText("");
-            }
-    }
+//    public void buscarID(String id){
+//        EncontrarClientes encontrarCliente = new EncontrarClientes(id);
+//            encontrarCliente.buscarCliente();
+//            if(encontrarCliente.isEncontrado()){
+//                jTextField_nombreCliente.setText(encontrarCliente.getNombre() + " " + encontrarCliente.getApellido());
+//            }else{
+//                jTextField_nombreCliente.setText("");
+//                jTextField_id.setText("");
+//            }
+//    }
     public void cambiar(){
         if(jTextField_nombreCliente.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Ingrese su Cuit");
         }else{
-            CambioClientes cambioClientes = new CambioClientes(usuario,id,nombre,apellido);
-            Archivo archivo = new Archivo();
-            archivo.guardarInfo(cambioClientes);
+            
+            
             
             JOptionPane.showMessageDialog(null, "La transacción fue realizada \n Existosamente");
             
@@ -454,8 +455,8 @@ public class Cambio extends javax.swing.JInternalFrame {
 
     private void jTextField_idFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_idFocusLost
         if(jTextField_id.getText().length()==11){
-            String cliente = ArchivoClientes.buscarCliente(jTextField_id.getText());
-            
+            cliente = ArchivoClientes.buscarCliente(jTextField_id.getText());
+            clienteId = ArchivoClientes.buscarIdCliente(jTextField_id.getText());
             jTextField_nombreCliente.setText(cliente);
         }
     }//GEN-LAST:event_jTextField_idFocusLost
