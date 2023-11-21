@@ -1,6 +1,7 @@
 
 package Usuarios;
 
+import ConexionSQL.Conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,14 +14,11 @@ import javax.swing.JOptionPane;
 
 
 public class ConexionUsuarios {
-    private static final String url="jdbc:mysql://localhost:3307/tpfinalsql";
-    private static final String usser="root";
-    private static final String pw="Notsag10";
     
     public static Usuarios crearUsuario(String nombre, String apellido, String userName, String contrasenia){
         Usuarios usuario = new Usuarios(nombre,apellido,userName,contrasenia);
         try {
-            Connection conexion = DriverManager.getConnection(url,usser,pw);
+            Connection conexion = Conexion.obtenerConexion();
             String query = "INSERT INTO usuarios VALUES (?,?,?,?,?)";
             PreparedStatement sq = conexion.prepareStatement(query);
 
@@ -51,7 +49,7 @@ public class ConexionUsuarios {
         ArrayList<String> listaUsuarios = new ArrayList<>();
         
         try {
-            Connection conexion = DriverManager.getConnection(url,usser,pw);
+            Connection conexion = Conexion.obtenerConexion();
             String query="SELECT UserName FROM usuarios";
             PreparedStatement sq = conexion.prepareStatement(query);
             
@@ -71,7 +69,7 @@ public class ConexionUsuarios {
      
     public static boolean verificarCredenciales(String usuario, String contrasenia){
         try {
-            Connection conexion = DriverManager.getConnection(url,usser,pw);
+            Connection conexion = Conexion.obtenerConexion();
             String query="SELECT contraseña FROM usuarios WHERE UserNAme=?";
             PreparedStatement sq = conexion.prepareStatement(query);
             
