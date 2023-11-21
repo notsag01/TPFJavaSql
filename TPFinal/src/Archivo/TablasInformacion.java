@@ -1,6 +1,7 @@
 
 package Archivo;
 
+import ConexionSQL.Conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,11 +19,6 @@ import javax.swing.table.DefaultTableModel;
 public class TablasInformacion extends javax.swing.JFrame {
     DefaultTableModel dtm = new DefaultTableModel();
     String tipoTabla;
-    
-    private static final String url="jdbc:mysql://localhost:3307/tpfinalsql";
-    private static final String usser="root";
-    private static final String pw="Notsag10";
-
 
     public TablasInformacion(String tipoTabla) {
         initComponents();
@@ -63,7 +59,7 @@ public class TablasInformacion extends javax.swing.JFrame {
         jTable_tabla.setModel(dtm);        
         
         try {
-            Connection conexion = DriverManager.getConnection(url,usser,pw);
+            Connection conexion = Conexion.obtenerConexion();
             String query="SELECT * FROM clientes";
             PreparedStatement sq = conexion.prepareStatement(query);
             
