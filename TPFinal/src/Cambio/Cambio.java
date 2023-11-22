@@ -93,6 +93,8 @@ public class Cambio extends javax.swing.JInternalFrame {
         if(jTextField_nombreCliente.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Ingrese su Cuit");
         }else{
+            impPais=convertir(jTextField_impuestoPais.getText());
+            impGcias=convertir(jTextField_impuestosGcias.getText());
             cambio=convertir(jTextField_cambio.getText());
             System.out.println(cambio);
             CambioClientes cc = ConexionCambio.cargar(usuario, idUsuario, clienteId, servicioId, eleccionMoneda, tasaCambio,
