@@ -78,17 +78,6 @@ public class Cambio extends javax.swing.JInternalFrame {
         this.usuario=usuario;
         this.idUsuario=idUsuario;
     }
-    
-//    public void buscarID(String id){
-//        EncontrarClientes encontrarCliente = new EncontrarClientes(id);
-//            encontrarCliente.buscarCliente();
-//            if(encontrarCliente.isEncontrado()){
-//                jTextField_nombreCliente.setText(encontrarCliente.getNombre() + " " + encontrarCliente.getApellido());
-//            }else{
-//                jTextField_nombreCliente.setText("");
-//                jTextField_id.setText("");
-//            }
-//    }
     public void cambiar(){
         if(jTextField_nombreCliente.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Ingrese su Cuit");
@@ -96,7 +85,6 @@ public class Cambio extends javax.swing.JInternalFrame {
             impPais=convertir(jTextField_impuestoPais.getText());
             impGcias=convertir(jTextField_impuestosGcias.getText());
             cambio=convertir(jTextField_cambio.getText());
-            System.out.println(cambio);
             CambioClientes cc = ConexionCambio.cargar(usuario, idUsuario, clienteId, servicioId, eleccionMoneda, tasaCambio,
                     cantidadPesos, impPais, impGcias, cambio);
             
