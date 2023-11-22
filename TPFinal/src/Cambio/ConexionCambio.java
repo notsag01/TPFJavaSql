@@ -14,18 +14,18 @@ import javax.swing.JOptionPane;
 
 
 public class ConexionCambio {
+    
     public static CambioClientes cargar(
             String usuario,
-            String idUsuario, 
+            int idUsuario, 
             String clienteId, 
             String servicioId,
-            String tipoMoneda,
+            int tipoMoneda,
             Double cotizacion,
             Double cantPesos,
             Double impPais,
             Double impGcias,
-            Double cambio            
-    ){
+            Double cambio){
         CambioClientes cc = new CambioClientes(
             usuario,
             idUsuario, 
@@ -40,15 +40,15 @@ public class ConexionCambio {
         );
         try {
             Connection conexion = Conexion.obtenerConexion();
-            String query = "INSERT INTO usuarios VALUES (?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO cambiomoneda VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement sq = conexion.prepareStatement(query);
 
             sq.setString(1, "0");
-            sq.setString(2,cc.getIdUsuario());
+            sq.setInt(2,cc.getIdUsuario());
             sq.setString(3,cc.getClienteId());
             sq.setString(4,cc.getServicioId());
             sq.setDouble(5,cc.getCantPesos());
-            sq.setString(6,cc.getTipoMoneda());
+            sq.setInt(6,cc.getTipoMoneda());
             sq.setDouble(7,cc.getImpPais());
             sq.setDouble(8,cc.getImpGcias());
             sq.setDouble(9,cc.getCambio());

@@ -3,15 +3,16 @@ package Cambio;
 
 
 public class CambioClientes {
-    String usuario,idUsuario,clienteId,servicioId, tipoMoneda;
+    String usuario,clienteId,servicioId;
+    int idUsuario,tipoMoneda;
     Double cotizacion, cantPesos, impPais,impGcias, cambio;
     
     public CambioClientes(
             String usuario,
-            String idUsuario, 
+            int idUsuario, 
             String clienteId, 
             String servicioId,
-            String tipoMoneda,
+            int tipoMoneda,
             Double cotizacion,
             Double cantPesos,
             Double impPais,
@@ -34,7 +35,7 @@ public class CambioClientes {
         return usuario;
     }
 
-    public String getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
@@ -46,7 +47,7 @@ public class CambioClientes {
         return servicioId;
     }
 
-    public String getTipoMoneda() {
+    public int getTipoMoneda() {
         return tipoMoneda;
     }
 
@@ -74,7 +75,7 @@ public class CambioClientes {
         this.usuario = usuario;
     }
 
-    public void setIdUsuario(String idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -86,7 +87,7 @@ public class CambioClientes {
         this.servicioId = servicioId;
     }
 
-    public void setTipoMoneda(String tipoMoneda) {
+    public void setTipoMoneda(int tipoMoneda) {
         this.tipoMoneda = tipoMoneda;
     }
 

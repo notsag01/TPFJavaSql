@@ -8,6 +8,8 @@ import Clientes.EncontrarClientes;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import Cambio.CambioClientes;
+import Cambio.ConexionCambio;
 
 
 public class Cambio extends javax.swing.JInternalFrame {
@@ -17,7 +19,7 @@ public class Cambio extends javax.swing.JInternalFrame {
     String cuil,cliente,apellido,clienteId,servicioId="1";
     
     private String usuario;
-    private String idUsuario;
+    private int idUsuario;
     
      private double calcularCambio(double cantidadPesos, double tasaCambio){
             return cantidadPesos * tasaCambio;
@@ -41,6 +43,7 @@ public class Cambio extends javax.swing.JInternalFrame {
                 double tasaCambio= 0.00;
 
                 eleccionMoneda= jComboBox_moneda.getSelectedIndex();
+
                 //System.out.println(eleccionMoneda);
                 switch(eleccionMoneda){
                     case(0): JOptionPane.showMessageDialog(null, "Debe ingresar una Opciòn");
@@ -69,7 +72,7 @@ public class Cambio extends javax.swing.JInternalFrame {
             }
         }
 
-    public Cambio(String usuario, String idUsuario) {
+    public Cambio(String usuario, int idUsuario) {
         initComponents();
         
         this.usuario=usuario;
@@ -90,7 +93,8 @@ public class Cambio extends javax.swing.JInternalFrame {
         if(jTextField_nombreCliente.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Ingrese su Cuit");
         }else{
-            
+            CambioClientes cc = ConexionCambio.cargar(usuario, idUsuario, clienteId, servicioId, eleccionMoneda, cambio,
+                    cantidadPesos, impPais, impGcias, cambio);
             
             
             JOptionPane.showMessageDialog(null, "La transacción fue realizada \n Existosamente");

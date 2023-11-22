@@ -10,9 +10,9 @@ import javax.swing.JOptionPane;
 
 public class Escritorio extends javax.swing.JFrame {
     private String usuario;
-    private String idUsuario;
+    private int idUsuario;
 
-    public Escritorio(String usuario,String idUsuario) {
+    public Escritorio(String usuario,int idUsuario) {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setResizable(false);        
