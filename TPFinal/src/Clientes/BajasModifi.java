@@ -2,6 +2,7 @@ package Clientes;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -114,7 +115,7 @@ public class BajasModifi extends javax.swing.JInternalFrame {
         jTextField_localidad.setText("");
         jTextField_hijos.setText("");
         jTextField_mail.setText("");
-        jComboBox_genero.setSelectedIndex(0);
+        //jComboBox_genero.setSelectedIndex(0);
         jComboBox_provincias.setSelectedIndex(0);
         jComboBox_estadoCivil.setSelectedIndex(0);
     }
@@ -162,13 +163,18 @@ public class BajasModifi extends javax.swing.JInternalFrame {
     
     private void buscarCliente(){
         String cuil = jTextField_cuil.getText();
-        Clientes cliente =ArchivoClientes.obtenerDatosCliente(cuil);
+        Clientes cliente =ArchivoClientes.obtenerDatosCliente(cuil);        
         
         if(cliente!=null){
             //System.out.println(cliente.getNombre());
             jTextField_nombre.setText(cliente.getNombre());
             jTextField_apellido.setText(cliente.getApellido());
             jTextField_fechaNacimiento.setText(cliente.getFechaNacimiento());
+            jTextField_domicilio.setText(cliente.getDomicilio());
+            jTextField_localidad.setText(cliente.getLocalidad());
+            jTextField_hijos.setText(cliente.getHijos());
+            jTextField_mail.setText(cliente.getMail());
+            
         }
     }
 
