@@ -167,6 +167,8 @@ public class BajasModifi extends javax.swing.JInternalFrame {
         if(cliente!=null){
             //System.out.println(cliente.getNombre());
             jTextField_nombre.setText(cliente.getNombre());
+            jTextField_apellido.setText(cliente.getApellido());
+            jTextField_fechaNacimiento.setText(cliente.getFechaNacimiento());
         }
     }
 
