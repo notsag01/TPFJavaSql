@@ -174,8 +174,24 @@ public class BajasModifi extends javax.swing.JInternalFrame {
             jTextField_localidad.setText(cliente.getLocalidad());
             jTextField_hijos.setText(cliente.getHijos());
             jTextField_mail.setText(cliente.getMail());
-            
+            System.out.println(cliente.getId());
         }
+    }
+    private void modificarCliente(
+            String id,
+            String nombre,
+            String apellido,
+            String fechaNacimiento,
+            String genero,
+            String cuil,
+            String domicilio,
+            String localidad,
+            String provincia,
+            String estadoCivil,
+            String hijos,
+            String mail
+    ){
+        Clientes cliente = ArchivoClientes.modificarCliente(id, nombre, apellido, fechaNacimiento, genero, cuil, domicilio, localidad, provincia, estadoCivil, hijos, mail);
     }
 
     /**
@@ -211,8 +227,8 @@ public class BajasModifi extends javax.swing.JInternalFrame {
         jTextField_hijos = new javax.swing.JTextField();
         jTextField_mail = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jButton_comenzar = new javax.swing.JButton();
-        jButton_limpiar = new javax.swing.JButton();
+        jButton_buscar = new javax.swing.JButton();
+        jButton_modificar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -301,23 +317,23 @@ public class BajasModifi extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255)));
 
-        jButton_comenzar.setBackground(new java.awt.Color(102, 102, 255));
-        jButton_comenzar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton_comenzar.setForeground(new java.awt.Color(255, 255, 255));
-        jButton_comenzar.setText("BUSCAR");
-        jButton_comenzar.addActionListener(new java.awt.event.ActionListener() {
+        jButton_buscar.setBackground(new java.awt.Color(102, 102, 255));
+        jButton_buscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton_buscar.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_buscar.setText("BUSCAR");
+        jButton_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_comenzarActionPerformed(evt);
+                jButton_buscarActionPerformed(evt);
             }
         });
 
-        jButton_limpiar.setBackground(new java.awt.Color(102, 102, 255));
-        jButton_limpiar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton_limpiar.setForeground(new java.awt.Color(255, 255, 255));
-        jButton_limpiar.setText("LIMPIAR");
-        jButton_limpiar.addActionListener(new java.awt.event.ActionListener() {
+        jButton_modificar.setBackground(new java.awt.Color(102, 102, 255));
+        jButton_modificar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton_modificar.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_modificar.setText("MODIFICAR");
+        jButton_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_limpiarActionPerformed(evt);
+                jButton_modificarActionPerformed(evt);
             }
         });
 
@@ -336,12 +352,12 @@ public class BajasModifi extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(35, 35, 35)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(jButton_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton_comenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton_modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
         jPanel3Layout.setVerticalGroup(
@@ -349,8 +365,8 @@ public class BajasModifi extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_comenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
@@ -512,10 +528,10 @@ public class BajasModifi extends javax.swing.JInternalFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton_comenzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_comenzarActionPerformed
+    private void jButton_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarActionPerformed
         //validarFormulario();
         buscarCliente();
-    }//GEN-LAST:event_jButton_comenzarActionPerformed
+    }//GEN-LAST:event_jButton_buscarActionPerformed
 
     private void jTextField_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_nombreKeyTyped
         int key=evt.getKeyChar();
@@ -568,9 +584,29 @@ public class BajasModifi extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jComboBox_estadoCivilKeyTyped
 
-    private void jButton_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_limpiarActionPerformed
-        limpiarFormulario();
-    }//GEN-LAST:event_jButton_limpiarActionPerformed
+    private void jButton_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_modificarActionPerformed
+        id=jTextField_cuil.getText();        
+        nombre=jTextField_nombre.getText();        
+        apellido=jTextField_apellido.getText();        
+        String fecha=jTextField_fechaNacimiento.getText();    
+        Date fechaEntrada;
+        try {
+            fechaEntrada = formatoEntrada.parse(fecha);
+            fechaNacimiento= formatoSalida.format(fechaEntrada);
+        } catch (ParseException ex) {
+            Logger.getLogger(BajasModifi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        genero=(String)jComboBox_genero.getSelectedItem();
+        cuil=jTextField_cuil.getText();
+        domicilio=jTextField_domicilio.getText();        
+        localidad=jTextField_localidad.getText();        
+        localidad=jTextField_localidad.getText();        
+        provincia=(String)jComboBox_provincias.getSelectedItem();
+        estadoCivil=(String)jComboBox_estadoCivil.getSelectedItem();
+        hijos=jTextField_hijos.getText();        
+        mail=jTextField_mail.getText();   
+        modificarCliente(id,nombre,apellido,fechaNacimiento,genero,cuil,domicilio,localidad,provincia,estadoCivil,hijos,mail);
+    }//GEN-LAST:event_jButton_modificarActionPerformed
 
     private void jTextField_cuilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_cuilActionPerformed
         // TODO add your handling code here:
@@ -616,8 +652,8 @@ public class BajasModifi extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton_comenzar;
-    private javax.swing.JButton jButton_limpiar;
+    private javax.swing.JButton jButton_buscar;
+    private javax.swing.JButton jButton_modificar;
     private javax.swing.JComboBox<String> jComboBox_estadoCivil;
     private javax.swing.JComboBox<String> jComboBox_genero;
     private javax.swing.JComboBox<String> jComboBox_provincias;
