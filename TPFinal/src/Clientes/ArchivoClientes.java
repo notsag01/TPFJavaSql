@@ -117,5 +117,40 @@ public class ArchivoClientes {
         }
         return null;
     }
+    public static Clientes obtenerDatosCliente(String cuil){
+        Clientes cliente = null;
+        try {
+            Connection conexion = Conexion.obtenerConexion();
+            String query="SELECT * FROM clientes WHERE Cuil=?";
+            PreparedStatement sq = conexion.prepareStatement(query);
+            
+            sq.setString(1, cuil);
+            ResultSet rs = sq.executeQuery();
+            
+            if(rs.next()){
+                 cliente = new Clientes(
+                        rs.getString("ClienteID"),
+                        rs.getString("Nombre"),
+                        rs.getString("Apellido"),
+                        rs.getString("FechaNacimiento"),
+                        rs.getString("Genero"),
+                        rs.getString("Cuil"),
+                        rs.getString("Domicilio"),
+                        rs.getString("Localidad"),
+                        rs.getString("Provincia"),
+                        rs.getString("EstadoCivil"),
+                        rs.getString("CantHijos"),
+                        rs.getString("Mail")
+                 );
+                        
+                return cliente;
+            }            
+            sq.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ArchivoClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cliente;
+    }
     
 }

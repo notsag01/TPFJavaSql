@@ -2,6 +2,7 @@
 import Archivo.TablasInformacion;
 import Cambio.Cambio;
 import Clientes.Altas;
+import Clientes.BajasModifi;
 import Prestamos.Prestamos;
 import Seguros.Gestor;
 import javax.swing.JFrame;
@@ -86,6 +87,12 @@ public class Escritorio extends javax.swing.JFrame {
         altas.setLocation(750, 10);
         jPanel_escritorio.add(altas);
     }
+    private void consultaCliente(){
+        BajasModifi bm = new BajasModifi(usuario);
+        bm.setVisible(true);
+        bm.setLocation(750, 10);
+        jPanel_escritorio.add(bm);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -98,6 +105,7 @@ public class Escritorio extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem_altas = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -172,6 +180,14 @@ public class Escritorio extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem_altas);
+
+        jMenuItem8.setText("Consultas");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem8);
 
         jMenuBar1.add(jMenu1);
 
@@ -306,6 +322,10 @@ public class Escritorio extends javax.swing.JFrame {
         abrirTablaHogar();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        consultaCliente();
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -356,6 +376,7 @@ public class Escritorio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem_altas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel_escritorio;

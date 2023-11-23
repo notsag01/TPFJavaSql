@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
-public class Altas extends javax.swing.JInternalFrame {
+public class BajasModifi extends javax.swing.JInternalFrame {
     boolean arroba=false,punto=false;       
     String id, nombre,apellido,fechaNacimiento,genero,cuil,domicilio,localidad,provincia,estadoCivil,hijos,mail;
     private String usuario;
@@ -16,7 +16,7 @@ public class Altas extends javax.swing.JInternalFrame {
     SimpleDateFormat formatoEntrada = new SimpleDateFormat("ddMMyy");
     SimpleDateFormat formatoSalida = new SimpleDateFormat("yyyy-MM-dd");
     
-    public Altas(String usuario) {
+    public BajasModifi(String usuario) {
         initComponents();
         this.setTitle("Alta Clientes");
         String[] provincias = new String[]{
@@ -55,7 +55,7 @@ public class Altas extends javax.swing.JInternalFrame {
         this.usuario = usuario;
     }
 
-    private Altas() {
+    private BajasModifi() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
@@ -128,7 +128,7 @@ public class Altas extends javax.swing.JInternalFrame {
             fechaEntrada = formatoEntrada.parse(fecha);
             fechaNacimiento= formatoSalida.format(fechaEntrada);
         } catch (ParseException ex) {
-            Logger.getLogger(Altas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BajasModifi.class.getName()).log(Level.SEVERE, null, ex);
         }
         genero=(String)jComboBox_genero.getSelectedItem();
         cuil=jTextField_cuil.getText();
@@ -158,6 +158,16 @@ public class Altas extends javax.swing.JInternalFrame {
                 hijos,
                 mail
         );
+    }
+    
+    private void buscarCliente(){
+        String cuil = jTextField_cuil.getText();
+        Clientes cliente =ArchivoClientes.obtenerDatosCliente(cuil);
+        
+        if(cliente!=null){
+            //System.out.println(cliente.getNombre());
+            jTextField_nombre.setText(cliente.getNombre());
+        }
     }
 
     /**
@@ -286,7 +296,7 @@ public class Altas extends javax.swing.JInternalFrame {
         jButton_comenzar.setBackground(new java.awt.Color(102, 102, 255));
         jButton_comenzar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton_comenzar.setForeground(new java.awt.Color(255, 255, 255));
-        jButton_comenzar.setText("CREAR");
+        jButton_comenzar.setText("BUSCAR");
         jButton_comenzar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_comenzarActionPerformed(evt);
@@ -322,9 +332,9 @@ public class Altas extends javax.swing.JInternalFrame {
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(jButton_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton_comenzar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,7 +353,7 @@ public class Altas extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -382,14 +392,14 @@ public class Altas extends javax.swing.JInternalFrame {
                         .addComponent(jTextField_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jTextField_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField_cuil, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -495,7 +505,8 @@ public class Altas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton_comenzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_comenzarActionPerformed
-        validarFormulario();
+        //validarFormulario();
+        buscarCliente();
     }//GEN-LAST:event_jButton_comenzarActionPerformed
 
     private void jTextField_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_nombreKeyTyped
@@ -574,21 +585,23 @@ public class Altas extends javax.swing.JInternalFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Altas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BajasModifi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Altas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BajasModifi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Altas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BajasModifi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Altas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BajasModifi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Altas().setVisible(true);
+                new BajasModifi().setVisible(true);
             }
         });
     }
