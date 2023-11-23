@@ -34,7 +34,10 @@ public class ConexionUsuarios {
                 JOptionPane.showMessageDialog(null, "El Usuario fue registrado Correctamente");                
             }else{
                 JOptionPane.showMessageDialog(null, "El Usuario no a podido ser registrado Correctamente");
-            }            
+            }
+            
+            
+            
         } catch (SQLException ex) {
             Logger.getLogger(ConexionUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
