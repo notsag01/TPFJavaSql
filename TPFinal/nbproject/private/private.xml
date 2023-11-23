@@ -5,25 +5,17 @@
             <url>src/Cambio/Cambio.java</url>
             <bookmark id="1">
                 <name/>
-                <line>457</line>
+                <line>461</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Login.java</file>
-            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Archivo/Archivo.java</file>
-            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Usuarios/NuevoUsuario.java</file>
-            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Usuarios/ConexionUsuarios.java</file>
             <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Clientes/Altas.java</file>
-            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Cambio/ConexionCambio.java</file>
             <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Clientes/ArchivoClientes.java</file>
-            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Cambio/Cambio.java</file>
-            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Cambio/CambioClientes.java</file>
-            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/ConexionSQL/Conexion.java</file>
             <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Escritorio.java</file>
-            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Usuarios/Usuarios.java</file>
+            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Clientes/BajasModifi.java</file>
         </group>
     </open-files>
 </project-private>
