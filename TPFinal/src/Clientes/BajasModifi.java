@@ -165,8 +165,8 @@ public class BajasModifi extends javax.swing.JInternalFrame {
         String cuil = jTextField_cuil.getText();
         Clientes cliente =ArchivoClientes.obtenerDatosCliente(cuil);        
         
-        if(cliente!=null){
-            //System.out.println(cliente.getNombre());
+        if(cliente!=null){      
+            jTextField_id.setText(cliente.getId());
             jTextField_nombre.setText(cliente.getNombre());
             jTextField_apellido.setText(cliente.getApellido());
             jTextField_fechaNacimiento.setText(cliente.getFechaNacimiento());
@@ -174,7 +174,7 @@ public class BajasModifi extends javax.swing.JInternalFrame {
             jTextField_localidad.setText(cliente.getLocalidad());
             jTextField_hijos.setText(cliente.getHijos());
             jTextField_mail.setText(cliente.getMail());
-            System.out.println(cliente.getId());
+            
         }
     }
     private void modificarCliente(
@@ -230,6 +230,8 @@ public class BajasModifi extends javax.swing.JInternalFrame {
         jButton_buscar = new javax.swing.JButton();
         jButton_modificar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jTextField_id = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -294,7 +296,7 @@ public class BajasModifi extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox_genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "MASCULINO", "FEMENINO" }));
+        jComboBox_genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Masculino", "Femenino", "Otro" }));
 
         jTextField_cuil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -307,7 +309,7 @@ public class BajasModifi extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox_estadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "SOLTERO", "CASADO" }));
+        jComboBox_estadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Soltero", "Casado", "Otro" }));
         jComboBox_estadoCivil.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jComboBox_estadoCivilKeyTyped(evt);
@@ -371,6 +373,8 @@ public class BajasModifi extends javax.swing.JInternalFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
+        jLabel14.setText("id:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -421,7 +425,12 @@ public class BajasModifi extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField_cuil, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField_cuil)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField_id, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
@@ -431,7 +440,9 @@ public class BajasModifi extends javax.swing.JInternalFrame {
                 .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_cuil, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_cuil, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -585,7 +596,8 @@ public class BajasModifi extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBox_estadoCivilKeyTyped
 
     private void jButton_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_modificarActionPerformed
-        id=jTextField_cuil.getText();        
+        id=jTextField_id.getText();
+        cuil=jTextField_cuil.getText();        
         nombre=jTextField_nombre.getText();        
         apellido=jTextField_apellido.getText();        
         String fecha=jTextField_fechaNacimiento.getText();    
@@ -605,6 +617,7 @@ public class BajasModifi extends javax.swing.JInternalFrame {
         estadoCivil=(String)jComboBox_estadoCivil.getSelectedItem();
         hijos=jTextField_hijos.getText();        
         mail=jTextField_mail.getText();   
+        System.out.println(id);
         modificarCliente(id,nombre,apellido,fechaNacimiento,genero,cuil,domicilio,localidad,provincia,estadoCivil,hijos,mail);
     }//GEN-LAST:event_jButton_modificarActionPerformed
 
@@ -662,6 +675,7 @@ public class BajasModifi extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -678,6 +692,7 @@ public class BajasModifi extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField_domicilio;
     private javax.swing.JTextField jTextField_fechaNacimiento;
     private javax.swing.JTextField jTextField_hijos;
+    private javax.swing.JTextField jTextField_id;
     private javax.swing.JTextField jTextField_localidad;
     private javax.swing.JTextField jTextField_mail;
     private javax.swing.JTextField jTextField_nombre;

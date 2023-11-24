@@ -260,7 +260,7 @@ public class Altas extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox_genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "MASCULINO", "FEMENINO" }));
+        jComboBox_genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Masculino", "Femenino", "Otro" }));
 
         jTextField_cuil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,7 +273,7 @@ public class Altas extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox_estadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "SOLTERO", "CASADO" }));
+        jComboBox_estadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Soltero", "Casado", "Otro" }));
         jComboBox_estadoCivil.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jComboBox_estadoCivilKeyTyped(evt);
