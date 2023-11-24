@@ -10,9 +10,10 @@ import javax.swing.JOptionPane;
 
 
 public class Prestamos extends javax.swing.JInternalFrame {
-    int interesMinimo=80,interesMedio=100,interesMaximo=150,capital, meses,intereses,idUsuario;  
-    private String nombre,apellido;
-    private String usuario;
+    int interesMinimo=80,interesMedio=100,interesMaximo=150,capital, meses,intereses,idUsuario; 
+    double cuota,monto;
+    String nombre,apellido,clienteId,servicioId="2";
+    String usuario;
     
     
     public Prestamos(String usuario, int idUsuario) {
@@ -45,8 +46,8 @@ public class Prestamos extends javax.swing.JInternalFrame {
         return finalCapital;
     }
     private double calcularCuotas(double calcularFinal,int meses){
-        double cuotas=calcularFinal/meses;
-        return cuotas;
+        cuota=calcularFinal/meses;
+        return cuota;
     }
 
     
@@ -76,17 +77,35 @@ public class Prestamos extends javax.swing.JInternalFrame {
         jTextField_cuota.setText(String.format("$%,.2f", cuotas));
     }
     public void buscarID(String id){
-        EncontrarClientes encontrarCliente = new EncontrarClientes(id);
-            encontrarCliente.buscarCliente();
-            if(encontrarCliente.isEncontrado()){
-                jTextField_nombreCliente.setText(encontrarCliente.getNombre() + " " + encontrarCliente.getApellido());
-            }else{
-                jTextField_nombreCliente.setText("");
-                jTextField_id.setText("");
-            }
+//        EncontrarClientes encontrarCliente = new EncontrarClientes(id);
+//            encontrarCliente.buscarCliente();
+//            if(encontrarCliente.isEncontrado()){
+//                jTextField_idCliente.setText( encontrarCliente.getId());
+//                jTextField_nombreCliente.setText(encontrarCliente.getNombre() + " " + encontrarCliente.getApellido());
+//            }else{
+//                jTextField_nombreCliente.setText("");
+//                jTextField_id.setText("");
+//            }
     }
+    
     private void solicitarPrestamo(){
-        
+        clienteId=jTextField_idCliente.getText();
+        idUsuario=this.idUsuario;
+        capital=Integer.parseInt(jTextField_capital.getText());
+        meses=this.meses;
+        intereses=Integer.parseInt(jTextField_intereses.getText());
+        monto=convertir(jTextField_deuda.getText());
+        cuota=convertir(jTextField_cuota.getText());
+//        System.out.println("cliente " + clienteId);
+//        System.out.println("usuario " + idUsuario);
+//        System.out.println("servicio " +servicioId);
+//        System.out.println("meses " +meses);
+        PrestamoCliente pc = PrestamosConexion.solicitarPrestamo(clienteId, servicioId, idUsuario, capital, meses, intereses, monto, cuota);
+    }
+        public double convertir(String cant){
+        String limpiar = cant.replace("$", "").replace(".", "").replace(",", ".");
+
+        return Double.parseDouble(limpiar);
     }
 
     /**
@@ -121,6 +140,7 @@ public class Prestamos extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextField_id = new javax.swing.JTextField();
         jTextField_nombreCliente = new javax.swing.JTextField();
+        jTextField_idCliente = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Alta Clientes");
@@ -293,10 +313,12 @@ public class Prestamos extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField_nombreCliente)
-                    .addComponent(jTextField_id, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField_nombreCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                    .addComponent(jTextField_id))
+                .addGap(18, 18, 18)
+                .addComponent(jTextField_idCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,7 +326,8 @@ public class Prestamos extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_id, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_id, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_idCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField_nombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(51, Short.MAX_VALUE))
@@ -442,6 +465,7 @@ public class Prestamos extends javax.swing.JInternalFrame {
             String cliente = ArchivoClientes.buscarCliente(jTextField_id.getText());
             String clienteId = ArchivoClientes.buscarIdCliente(jTextField_id.getText());
             jTextField_nombreCliente.setText(cliente);
+            jTextField_idCliente.setText(clienteId);
         }
     }//GEN-LAST:event_jTextField_idFocusLost
 
@@ -513,6 +537,7 @@ public class Prestamos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField_cuota;
     private javax.swing.JTextField jTextField_deuda;
     private javax.swing.JTextField jTextField_id;
+    private javax.swing.JTextField jTextField_idCliente;
     private javax.swing.JTextField jTextField_intereses;
     private javax.swing.JTextField jTextField_nombreCliente;
     // End of variables declaration//GEN-END:variables

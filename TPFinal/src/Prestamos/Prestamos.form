@@ -398,11 +398,13 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTextField_nombreCliente" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextField_id" alignment="0" pref="200" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jTextField_nombreCliente" pref="196" max="32767" attributes="0"/>
+                              <Component id="jTextField_id" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="84" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jTextField_idCliente" min="-2" pref="43" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -413,6 +415,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel7" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jTextField_id" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="jTextField_idCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jTextField_nombreCliente" min="-2" max="-2" attributes="0"/>
@@ -449,6 +452,8 @@
                       <Font name="Segoe UI" size="14" style="0"/>
                     </Property>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextField_idCliente">
                 </Component>
               </SubComponents>
             </Container>
