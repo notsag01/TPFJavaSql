@@ -1,23 +1,27 @@
 package Prestamos;
 
+import Archivo.Archivo;
+import Clientes.ArchivoClientes;
+import Clientes.Clientes;
+import Clientes.EncontrarClientes;
 import Clientes.*;
 import Clientes.EncontrarClientes;
 import javax.swing.JOptionPane;
 
 
 public class Prestamos extends javax.swing.JInternalFrame {
-    int interesMinimo=80,interesMedio=100,interesMaximo=150,capital, meses,intereses;  
+    int interesMinimo=80,interesMedio=100,interesMaximo=150,capital, meses,intereses,idUsuario;  
     private String nombre,apellido;
     private String usuario;
     
     
-    public Prestamos(String usuario) {
+    public Prestamos(String usuario, int idUsuario) {
         initComponents();
         this.setTitle("Prestamos");                
 
         
         this.usuario = usuario;
-        
+        this.idUsuario=idUsuario;
         jTextField_intereses.setText("80");
     }
 
@@ -81,6 +85,9 @@ public class Prestamos extends javax.swing.JInternalFrame {
                 jTextField_id.setText("");
             }
     }
+    private void solicitarPrestamo(){
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -103,6 +110,7 @@ public class Prestamos extends javax.swing.JInternalFrame {
         jButton_calcualar = new javax.swing.JButton();
         jButton_limpiar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton_guardar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jTextField_intereses = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -112,7 +120,6 @@ public class Prestamos extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jTextField_id = new javax.swing.JTextField();
-        jButton_lupa = new javax.swing.JButton();
         jTextField_nombreCliente = new javax.swing.JTextField();
 
         setClosable(true);
@@ -200,18 +207,30 @@ public class Prestamos extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton_guardar.setBackground(new java.awt.Color(102, 102, 255));
+        jButton_guardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton_guardar.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_guardar.setText("GUARDAR");
+        jButton_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_guardarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addContainerGap()
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
                 .addComponent(jButton_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton_calcualar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,7 +239,8 @@ public class Prestamos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_calcualar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -251,17 +271,14 @@ public class Prestamos extends javax.swing.JInternalFrame {
                 jTextField_idFocusLost(evt);
             }
         });
+        jTextField_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_idActionPerformed(evt);
+            }
+        });
         jTextField_id.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField_idKeyTyped(evt);
-            }
-        });
-
-        jButton_lupa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa.jpg"))); // NOI18N
-        jButton_lupa.setBorder(null);
-        jButton_lupa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_lupaActionPerformed(evt);
             }
         });
 
@@ -279,19 +296,15 @@ public class Prestamos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField_nombreCliente)
                     .addComponent(jTextField_id, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
-                .addComponent(jButton_lupa, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField_id, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton_lupa, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_id, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField_nombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(51, Short.MAX_VALUE))
@@ -424,17 +437,21 @@ public class Prestamos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jTextField_idKeyTyped
 
-    private void jButton_lupaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lupaActionPerformed
-        String id=jTextField_id.getText();
-        buscarID(id);
-    }//GEN-LAST:event_jButton_lupaActionPerformed
-
     private void jTextField_idFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_idFocusLost
         if(jTextField_id.getText().length()==11){
-            String id=jTextField_id.getText();
-            buscarID(id);
+            String cliente = ArchivoClientes.buscarCliente(jTextField_id.getText());
+            String clienteId = ArchivoClientes.buscarIdCliente(jTextField_id.getText());
+            jTextField_nombreCliente.setText(cliente);
         }
     }//GEN-LAST:event_jTextField_idFocusLost
+
+    private void jTextField_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_idActionPerformed
+
+    private void jButton_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardarActionPerformed
+        solicitarPrestamo();
+    }//GEN-LAST:event_jButton_guardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -477,8 +494,8 @@ public class Prestamos extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton_calcualar;
+    private javax.swing.JButton jButton_guardar;
     private javax.swing.JButton jButton_limpiar;
-    private javax.swing.JButton jButton_lupa;
     private javax.swing.JComboBox<String> jComboBox_tiempo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;

@@ -63,7 +63,7 @@ public class Escritorio extends javax.swing.JFrame {
     }
     
     private void abrirPrestamos(){
-        Prestamos prestamos = new Prestamos(usuario);
+        Prestamos prestamos = new Prestamos(usuario,idUsuario);
         prestamos.setVisible(true);
         jPanel_escritorio.add(prestamos);
     }
