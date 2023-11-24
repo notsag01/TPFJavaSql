@@ -19,7 +19,7 @@ public class BajasModifi extends javax.swing.JInternalFrame {
     
     public BajasModifi(String usuario) {
         initComponents();
-        this.setTitle("Alta Clientes");
+        this.setTitle("Modificar Cliente");
         String[] provincias = new String[]{
                "", 
                "Capital Federal",
