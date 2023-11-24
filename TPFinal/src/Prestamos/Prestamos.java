@@ -1,11 +1,7 @@
 package Prestamos;
 
-import Archivo.Archivo;
+
 import Clientes.ArchivoClientes;
-import Clientes.Clientes;
-import Clientes.EncontrarClientes;
-import Clientes.*;
-import Clientes.EncontrarClientes;
 import javax.swing.JOptionPane;
 
 
@@ -96,16 +92,29 @@ public class Prestamos extends javax.swing.JInternalFrame {
         intereses=Integer.parseInt(jTextField_intereses.getText());
         monto=convertir(jTextField_deuda.getText());
         cuota=convertir(jTextField_cuota.getText());
-//        System.out.println("cliente " + clienteId);
-//        System.out.println("usuario " + idUsuario);
-//        System.out.println("servicio " +servicioId);
-//        System.out.println("meses " +meses);
+
         PrestamoCliente pc = PrestamosConexion.solicitarPrestamo(clienteId, servicioId, idUsuario, capital, meses, intereses, monto, cuota);
     }
         public double convertir(String cant){
         String limpiar = cant.replace("$", "").replace(".", "").replace(",", ".");
 
         return Double.parseDouble(limpiar);
+    }
+        
+    private void validarFormulario(){
+        if(
+                jTextField_id.getText().equals("")||
+                jTextField_nombreCliente.getText().equals("")||
+                jTextField_nombreCliente.getText().equals("")||
+                jTextField_capital.getText().equals("")||
+                jTextField_intereses.getText().equals("")||        
+                jTextField_deuda.getText().equals("")        
+                ){
+            JOptionPane.showMessageDialog(null, "Todos los Campos deben estar completos");
+        }else{
+            solicitarPrestamo();
+        }
+        
     }
 
     /**
@@ -305,6 +314,8 @@ public class Prestamos extends javax.swing.JInternalFrame {
         jTextField_nombreCliente.setEditable(false);
         jTextField_nombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jTextField_idCliente.setEditable(false);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -474,7 +485,7 @@ public class Prestamos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField_idActionPerformed
 
     private void jButton_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardarActionPerformed
-        solicitarPrestamo();
+        validarFormulario();
     }//GEN-LAST:event_jButton_guardarActionPerformed
 
     /**

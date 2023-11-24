@@ -40,10 +40,9 @@ public class PrestamosConexion {
             int resultado=sq.executeUpdate();
             
             if(resultado>0){
-                JOptionPane.showMessageDialog(null, "La transacción fue exitos");
+                JOptionPane.showMessageDialog(null, "La transacción fue exitosa");
             }else{
-                JOptionPane.showMessageDialog(null, "La transacción no se pudo llevar a cabo \n "
-                        + "Revise los datos ingresados o contactese con el administrador");
+                JOptionPane.showMessageDialog(null, "La transacción no se pudo llevar a cabo");
             }
             
             
