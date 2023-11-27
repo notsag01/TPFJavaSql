@@ -208,4 +208,28 @@ public class ArchivoClientes {
         return cliente;
     }
     
+    public static Clientes elimiarDato(String cuil){
+        Clientes cliente = new Clientes();
+        
+        try {
+            Connection conexion = Conexion.obtenerConexion();
+            String query="DELETE FROM clientes WHERE cuil=?";
+            PreparedStatement sq = conexion.prepareStatement(query);
+            
+            sq.setString(1, cuil);
+            
+            int filaEliminada=sq.executeUpdate();
+            
+            if(filaEliminada>0){
+                JOptionPane.showMessageDialog(null, "La fila fue eliminada");
+            }
+
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ArchivoClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return cliente;              
+    }
+    
 }

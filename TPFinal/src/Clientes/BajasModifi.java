@@ -118,6 +118,7 @@ public class BajasModifi extends javax.swing.JInternalFrame {
         //jComboBox_genero.setSelectedIndex(0);
         jComboBox_provincias.setSelectedIndex(0);
         jComboBox_estadoCivil.setSelectedIndex(0);
+        jTextField_id.setText("");
     }
     private void getDatosClientes(){
         id=jTextField_cuil.getText();        
@@ -193,6 +194,24 @@ public class BajasModifi extends javax.swing.JInternalFrame {
     ){
         Clientes cliente = ArchivoClientes.modificarCliente(id, nombre, apellido, fechaNacimiento, genero, cuil, domicilio, localidad, provincia, estadoCivil, hijos, mail);
     }
+    private void confirmarEliminar(){
+        int respuesta = JOptionPane.showConfirmDialog(null, "Está seguro de eliminar el registro?");
+        
+        
+        if(respuesta==JOptionPane.YES_OPTION){
+            eliminarDato();
+        }else{
+            JOptionPane.showMessageDialog(null, "Eliminarción Cancelada");
+        }
+    }
+    
+    private void eliminarDato(){
+        cuil= jTextField_cuil.getText();
+        
+        Clientes cliente = ArchivoClientes.elimiarDato(cuil);
+        limpiarFormulario();
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -230,6 +249,7 @@ public class BajasModifi extends javax.swing.JInternalFrame {
         jButton_buscar = new javax.swing.JButton();
         jButton_modificar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton_eliminar = new javax.swing.JButton();
         jTextField_id = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -349,18 +369,27 @@ public class BajasModifi extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton_eliminar.setText("ELIMINIAR");
+        jButton_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_eliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jButton3)
+                .addGap(27, 27, 27)
+                .addComponent(jButton_eliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_modificar)
                 .addGap(18, 18, 18)
-                .addComponent(jButton_modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addComponent(jButton_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,9 +398,12 @@ public class BajasModifi extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_eliminar))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
+
+        jTextField_id.setEditable(false);
 
         jLabel14.setText("id:");
 
@@ -625,6 +657,10 @@ public class BajasModifi extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_cuilActionPerformed
 
+    private void jButton_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_eliminarActionPerformed
+        confirmarEliminar();
+    }//GEN-LAST:event_jButton_eliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -666,6 +702,7 @@ public class BajasModifi extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton_buscar;
+    private javax.swing.JButton jButton_eliminar;
     private javax.swing.JButton jButton_modificar;
     private javax.swing.JComboBox<String> jComboBox_estadoCivil;
     private javax.swing.JComboBox<String> jComboBox_genero;
