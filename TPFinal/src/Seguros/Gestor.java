@@ -69,8 +69,10 @@ public class Gestor extends javax.swing.JInternalFrame {
     }
     String cliente,clienteId;
     String tipoSeguro, cuit, nombre,telefono, mail;
-    String incendio,robo,inundacion;
-    String heladera,lavarropas,cocina,notebook,notebookCantidad,consola,televisor,televisorCantidad;
+    boolean incendio,robo,inundacion;
+    String tipoIncendio,tipoRobo,tipoInundacion;
+    boolean heladera,lavarropas,cocina,notebook,consola,televisor;
+    int notebookCantidad,televisorCantidad;
     String muerte, muerteAccidental,internacion,internacionDias,paralisis;
     String beneficiario1,beneficiario2,beneficiario3,beneficiario4;
     String beneficiario1_parentesco,beneficiario2_parentesco,beneficiario3_parentesco,beneficiario4_parentesco;
@@ -104,68 +106,81 @@ public class Gestor extends javax.swing.JInternalFrame {
         cuit=jTextField_id.getText();
         nombre=jTextField_nombreCliente.getText();
         
-        incendio=(String)jComboBox_incendio.getSelectedItem();
-        if(incendio.equals("")){
-            incendio="-";
+        if(jCheckBox_incendio.isSelected()){
+            incendio=true;
+        }else{incendio=false;}
+        
+        tipoIncendio=(String)jComboBox_incendio.getSelectedItem();
+        if(tipoIncendio.equals("")){
+            tipoIncendio="";
         }else{
-            if(incendio.equalsIgnoreCase("total")){
+            if(tipoIncendio.equalsIgnoreCase("total")){
                 shp.setPrimaBase(3000);
             }else{
                 shp.setPrimaBase(2800);
             }
             jTextField_prima.setText(String.format("$%,.2f", prima));
         }
-        robo=(String)jComboBox_robo.getSelectedItem();
-        if(robo.equals("")){
-            robo="-";
+        
+        if(jCheckBox_robo.isSelected()){
+            robo=true;
+        }else{robo=false;}
+        
+        tipoRobo=(String)jComboBox_robo.getSelectedItem();
+        if(tipoRobo.equals("")){
+            tipoRobo="";
         }else{
-            if(robo.equalsIgnoreCase("total")){
+            if(tipoRobo.equalsIgnoreCase("total")){
                 shp.setPrimaBase(1000);
             }else{
                 shp.setPrimaBase(800);
             }
             System.out.println(shp.getPrimaBase());            
         }
-        inundacion=(String)jComboBox_inundacion.getSelectedItem();
-        if(inundacion.equals("")){
-            inundacion="-";
+        if(jCheckBox_inundacion.isSelected()){
+            inundacion=true;
+        }else{inundacion=false;}
+        
+        tipoInundacion=(String)jComboBox_inundacion.getSelectedItem();
+        if(tipoInundacion.equals("")){
+            tipoInundacion="";
         }else{
             shp.setPrimaBase(2000);            
         }
         
         if(jCheckBox_heladera.isSelected()){
-            heladera=jCheckBox_heladera.getText();
+            heladera=true;
             sumaAdicioneales+=500;
             shp.setTotalAdicionales(sumaAdicioneales);
         }else{
-            heladera="-";
+            heladera=false;
         }
         if(jCheckBox_lavarropas.isSelected()){
-            lavarropas=jCheckBox_lavarropas.getText();
+            lavarropas=true;
         }else{
-            lavarropas="-";
+            lavarropas=false;
         }
         if(jCheckBox_cocina.isSelected()){
-            cocina=jCheckBox_cocina.getText();
+            cocina=true;
         }else{
-            cocina="-";
+            cocina=false;
         }
         if(jCheckBox_notebooks.isSelected()){
-            notebook=jCheckBox_notebooks.getText();
-            notebookCantidad= jTextField_notebooksCantidad.getText();
+            notebook=true;
+            notebookCantidad= Integer.parseInt(jTextField_notebooksCantidad.getText());
         }else{
-            notebook="-";
+            notebook=false;
         }
         if(jCheckBox_consola.isSelected()){
-            consola=jCheckBox_consola.getText();            
+            consola=true;            
         }else{
-            consola="-";
+            consola=false;
         }
         if(jCheckBox_televisor.isSelected()){
-            televisor=jCheckBox_televisor.getText();
-            televisorCantidad= jTextField_televisorCantidad.getText();
+            televisor=true;
+            televisorCantidad=Integer.parseInt(jTextField_televisorCantidad.getText());
         }else{
-            televisor="-";
+            televisor=false;
         } 
         
         Personas persona = new Personas(

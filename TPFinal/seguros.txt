@@ -29,3 +29,6 @@ Seguro Hogar,11111111111,Gaston Cordoba,null,null,Total,-,Parcial,-,-,-,-,null,-
 Seguro Hogar,11111111111,Gaston Cordoba,null,null,Parcial,-,-,-,-,-,-,null,-,-,null
 Seguro Hogar,11111111111,Gaston Cordoba,null,null,Parcial,-,-,-,-,-,-,null,-,-,null
 Seguro Hogar,11111111111,Gaston Cordoba,null,null,Total,-,-,-,-,-,-,null,-,-,null
+Seguro Hogar,20345678901,Juan Pérez,null,null,,,,,,,,null,,,null
+Seguro Hogar,20345678901,Juan Pérez,null,null,,,,,Lavarropas,,,null,,,null
+Seguro Hogar,20345678901,Juan Pérez,null,null,,,,Heladera,,,,null,,,null
