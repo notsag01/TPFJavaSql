@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3307
--- Tiempo de generación: 23-11-2023 a las 20:33:31
+-- Tiempo de generación: 24-11-2023 a las 21:13:15
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -65,11 +65,12 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`ClienteID`, `Nombre`, `Apellido`, `FechaNacimiento`, `Genero`, `Cuil`, `Domicilio`, `Localidad`, `Provincia`, `EstadoCivil`, `CantHijos`, `Mail`) VALUES
-(1, 'Juan', 'Pérez', '1985-05-10', 'Masculino', '20345678901', 'Calle 123', 'Ciudad A', 'Provincia X', 'Casado', 2, 'juan@example.com'),
+(1, 'Juan', 'Pérez', '0002-01-19', 'MASCULINO', '20345678901', 'Calle 123', 'Ciudad A', 'Capital Federal', 'SOLTERO', 3, 'juan@example.com'),
 (2, 'María', 'García', '1990-08-15', 'Femenino', '20456789012', 'Avenida 456', 'Ciudad B', 'Provincia Y', 'Soltera', 0, 'maria@example.com'),
 (3, 'Pedro', 'López', '1982-02-20', 'Masculino', '20567890123', 'Boulevard 789', 'Ciudad C', 'Provincia Z', 'Viudo', 3, 'pedro@example.com'),
 (4, 'Ana', 'Martínez', '1978-11-25', 'Femenino', '20678901234', 'Ruta 101', 'Ciudad D', 'Provincia W', 'Casado', 1, 'ana@example.com'),
-(5, 'Carlos', 'Fernández', '1989-07-05', 'Masculino', '20789012345', 'Calle Principal', 'Ciudad E', 'Provincia V', 'Soltero', 0, 'carlos@example.com');
+(5, 'Carlos', 'Fernández', '1989-07-05', 'Masculino', '20789012345', 'Calle Principal', 'Ciudad E', 'Provincia V', 'Soltero', 0, 'carlos@example.com'),
+(6, 'Valeria', 'Gomez', '1983-12-27', 'FEMENINO', '27034567890', 'Los Patos 3000', 'Capital Federal', 'Capital Federal', 'SOLTERO', 1, 'Valeria@Gomez.com');
 
 -- --------------------------------------------------------
 
@@ -88,6 +89,15 @@ CREATE TABLE `prestamos` (
   `Cuota` int(11) DEFAULT NULL,
   `Monto` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `prestamos`
+--
+
+INSERT INTO `prestamos` (`PrestamoID`, `UsuarioID`, `ClienteID`, `ServicioID`, `Capital`, `Tiempo`, `Interes`, `Cuota`, `Monto`) VALUES
+(1, 1, 1, 2, 250000, 24, 100, 20833, 500000),
+(2, 1, 1, 2, 450000, 9, 150, 125000, 1125000),
+(3, 2, 2, 2, 800000, 9, 150, 222222, 2000000);
 
 -- --------------------------------------------------------
 
@@ -256,13 +266,13 @@ ALTER TABLE `cambiomoneda`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `PrestamoID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PrestamoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `segurohogar`
