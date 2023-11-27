@@ -68,7 +68,7 @@ public class Escritorio extends javax.swing.JFrame {
         jPanel_escritorio.add(prestamos);
     }
     private void abrirSeguros(){
-        Gestor gestor = new Gestor(usuario);
+        Gestor gestor = new Gestor(usuario,idUsuario);
         gestor.setVisible(true);
         jPanel_escritorio.add(gestor);
     }

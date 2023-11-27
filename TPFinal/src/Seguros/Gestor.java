@@ -2,6 +2,7 @@ package Seguros;
 
 
 import Archivo.Archivo;
+import Clientes.ArchivoClientes;
 import Clientes.EncontrarClientes;
 import Seguros.Calculo.CalculosHogar;
 import Seguros.Calculo.SHPrima;
@@ -20,7 +21,7 @@ import javax.swing.border.Border;
 
 public class Gestor extends javax.swing.JInternalFrame {
     private String usuario;
-    
+    private int idUsuario;
     
     private Timer timer;
      String[] frases = {
@@ -47,7 +48,7 @@ public class Gestor extends javax.swing.JInternalFrame {
      
      
 
-    public Gestor(String usuario) {
+    public Gestor(String usuario, int idUsuario) {
         initComponents();
         //this.setLocationRelativeTo(null);        
         frasesAleatorias(); 
@@ -64,8 +65,9 @@ public class Gestor extends javax.swing.JInternalFrame {
         jComboBox_beneficiario4.setEnabled(false);
         
         this.usuario=usuario;
+        this.idUsuario=idUsuario;
     }
-    
+    String cliente,clienteId;
     String tipoSeguro, cuit, nombre,telefono, mail;
     String incendio,robo,inundacion;
     String heladera,lavarropas,cocina,notebook,notebookCantidad,consola,televisor,televisorCantidad;
@@ -1468,6 +1470,11 @@ public class Gestor extends javax.swing.JInternalFrame {
         jLabel2.setText("NOMBRE Y APELLIDO");
         jLabel2.setPreferredSize(new java.awt.Dimension(150, 20));
 
+        jTextField_id.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField_idFocusLost(evt);
+            }
+        });
         jTextField_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_idActionPerformed(evt);
@@ -1889,7 +1896,7 @@ public class Gestor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField_idKeyTyped
 
     private void jTextField_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_idActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextField_idActionPerformed
 
     private void jButton_contratacionesHogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_contratacionesHogarActionPerformed
@@ -1963,6 +1970,15 @@ public class Gestor extends javax.swing.JInternalFrame {
     private void jCheckBox_heladeraStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox_heladeraStateChanged
         //getDatosPerosonaHogar();
     }//GEN-LAST:event_jCheckBox_heladeraStateChanged
+
+    private void jTextField_idFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_idFocusLost
+        if(jTextField_id.getText().length()==11){
+            System.out.println("11");
+            String cliente = ArchivoClientes.buscarCliente(jTextField_id.getText());
+            String clienteId = ArchivoClientes.buscarIdCliente(jTextField_id.getText());
+            jTextField_nombreCliente.setText(cliente);
+        }
+    }//GEN-LAST:event_jTextField_idFocusLost
 
     /**
      * @param args the command line arguments
