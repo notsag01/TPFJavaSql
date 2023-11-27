@@ -3,9 +3,11 @@ package Seguros;
 
 public class Personas {
     
-    String tipoSeguro, cuit, nombre, telefono, mail,
-            incendio,robo,inundacion,
-            heladera,lavarropas,cocina,notebook,notebookCantidad,consola,televisor,televisorCantidad;
+    String tipoSeguro,clienteId, cuit, nombre, telefono, mail;
+    int idUsuario;
+    boolean incendio,robo,inundacion,
+            heladera,lavarropas,cocina,notebook,consola,televisor;
+    int notebookCantidad,televisorCantidad;
     String muerte, muerteAccidental,internacion,internacionDias,paralisis;
     String beneficiario1,beneficiario2,beneficiario3,beneficiario4;
     String beneficiario1_parentesco,beneficiario2_parentesco,beneficiario3_parentesco,beneficiario4_parentesco;
@@ -14,25 +16,29 @@ public class Personas {
     String franquicia;
     
     public Personas(String tipoSeguro,
+            int idUsuario,
+            String clienteId,
             String cuit,
             String nombre,
             String telefono,
             String mail,
-            String incendio, 
-            String robo, 
-            String inundacion, 
-            String heladera, 
-            String lavarropas,
-            String cocina,
-            String notebook,
-            String notebookCantidad,
-            String consola,
-            String televisor,
-            String televisorCantidad
+            boolean incendio, 
+            boolean robo, 
+            boolean inundacion, 
+            boolean heladera, 
+            boolean lavarropas,
+            boolean cocina,
+            boolean notebook,
+            int notebookCantidad,
+            boolean consola,
+            boolean televisor,
+            int televisorCantidad
     
     ){
         
         this.tipoSeguro=tipoSeguro;
+        this.idUsuario=idUsuario;
+        this.clienteId=clienteId;
         this.cuit=cuit;
         this.nombre= nombre;
         this.telefono=telefono;
@@ -135,6 +141,50 @@ public class Personas {
         return cuit;
     }
 
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public String getClienteId() {
+        return clienteId;
+    }
+
+    public boolean isIncendio() {
+        return incendio;
+    }
+
+    public boolean isRobo() {
+        return robo;
+    }
+
+    public boolean isInundacion() {
+        return inundacion;
+    }
+
+    public boolean isHeladera() {
+        return heladera;
+    }
+
+    public boolean isLavarropas() {
+        return lavarropas;
+    }
+
+    public boolean isCocina() {
+        return cocina;
+    }
+
+    public boolean isNotebook() {
+        return notebook;
+    }
+
+    public boolean isConsola() {
+        return consola;
+    }
+
+    public boolean isTelevisor() {
+        return televisor;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -147,47 +197,47 @@ public class Personas {
         return mail;
     }
 
-    public String getIncendio() {
+    public boolean getIncendio() {
         return incendio;
     }
 
-    public String getRobo() {
+    public boolean getRobo() {
         return robo;
     }
 
-    public String getInundacion() {
+    public boolean getInundacion() {
         return inundacion;
     }
 
-    public String getHeladera() {
+    public boolean getHeladera() {
         return heladera;
     }
 
-    public String getLavarropas() {
+    public boolean getLavarropas() {
         return lavarropas;
     }
 
-    public String getCocina() {
+    public boolean getCocina() {
         return cocina;
     }
 
-    public String getNotebook() {
+    public boolean getNotebook() {
         return notebook;
     }
 
-    public String getNotebookCantidad() {
+    public int getNotebookCantidad() {
         return notebookCantidad;
     }
 
-    public String getConsola() {
+    public boolean getConsola() {
         return consola;
     }
 
-    public String getTelevisor() {
+    public boolean getTelevisor() {
         return televisor;
     }
 
-    public String getTelevisorCantidad() {
+    public int getTelevisorCantidad() {
         return televisorCantidad;
     }
 
