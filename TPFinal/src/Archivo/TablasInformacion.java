@@ -88,28 +88,10 @@ public class TablasInformacion extends javax.swing.JFrame {
         }
         //return dtm;
     }
+    
     private void tablaSegVida(){
-        dtm.addColumn("TIPO SEGURO");
-        dtm.addColumn("CUIT");
-        dtm.addColumn("NOMBRE Y APELLIDO");
-        dtm.addColumn("TELEFONO");
-        dtm.addColumn("MAIL");
-        dtm.addColumn("INCENDIO");
-        dtm.addColumn("ROBO");
-        dtm.addColumn("INUNDACION");
-        dtm.addColumn("HELADERA");
-        dtm.addColumn("LAVARROPAS");
-        dtm.addColumn("COCINA");
-        dtm.addColumn("NOTEBOOKS");
-        dtm.addColumn("NOTEBOOKS CANT");
-        dtm.addColumn("CONSOLAS");
-        dtm.addColumn("TELEVISOR");
-        dtm.addColumn("TELEVISOR CANT");
-        
-        jTable_tabla.setModel(dtm);
-        
-        String fila[];
-        String linea;
+  
+        //return dtm;
 //        try {
 //            BufferedReader escribir = new BufferedReader(new FileReader("segurosHogar.txt"));            
 //            try {
@@ -168,11 +150,11 @@ public class TablasInformacion extends javax.swing.JFrame {
     }
     
     private void tablaSegHogar(){
-        dtm.addColumn("TIPO SEGURO");
-        dtm.addColumn("CUIT");
-        dtm.addColumn("NOMBRE Y APELLIDO");
-        dtm.addColumn("TELEFONO");
-        dtm.addColumn("MAIL");
+      dtm.addColumn("TIPO SEGURO");
+        //dtm.addColumn("CUIT");
+        //dtm.addColumn("NOMBRE Y APELLIDO");
+        //dtm.addColumn("TELEFONO");
+        //dtm.addColumn("MAIL");
         dtm.addColumn("INCENDIO");
         dtm.addColumn("ROBO");
         dtm.addColumn("INUNDACION");
@@ -187,10 +169,36 @@ public class TablasInformacion extends javax.swing.JFrame {
         
         jTable_tabla.setModel(dtm);
         
-        //cargarFilas();
-        
-        String fila[];
-        String linea;
+//        String fila[];
+//        String linea;
+         try {
+            Connection conexion = Conexion.obtenerConexion();
+            String query="SELECT * FROM segurohogar";
+            PreparedStatement sq = conexion.prepareStatement(query);
+            
+            ResultSet rs = sq.executeQuery();
+            
+            while(rs.next()){
+                Object[]fila={
+                    "seguro hogar",
+                    rs.getString("incendio"),
+                    rs.getString("robo"),
+                    rs.getString("inundacion"),
+                    rs.getString("heladera"),
+                    rs.getString("lavarropas"),
+                    rs.getString("cocina"),
+                    rs.getString("notebooks"),
+                    rs.getString("cantNotebooks"),
+                    rs.getString("consola"),
+                    rs.getString("televisor"),
+                    rs.getString("cantTelevisor"),                                              
+                };
+                dtm.addRow(fila);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TablasInformacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
 //        try {
 //            BufferedReader escribir = new BufferedReader(new FileReader("segurosHogar.txt"));            
 //            try {
