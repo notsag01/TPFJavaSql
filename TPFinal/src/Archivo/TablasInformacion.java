@@ -100,10 +100,12 @@ public class TablasInformacion extends javax.swing.JFrame {
         dtm.addColumn("INTERNACION");
         dtm.addColumn("PARALISIS");
         
+        jTable_tabla.setModel(dtm);
+        
         try {
             Connection conexion = Conexion.obtenerConexion();
             String query="SELECT  " +
-                             "s.TipoServicio,\n" +
+                            "        s.TipoServicio,\n" +
                             "        u.UserName,\n" +
                             "        c.Nombre,\n" +
                             "        c.Apellido,\n" +
@@ -119,6 +121,7 @@ public class TablasInformacion extends javax.swing.JFrame {
             PreparedStatement sq = conexion.prepareStatement(query);
             
             ResultSet rs = sq.executeQuery();
+
             
             while(rs.next()){
                 Object[]fila={
@@ -222,7 +225,7 @@ public class TablasInformacion extends javax.swing.JFrame {
 //        String linea;
          try {
             Connection conexion = Conexion.obtenerConexion();
-            String query="SELECT \n" +
+            String query="SELECT " +
                             "    sh.SeguroHogarID, \n" +
                             "    u.Nombre AS UsuarioNombre, \n" +
                             "    c.Nombre AS ClienteNombre, \n" +
