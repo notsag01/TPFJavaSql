@@ -23,7 +23,7 @@ public class TablasInformacion extends javax.swing.JFrame {
     public TablasInformacion(String tipoTabla) {
         initComponents();
         tablas(tipoTabla);
-        
+        this.setResizable(true);
     }
 
    private TablasInformacion() {
@@ -151,10 +151,10 @@ public class TablasInformacion extends javax.swing.JFrame {
     
     private void tablaSegHogar(){
       dtm.addColumn("TIPO SEGURO");
-        //dtm.addColumn("CUIT");
-        //dtm.addColumn("NOMBRE Y APELLIDO");
-        //dtm.addColumn("TELEFONO");
-        //dtm.addColumn("MAIL");
+        dtm.addColumn("USUARIO");
+        dtm.addColumn("CLIENTE NOMBRE");
+        dtm.addColumn("CLIENTE APELLIDO");
+        dtm.addColumn("SERVICIO");
         dtm.addColumn("INCENDIO");
         dtm.addColumn("ROBO");
         dtm.addColumn("INUNDACION");
@@ -173,7 +173,27 @@ public class TablasInformacion extends javax.swing.JFrame {
 //        String linea;
          try {
             Connection conexion = Conexion.obtenerConexion();
-            String query="SELECT * FROM segurohogar";
+            String query="SELECT \n" +
+                            "    sh.SeguroHogarID, \n" +
+                            "    u.Nombre AS UsuarioNombre, \n" +
+                            "    c.Nombre AS ClienteNombre, \n" +
+                            "    c.Apellido, \n" +
+                            "    s.TipoServicio, \n" +
+                            "    CASE sh.incendio WHEN 1 THEN 'Contratado' ELSE 'No contratado' END AS Incendio,\n" +
+                            "    CASE sh.robo WHEN 1 THEN 'Contratado' ELSE 'No contratado' END AS Robo,\n" +
+                            "    CASE sh.inundacion WHEN 1 THEN 'Contratado' ELSE 'No contratado' END AS Inundacion,\n" +
+                            "    CASE sh.heladera WHEN 1 THEN 'Contratado' ELSE 'No contratado' END AS Heladera,\n" +
+                            "    CASE sh.lavarropas WHEN 1 THEN 'Contratado' ELSE 'No contratado' END AS Lavarropas,\n" +
+                            "    CASE sh.cocina WHEN 1 THEN 'Contratado' ELSE 'No contratado' END AS Cocina,\n" +
+                            "    CASE sh.notebooks WHEN 1 THEN 'Contratado' ELSE 'No contratado' END AS Notebooks,\n" +
+                            "    sh.cantNotebooks,\n" +
+                            "    CASE sh.consola WHEN 1 THEN 'Contratado' ELSE 'No contratado' END AS Consola,\n" +
+                            "    CASE sh.televisor WHEN 1 THEN 'Contratado' ELSE 'No contratado' END AS Televisor,\n" +
+                            "    sh.cantTelevisor\n" +
+                            "FROM segurohogar sh\n" +
+                            "JOIN usuarios u ON sh.UsuarioID = u.UsuarioID\n" +
+                            "JOIN clientes c ON sh.ClienteID = c.ClienteID\n" +
+                            "JOIN servicios s ON sh.ServicioID = s.ServicioID;";
             PreparedStatement sq = conexion.prepareStatement(query);
             
             ResultSet rs = sq.executeQuery();
@@ -181,17 +201,21 @@ public class TablasInformacion extends javax.swing.JFrame {
             while(rs.next()){
                 Object[]fila={
                     "seguro hogar",
-                    rs.getString("incendio"),
-                    rs.getString("robo"),
-                    rs.getString("inundacion"),
-                    rs.getString("heladera"),
-                    rs.getString("lavarropas"),
-                    rs.getString("cocina"),
-                    rs.getString("notebooks"),
+                    rs.getString("UsuarioNombre"),
+                    rs.getString("ClienteNombre"),
+                    rs.getString("Apellido"),
+                    rs.getString("TipoServicio"),
+                    rs.getString("Incendio"),
+                    rs.getString("Robo"),
+                    rs.getString("Inundacion"),
+                    rs.getString("Heladera"),
+                    rs.getString("Lavarropas"),
+                    rs.getString("Cocina"),
+                    rs.getString("Notebooks"),
                     rs.getString("cantNotebooks"),
-                    rs.getString("consola"),
-                    rs.getString("televisor"),
-                    rs.getString("cantTelevisor"),                                              
+                    rs.getString("Consola"),
+                    rs.getString("Televisor"),
+                    rs.getString("cantTelevisor"),                                 
                 };
                 dtm.addRow(fila);
             }
@@ -249,6 +273,7 @@ public class TablasInformacion extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable_tabla.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_NEXT_COLUMN);
         jTable_tabla.setOpaque(false);
         jScrollPane1.setViewportView(jTable_tabla);
 
