@@ -105,57 +105,79 @@ public class Archivo {
             break;
 
             case "Seguro Vida":
-            {
+            {   
+                System.out.println("usuario: " + persona.getIdUsuario());
+                System.out.println("cliente: " + persona.getClienteId());
                 try {
-                    BufferedWriter escribir = new BufferedWriter(new FileWriter("seguros.txt",true));
-                    BufferedWriter escribirVida = new BufferedWriter(new FileWriter("segurosVida.txt",true));
-                    escribir.write(persona.getTipoSeguro()+ "," +
-                            persona.getCuit() + "," +
-                            persona.getNombre() + "," +
-                            persona.getTelefono() + "," +
-                            persona.getMail() + "," +
-                            persona.getMuerte() + "," +
-                            persona.getMuerteAccidental() + "," +
-                            persona.getInternacion()+ "," +
-                            persona.getInternacionDias()+ "," +
-                            persona.getParalisis()+ "," +
-                            persona.getBeneficiario1()+ "," +
-                            persona.getBeneficiario1_parentesco()+ "," +
-                            persona.getBeneficiario2()+ "," +
-                            persona.getBeneficiario2_parentesco()+ "," +
-                            persona.getBeneficiario3()+ "," +
-                            persona.getBeneficiario3_parentesco()+ "," +
-                            persona.getBeneficiario4()+ "," +
-                            persona.getBeneficiario4_parentesco()
-                    );
-
-                escribir.newLine();
-                escribir.close();
-                    escribirVida.write(persona.getTipoSeguro()+ "," +
-                            persona.getCuit() + "," +
-                            persona.getNombre() + "," +
-                            persona.getTelefono() + "," +
-                            persona.getMail() + "," +
-                            persona.getMuerte() + "," +
-                            persona.getMuerteAccidental() + "," +
-                            persona.getInternacion()+ "," +
-                            persona.getInternacionDias()+ "," +
-                            persona.getParalisis()+ "," +
-                            persona.getBeneficiario1()+ "," +
-                            persona.getBeneficiario1_parentesco()+ "," +
-                            persona.getBeneficiario2()+ "," +
-                            persona.getBeneficiario2_parentesco()+ "," +
-                            persona.getBeneficiario3()+ "," +
-                            persona.getBeneficiario3_parentesco()+ "," +
-                            persona.getBeneficiario4()+ "," +
-                            persona.getBeneficiario4_parentesco()
-                    );
-
-                escribirVida.newLine();
-                escribirVida.close();
-                } catch (IOException ex) {
-                    System.out.println(ex);
+                    Connection conexion = Conexion.obtenerConexion();
+                    String query="INSERT INTO segurovida VALUES(?,?,?,?,?,?,?,?)";
+                    PreparedStatement sq = conexion.prepareStatement(query);
+                    
+                    sq.setString(1, "0");
+                    sq.setInt(2, persona.getIdUsuario());
+                    sq.setInt(3, Integer.parseInt(persona.getClienteId()));
+                    sq.setInt(4, Integer.parseInt("3"));
+                    sq.setBoolean(5, persona.getMuerte());
+                    sq.setBoolean(6, persona.getMuerteAccidental());
+                    sq.setBoolean(7, persona.getInternacion());
+                    sq.setBoolean(8, persona.getParalisis());
+                    
+                    
+                    sq.executeUpdate();
+                    
+                } catch (SQLException ex) {
+                    Logger.getLogger(Archivo.class.getName()).log(Level.SEVERE, null, ex);
                 }
+//                try {
+//                    BufferedWriter escribir = new BufferedWriter(new FileWriter("seguros.txt",true));
+//                    BufferedWriter escribirVida = new BufferedWriter(new FileWriter("segurosVida.txt",true));
+//                    escribir.write(persona.getTipoSeguro()+ "," +
+//                            persona.getCuit() + "," +
+//                            persona.getNombre() + "," +
+//                            persona.getTelefono() + "," +
+//                            persona.getMail() + "," +
+//                            persona.getMuerte() + "," +
+//                            persona.getMuerteAccidental() + "," +
+//                            persona.getInternacion()+ "," +
+//                            persona.getInternacionDias()+ "," +
+//                            persona.getParalisis()+ "," +
+//                            persona.getBeneficiario1()+ "," +
+//                            persona.getBeneficiario1_parentesco()+ "," +
+//                            persona.getBeneficiario2()+ "," +
+//                            persona.getBeneficiario2_parentesco()+ "," +
+//                            persona.getBeneficiario3()+ "," +
+//                            persona.getBeneficiario3_parentesco()+ "," +
+//                            persona.getBeneficiario4()+ "," +
+//                            persona.getBeneficiario4_parentesco()
+//                    );
+//
+//                escribir.newLine();
+//                escribir.close();
+//                    escribirVida.write(persona.getTipoSeguro()+ "," +
+//                            persona.getCuit() + "," +
+//                            persona.getNombre() + "," +
+//                            persona.getTelefono() + "," +
+//                            persona.getMail() + "," +
+//                            persona.getMuerte() + "," +
+//                            persona.getMuerteAccidental() + "," +
+//                            persona.getInternacion()+ "," +
+//                            persona.getInternacionDias()+ "," +
+//                            persona.getParalisis()+ "," +
+//                            persona.getBeneficiario1()+ "," +
+//                            persona.getBeneficiario1_parentesco()+ "," +
+//                            persona.getBeneficiario2()+ "," +
+//                            persona.getBeneficiario2_parentesco()+ "," +
+//                            persona.getBeneficiario3()+ "," +
+//                            persona.getBeneficiario3_parentesco()+ "," +
+//                            persona.getBeneficiario4()+ "," +
+//                            persona.getBeneficiario4_parentesco()
+//                    );
+//
+//                escribirVida.newLine();
+//                escribirVida.close();
+//                } catch (IOException ex) {
+//                    System.out.println(ex);
+//                }
             }
             break;
             case "Seguro Automotor":

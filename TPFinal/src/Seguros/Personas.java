@@ -8,8 +8,8 @@ public class Personas {
     boolean incendio,robo,inundacion,
             heladera,lavarropas,cocina,notebook,consola,televisor;
     int notebookCantidad,televisorCantidad;
-    String muerte, muerteAccidental,internacion,internacionDias,paralisis;
-    String beneficiario1,beneficiario2,beneficiario3,beneficiario4;
+    boolean muerte, muerteAccidental,internacion,paralisis;
+    String internacionDias,beneficiario1,beneficiario2,beneficiario3,beneficiario4;
     String beneficiario1_parentesco,beneficiario2_parentesco,beneficiario3_parentesco,beneficiario4_parentesco;
     String dominio, marcaSelec,modeloSelec,anio;
     String terceroCompleto,responsabilidadCivil, todoRiesgoCF,todoRiesgoSF,granizo;
@@ -57,15 +57,17 @@ public class Personas {
     }
     
     public Personas(String tipoSeguro,
+            int idUsuario,
+            String clienteId,
             String cuit,
             String nombre,
             String telefono,
             String mail,
-            String muerte, 
-            String muerteAccidental, 
-            String internacion, 
+            boolean muerte, 
+            boolean muerteAccidental, 
+            boolean internacion, 
             String internacionDias,
-            String paralisis,
+            boolean paralisis,
             String beneficiario1,            
             String beneficiario2,            
             String beneficiario3,            
@@ -77,6 +79,8 @@ public class Personas {
     ){
         
         this.tipoSeguro=tipoSeguro;
+        this.idUsuario=idUsuario;
+        this.clienteId=clienteId;
         this.cuit=cuit;
         this.nombre=nombre;
         this.telefono=telefono;
@@ -241,15 +245,15 @@ public class Personas {
         return televisorCantidad;
     }
 
-    public String getMuerte() {
+    public boolean getMuerte() {
         return muerte;
     }
 
-    public String getMuerteAccidental() {
+    public boolean getMuerteAccidental() {
         return muerteAccidental;
     }
 
-    public String getInternacion() {
+    public boolean getInternacion() {
         return internacion;
     }
 
@@ -257,7 +261,7 @@ public class Personas {
         return internacionDias;
     }
 
-    public String getParalisis() {
+    public boolean getParalisis() {
         return paralisis;
     }
 

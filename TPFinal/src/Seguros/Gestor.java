@@ -1,6 +1,5 @@
 package Seguros;
 
-
 import Archivo.Archivo;
 import Clientes.ArchivoClientes;
 import Clientes.EncontrarClientes;
@@ -18,41 +17,40 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.border.Border;
 
-
 public class Gestor extends javax.swing.JInternalFrame {
+
     private String usuario;
     private int idUsuario;
-    
+
     private Timer timer;
-     String[] frases = {
-         "Seguros",
-         "Dinero Movil",
-         "Dormí tranquilo"
-     };
-     private int indice=0;
+    String[] frases = {
+        "Seguros",
+        "Dinero Movil",
+        "Dormí tranquilo"
+    };
+    private int indice = 0;
 
     private Gestor() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-     public void frasesAleatorias(){
-         timer = new Timer(3000, new ActionListener(){
-             @Override
-             public void actionPerformed(ActionEvent e) {
-             jLabel_frases.setText(frases[indice]);
-             indice = (indice + 1) % frases.length;
-             }         
-         });
-         timer.start();
-     }
-     Border bordeError = BorderFactory.createLineBorder(Color.RED);
-     
-     
+
+    public void frasesAleatorias() {
+        timer = new Timer(3000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jLabel_frases.setText(frases[indice]);
+                indice = (indice + 1) % frases.length;
+            }
+        });
+        timer.start();
+    }
+    Border bordeError = BorderFactory.createLineBorder(Color.RED);
 
     public Gestor(String usuario, int idUsuario) {
         initComponents();
         //this.setLocationRelativeTo(null);        
-        frasesAleatorias(); 
-        
+        frasesAleatorias();
+
         jComboBox_incendio.setEnabled(false);
         jComboBox_robo.setEnabled(false);
         jComboBox_inundacion.setEnabled(false);
@@ -63,188 +61,203 @@ public class Gestor extends javax.swing.JInternalFrame {
         jComboBox_beneficiario2.setEnabled(false);
         jComboBox_beneficiario3.setEnabled(false);
         jComboBox_beneficiario4.setEnabled(false);
-        
-        this.usuario=usuario;
-        this.idUsuario=idUsuario;
+
+        this.usuario = usuario;
+        this.idUsuario = idUsuario;
     }
-    String cliente,clienteId;
-    String tipoSeguro, cuit, nombre,telefono, mail;
-    boolean incendio,robo,inundacion;
-    String tipoIncendio,tipoRobo,tipoInundacion;
-    boolean heladera,lavarropas,cocina,notebook,consola,televisor;
-    int notebookCantidad,televisorCantidad;
-    String muerte, muerteAccidental,internacion,internacionDias,paralisis;
-    String beneficiario1,beneficiario2,beneficiario3,beneficiario4;
-    String beneficiario1_parentesco,beneficiario2_parentesco,beneficiario3_parentesco,beneficiario4_parentesco;
-    String dominio, marcaSelec,modeloSelec,anio;
-    String terceroCompleto,responsabilidadCivil, todoRiesgoCF,todoRiesgoSF,granizo, franquicia;    
-    boolean arroba=false, punto=false;
+    String cliente, clienteId;
+    String tipoSeguro, cuit, nombre, telefono, mail;
+    boolean incendio, robo, inundacion;
+    String tipoIncendio, tipoRobo, tipoInundacion;
+    boolean heladera, lavarropas, cocina, notebook, consola, televisor;
+    int notebookCantidad, televisorCantidad;
+    boolean muerte, muerteAccidental, internacion, paralisis;
+    String internacionDias, beneficiario1, beneficiario2, beneficiario3, beneficiario4;
+    String beneficiario1_parentesco, beneficiario2_parentesco, beneficiario3_parentesco, beneficiario4_parentesco;
+    String dominio, marcaSelec, modeloSelec, anio;
+    String terceroCompleto, responsabilidadCivil, todoRiesgoCF, todoRiesgoSF, granizo, franquicia;
+    boolean arroba = false, punto = false;
     String id;
-    
+
     SHPrima shp = new SHPrima();
     private double prima;
-    private double sumaAdicioneales=0;
-    
-    
-    public void getData(String seguro){
-         
-        switch(seguro){
+    private double sumaAdicioneales = 0;
+
+    public void getData(String seguro) {
+
+        switch (seguro) {
             case "seguro vehicular":
-                    getDatosPerosonaVehiculos();
-            break;
+                getDatosPerosonaVehiculos();
+                break;
             case "seguro hogar":
-                    getDatosPerosonaHogar();
-            break;
-            case"seguro vida":
-                    getDatosPerosonaVida();
-            break;
+                getDatosPerosonaHogar();
+                break;
+            case "seguro vida":
+                getDatosPerosonaVida();
+                break;
         }
     }
-        
-    public void getDatosPerosonaHogar(){
-        tipoSeguro="Seguro Hogar"; 
-        cuit=jTextField_id.getText();
-        nombre=jTextField_nombreCliente.getText();
-        
-        if(jCheckBox_incendio.isSelected()){
-            incendio=true;
-        }else{incendio=false;}
-        
-        tipoIncendio=(String)jComboBox_incendio.getSelectedItem();
-        if(tipoIncendio.equals("")){
-            tipoIncendio="";
-        }else{
-            if(tipoIncendio.equalsIgnoreCase("total")){
+
+    public void getDatosPerosonaHogar() {
+        tipoSeguro = "Seguro Hogar";
+        cuit = jTextField_id.getText();
+        nombre = jTextField_nombreCliente.getText();
+
+        if (jCheckBox_incendio.isSelected()) {
+            incendio = true;
+        } else {
+            incendio = false;
+        }
+
+        tipoIncendio = (String) jComboBox_incendio.getSelectedItem();
+        if (tipoIncendio.equals("")) {
+            tipoIncendio = "";
+        } else {
+            if (tipoIncendio.equalsIgnoreCase("total")) {
                 shp.setPrimaBase(3000);
-            }else{
+            } else {
                 shp.setPrimaBase(2800);
             }
             jTextField_prima.setText(String.format("$%,.2f", prima));
         }
-        
-        if(jCheckBox_robo.isSelected()){
-            robo=true;
-        }else{robo=false;}
-        
-        tipoRobo=(String)jComboBox_robo.getSelectedItem();
-        if(tipoRobo.equals("")){
-            tipoRobo="";
-        }else{
-            if(tipoRobo.equalsIgnoreCase("total")){
+
+        if (jCheckBox_robo.isSelected()) {
+            robo = true;
+        } else {
+            robo = false;
+        }
+
+        tipoRobo = (String) jComboBox_robo.getSelectedItem();
+        if (tipoRobo.equals("")) {
+            tipoRobo = "";
+        } else {
+            if (tipoRobo.equalsIgnoreCase("total")) {
                 shp.setPrimaBase(1000);
-            }else{
+            } else {
                 shp.setPrimaBase(800);
             }
-            System.out.println(shp.getPrimaBase());            
+            System.out.println(shp.getPrimaBase());
         }
-        if(jCheckBox_inundacion.isSelected()){
-            inundacion=true;
-        }else{inundacion=false;}
-        
-        tipoInundacion=(String)jComboBox_inundacion.getSelectedItem();
-        if(tipoInundacion.equals("")){
-            tipoInundacion="";
-        }else{
-            shp.setPrimaBase(2000);            
+        if (jCheckBox_inundacion.isSelected()) {
+            inundacion = true;
+        } else {
+            inundacion = false;
         }
-        
-        if(jCheckBox_heladera.isSelected()){
-            heladera=true;
-            sumaAdicioneales+=500;
+
+        tipoInundacion = (String) jComboBox_inundacion.getSelectedItem();
+        if (tipoInundacion.equals("")) {
+            tipoInundacion = "";
+        } else {
+            shp.setPrimaBase(2000);
+        }
+
+        if (jCheckBox_heladera.isSelected()) {
+            heladera = true;
+            sumaAdicioneales += 500;
             shp.setTotalAdicionales(sumaAdicioneales);
-        }else{
-            heladera=false;
+        } else {
+            heladera = false;
         }
-        if(jCheckBox_lavarropas.isSelected()){
-            lavarropas=true;
-        }else{
-            lavarropas=false;
+        if (jCheckBox_lavarropas.isSelected()) {
+            lavarropas = true;
+        } else {
+            lavarropas = false;
         }
-        if(jCheckBox_cocina.isSelected()){
-            cocina=true;
-        }else{
-            cocina=false;
+        if (jCheckBox_cocina.isSelected()) {
+            cocina = true;
+        } else {
+            cocina = false;
         }
-        if(jCheckBox_notebooks.isSelected()){
-            notebook=true;
-            notebookCantidad= Integer.parseInt(jTextField_notebooksCantidad.getText());
-        }else{
-            notebook=false;
+        if (jCheckBox_notebooks.isSelected()) {
+            notebook = true;
+            notebookCantidad = Integer.parseInt(jTextField_notebooksCantidad.getText());
+        } else {
+            notebook = false;
         }
-        
-        if(jCheckBox_consola.isSelected()){
-            consola=true;            
-        }else{
-            consola=false;
+
+        if (jCheckBox_consola.isSelected()) {
+            consola = true;
+        } else {
+            consola = false;
         }
-        if(jCheckBox_televisor.isSelected()){
-            televisor=true;
-            televisorCantidad=Integer.parseInt(jTextField_televisorCantidad.getText());
-        }else{
-            televisor=false;
-        } 
-        
+        if (jCheckBox_televisor.isSelected()) {
+            televisor = true;
+            televisorCantidad = Integer.parseInt(jTextField_televisorCantidad.getText());
+        } else {
+            televisor = false;
+        }
+
         Personas persona = new Personas(
-                tipoSeguro,idUsuario, clienteId, cuit,nombre, telefono,mail, 
-                incendio,robo,inundacion,heladera,lavarropas,cocina,notebook,notebookCantidad,consola,televisor,televisorCantidad
+                tipoSeguro, idUsuario, clienteId, cuit, nombre, telefono, mail,
+                incendio, robo, inundacion, heladera, lavarropas, cocina, notebook, notebookCantidad, consola, televisor, televisorCantidad
         );
-        Archivo archivo =new Archivo();
+        Archivo archivo = new Archivo();
         archivo.escribirArchivo(persona);
-        
-        prima=shp.calcularPrima();
-        
+
+        prima = shp.calcularPrima();
+
         limpiarDatosPersonaHogar();
-        
-        
+
     }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void getDatosPerosonaVida(){
-        tipoSeguro="Seguro Vida";
-        cuit=jTextField_id.getText();
-        nombre=jTextField_nombreCliente.getText();
-        
-         if(jCheckBox_muerte.isSelected()){
-            muerte=jCheckBox_muerte.getText();
-        }else{
-            muerte="-";
+    public void getDatosPerosonaVida() {
+        tipoSeguro = "Seguro Vida";
+        cuit = jTextField_id.getText();
+        nombre = jTextField_nombreCliente.getText();
+
+        if (jCheckBox_muerte.isSelected()) {
+            muerte =true;
+        } else {
+            muerte =false;
         }
-        if(jCheckBox_muerteAccidental.isSelected()){
-            muerteAccidental=jCheckBox_muerteAccidental.getText();
-        }else{
-            muerteAccidental="-";
+        if (jCheckBox_muerteAccidental.isSelected()) {
+            muerteAccidental = true;
+        } else {
+            muerteAccidental = false;
         }
-        if(jCheckBox_internacion.isSelected()){
-            internacion=jCheckBox_internacion.getText();
-            internacionDias=jTextField_internacionDias.getText();
-        }else{
-            internacion="-";
+        if (jCheckBox_internacion.isSelected()) {
+            internacion = true;
+            internacionDias = jTextField_internacionDias.getText();
+        } else {
+            internacion = false;
         }
-        if(jCheckBox_paralisis.isSelected()){
-            paralisis=jCheckBox_paralisis.getText();
-        }else{
-            paralisis="-";
+        if (jCheckBox_paralisis.isSelected()) {
+            paralisis = true;
+        } else {
+            paralisis = false;
         }
-       //**************   BENFICIIARIOS *********************
-        if(!jTextField_beneficiario1.equals("")){
-            beneficiario1=jTextField_beneficiario1.getText();
-        }else{beneficiario1="-";}
-        if(!jTextField_beneficiario2.equals("")){
-            beneficiario2=jTextField_beneficiario2.getText();
-        }else{beneficiario2="-";}
-        if(!jTextField_beneficiario3.equals("")){
-            beneficiario3=jTextField_beneficiario3.getText();
-        }else{beneficiario3="-";}
-        if(!jTextField_beneficiario4.equals("")){
-            beneficiario4=jTextField_beneficiario4.getText();
-        }else{beneficiario4="-";}
+        //**************   BENFICIIARIOS *********************
+        if (!jTextField_beneficiario1.equals("")) {
+            beneficiario1 = jTextField_beneficiario1.getText();
+        } else {
+            beneficiario1 = "-";
+        }
+        if (!jTextField_beneficiario2.equals("")) {
+            beneficiario2 = jTextField_beneficiario2.getText();
+        } else {
+            beneficiario2 = "-";
+        }
+        if (!jTextField_beneficiario3.equals("")) {
+            beneficiario3 = jTextField_beneficiario3.getText();
+        } else {
+            beneficiario3 = "-";
+        }
+        if (!jTextField_beneficiario4.equals("")) {
+            beneficiario4 = jTextField_beneficiario4.getText();
+        } else {
+            beneficiario4 = "-";
+        }
         //**********   PARENTESCOS   ********************************************
-        beneficiario1_parentesco=(String)jComboBox_beneficiario1.getSelectedItem();
-        beneficiario2_parentesco=(String)jComboBox_beneficiario2.getSelectedItem();
-        beneficiario3_parentesco=(String)jComboBox_beneficiario3.getSelectedItem();
-        beneficiario4_parentesco=(String)jComboBox_beneficiario4.getSelectedItem();
-        
+        beneficiario1_parentesco = (String) jComboBox_beneficiario1.getSelectedItem();
+        beneficiario2_parentesco = (String) jComboBox_beneficiario2.getSelectedItem();
+        beneficiario3_parentesco = (String) jComboBox_beneficiario3.getSelectedItem();
+        beneficiario4_parentesco = (String) jComboBox_beneficiario4.getSelectedItem();
+
         Personas persona = new Personas(
                 tipoSeguro,
+                idUsuario,
+                clienteId,
                 cuit,
                 nombre,
                 telefono,
@@ -263,130 +276,142 @@ public class Gestor extends javax.swing.JInternalFrame {
                 beneficiario3_parentesco,
                 beneficiario4_parentesco
         );
-                
-        Archivo archivo =new Archivo();
+
+        Archivo archivo = new Archivo();
         archivo.escribirArchivo(persona);
-        
+
         limpiarDatosPerosonaVida();
-        
+
     }
-        //////////////////////////////////////////////////////////////////////////////
-        public void getDatosPerosonaVehiculos(){
-            tipoSeguro="Seguro Automotor";
-            cuit=jTextField_id.getText();
-            nombre=jTextField_nombreCliente.getText();
-            
-            dominio=jTextField_dominio.getText().toUpperCase();
-            marcaSelec=(String)jComboBox_marcas.getSelectedItem();
-            modeloSelec=(String)jComboBox_modelos.getSelectedItem();
-            anio=jTextField_anio.getText();
-            //String terceroCompleto,responsabilidadCivil, trFranquicia,trsFranquicia,granizo;
-            if(jCheckBox_terceroCompleto.isSelected()){
-                terceroCompleto=jCheckBox_terceroCompleto.getText();
-            }else{terceroCompleto="-";}
-            if(jCheckBox_responsabilidadCivil.isSelected()){
-                responsabilidadCivil=jCheckBox_responsabilidadCivil.getText();
-            }else{responsabilidadCivil="-";}
-            if(jCheckBox_todoRiesgoCF.isSelected()){
-                todoRiesgoCF=jCheckBox_todoRiesgoCF.getText();
-            }else{todoRiesgoCF="-";}
-            if(jCheckBox_todoRiesgoSF.isSelected()){
-                todoRiesgoSF=jCheckBox_todoRiesgoSF.getText();
-            }else{todoRiesgoSF="-";}
-            if(jCheckBox_granizo.isSelected()){
-                granizo=jCheckBox_granizo.getText();
-            }else{granizo="-";}
-            franquicia=(String)jComboBox_franquicia.getSelectedItem();
-            
-            Personas persona = new Personas(
-                    tipoSeguro,
-                    cuit,
-                    nombre,
-                    telefono,
-                    mail,
-                    dominio,marcaSelec,modeloSelec,anio,
-                    terceroCompleto,responsabilidadCivil,todoRiesgoCF,todoRiesgoSF,granizo, franquicia
-            );
-            Archivo archivo = new Archivo();
-            archivo.escribirArchivo(persona);
-            
-            limpiarDatosPerosonaVehiculos();
+    //////////////////////////////////////////////////////////////////////////////
+
+    public void getDatosPerosonaVehiculos() {
+        tipoSeguro = "Seguro Automotor";
+        cuit = jTextField_id.getText();
+        nombre = jTextField_nombreCliente.getText();
+
+        dominio = jTextField_dominio.getText().toUpperCase();
+        marcaSelec = (String) jComboBox_marcas.getSelectedItem();
+        modeloSelec = (String) jComboBox_modelos.getSelectedItem();
+        anio = jTextField_anio.getText();
+        //String terceroCompleto,responsabilidadCivil, trFranquicia,trsFranquicia,granizo;
+        if (jCheckBox_terceroCompleto.isSelected()) {
+            terceroCompleto = jCheckBox_terceroCompleto.getText();
+        } else {
+            terceroCompleto = "-";
         }
-        
-        public void limpiarDatos(){
+        if (jCheckBox_responsabilidadCivil.isSelected()) {
+            responsabilidadCivil = jCheckBox_responsabilidadCivil.getText();
+        } else {
+            responsabilidadCivil = "-";
+        }
+        if (jCheckBox_todoRiesgoCF.isSelected()) {
+            todoRiesgoCF = jCheckBox_todoRiesgoCF.getText();
+        } else {
+            todoRiesgoCF = "-";
+        }
+        if (jCheckBox_todoRiesgoSF.isSelected()) {
+            todoRiesgoSF = jCheckBox_todoRiesgoSF.getText();
+        } else {
+            todoRiesgoSF = "-";
+        }
+        if (jCheckBox_granizo.isSelected()) {
+            granizo = jCheckBox_granizo.getText();
+        } else {
+            granizo = "-";
+        }
+        franquicia = (String) jComboBox_franquicia.getSelectedItem();
+
+        Personas persona = new Personas(
+                tipoSeguro,
+                cuit,
+                nombre,
+                telefono,
+                mail,
+                dominio, marcaSelec, modeloSelec, anio,
+                terceroCompleto, responsabilidadCivil, todoRiesgoCF, todoRiesgoSF, granizo, franquicia
+        );
+        Archivo archivo = new Archivo();
+        archivo.escribirArchivo(persona);
+
+        limpiarDatosPerosonaVehiculos();
+    }
+
+    public void limpiarDatos() {
         jTextField_id.setText("");
         jTextField_nombreCliente.setText("");
+    }
+
+    public void limpiarDatosPersonaHogar() {
+        jCheckBox_incendio.setSelected(false);
+        jCheckBox_robo.setSelected(false);
+        jComboBox_inundacion.setSelectedIndex(0);
+        jCheckBox_inundacion.setSelected(false);
+        jComboBox_inundacion.setSelectedIndex(0);
+        jComboBox_incendio.setEnabled(false);
+        jComboBox_incendio.setSelectedIndex(0);
+        jComboBox_robo.setEnabled(false);
+        jComboBox_robo.setSelectedIndex(0);
+        jComboBox_inundacion.setEnabled(false);
+        jCheckBox_heladera.setSelected(false);
+        jCheckBox_lavarropas.setSelected(false);
+        jCheckBox_cocina.setSelected(false);
+        jCheckBox_notebooks.setSelected(false);
+        jCheckBox_consola.setSelected(false);
+        jCheckBox_televisor.setSelected(false);
+        jTextField_notebooksCantidad.setEnabled(false);
+        jTextField_televisorCantidad.setEnabled(false);
+        jTextField_notebooksCantidad.setText("");
+        jTextField_televisorCantidad.setText("");
+    }
+
+    public void limpiarDatosPerosonaVida() {
+        jCheckBox_muerte.setSelected(false);
+        jCheckBox_muerteAccidental.setSelected(false);
+        jCheckBox_internacion.setSelected(false);
+        jCheckBox_paralisis.setSelected(false);
+        jTextField_internacionDias.setEnabled(false);
+        jTextField_internacionDias.setText("");
+        jTextField_beneficiario1.setText("");
+        jTextField_beneficiario2.setText("");
+        jTextField_beneficiario3.setText("");
+        jTextField_beneficiario4.setText("");
+        jComboBox_beneficiario1.setEnabled(false);
+        jComboBox_beneficiario2.setEnabled(false);
+        jComboBox_beneficiario3.setEnabled(false);
+        jComboBox_beneficiario4.setEnabled(false);
+        jComboBox_beneficiario1.setSelectedIndex(0);
+        jComboBox_beneficiario2.setSelectedIndex(0);
+        jComboBox_beneficiario3.setSelectedIndex(0);
+        jComboBox_beneficiario4.setSelectedIndex(0);
+    }
+
+    public void limpiarDatosPerosonaVehiculos() {
+        jTextField_dominio.setText("");
+        jComboBox_marcas.setSelectedIndex(0);
+        jComboBox_modelos.setSelectedIndex(0);
+        jComboBox_franquicia.setSelectedIndex(0);
+        jComboBox_franquicia.setEnabled(false);
+        jLabel_premio.setText("");
+        jLabel_prima.setText("");
+        jCheckBox_terceroCompleto.setSelected(false);
+        jCheckBox_responsabilidadCivil.setSelected(false);
+        jCheckBox_todoRiesgoSF.setSelected(false);
+        jCheckBox_todoRiesgoCF.setSelected(false);
+        jCheckBox_granizo.setSelected(false);
+        jTextField_anio.setText("");
+    }
+
+    private void buscarID(String id) {
+        EncontrarClientes encontrarCliente = new EncontrarClientes(id);
+        encontrarCliente.buscarCliente();
+        if (encontrarCliente.isEncontrado()) {
+            jTextField_nombreCliente.setText(encontrarCliente.getNombre() + " " + encontrarCliente.getApellido());
+        } else {
+            jTextField_nombreCliente.setText("");
+            jTextField_id.setText("");
         }
-        public void limpiarDatosPersonaHogar(){
-           jCheckBox_incendio.setSelected(false);
-           jCheckBox_robo.setSelected(false);
-           jComboBox_inundacion.setSelectedIndex(0);
-           jCheckBox_inundacion.setSelected(false);
-           jComboBox_inundacion.setSelectedIndex(0);
-           jComboBox_incendio.setEnabled(false);
-           jComboBox_incendio.setSelectedIndex(0);
-           jComboBox_robo.setEnabled(false);
-           jComboBox_robo.setSelectedIndex(0);
-           jComboBox_inundacion.setEnabled(false);
-           jCheckBox_heladera.setSelected(false);
-           jCheckBox_lavarropas.setSelected(false);
-           jCheckBox_cocina.setSelected(false);
-           jCheckBox_notebooks.setSelected(false);
-           jCheckBox_consola.setSelected(false);
-           jCheckBox_televisor.setSelected(false);
-           jTextField_notebooksCantidad.setEnabled(false);
-           jTextField_televisorCantidad.setEnabled(false);
-           jTextField_notebooksCantidad.setText("");
-           jTextField_televisorCantidad.setText("");
-        }
-        public void limpiarDatosPerosonaVida(){
-            jCheckBox_muerte.setSelected(false); 
-            jCheckBox_muerteAccidental.setSelected(false); 
-            jCheckBox_internacion.setSelected(false); 
-            jCheckBox_paralisis.setSelected(false); 
-            jTextField_internacionDias.setEnabled(false);
-            jTextField_internacionDias.setText("");
-            jTextField_beneficiario1.setText("");
-            jTextField_beneficiario2.setText("");
-            jTextField_beneficiario3.setText("");
-            jTextField_beneficiario4.setText("");
-            jComboBox_beneficiario1.setEnabled(false);
-            jComboBox_beneficiario2.setEnabled(false);
-            jComboBox_beneficiario3.setEnabled(false);
-            jComboBox_beneficiario4.setEnabled(false);
-            jComboBox_beneficiario1.setSelectedIndex(0);
-            jComboBox_beneficiario2.setSelectedIndex(0);
-            jComboBox_beneficiario3.setSelectedIndex(0);
-            jComboBox_beneficiario4.setSelectedIndex(0);
-        }
-        public void limpiarDatosPerosonaVehiculos(){
-            jTextField_dominio.setText("");
-            jComboBox_marcas.setSelectedIndex(0);
-            jComboBox_modelos.setSelectedIndex(0);
-            jComboBox_franquicia.setSelectedIndex(0);
-            jComboBox_franquicia.setEnabled(false);
-            jLabel_premio.setText("");
-            jLabel_prima.setText("");
-            jCheckBox_terceroCompleto.setSelected(false);
-            jCheckBox_responsabilidadCivil.setSelected(false);
-            jCheckBox_todoRiesgoSF.setSelected(false);
-            jCheckBox_todoRiesgoCF.setSelected(false);
-            jCheckBox_granizo.setSelected(false);
-            jTextField_anio.setText("");
-        }
-        
-        private void buscarID(String id){            
-            EncontrarClientes encontrarCliente = new EncontrarClientes(id);
-            encontrarCliente.buscarCliente();
-            if(encontrarCliente.isEncontrado()){
-                jTextField_nombreCliente.setText(encontrarCliente.getNombre() + " " + encontrarCliente.getApellido());
-            }else{
-                jTextField_nombreCliente.setText("");
-                jTextField_id.setText("");
-            }
-        }
-        
-    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1712,242 +1737,248 @@ public class Gestor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCheckBox_heladeraActionPerformed
 
     private void jButton_contratarVidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_contratarVidaActionPerformed
-        if(jTextField_nombreCliente.getText().equals("")){
+        if (jTextField_nombreCliente.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Ingrese su Cuit");
-        }else{
-            String seguro= "seguro vida";
-            getData(seguro);             
+        } else {
+            String seguro = "seguro vida";
+            getData(seguro);
         }
-        
+
     }//GEN-LAST:event_jButton_contratarVidaActionPerformed
 
     private void jComboBox_marcasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_marcasItemStateChanged
         ////////////   SECCION VEHICULOS   ///////////////////////////////
-        String modelosFiat []= {" ","PULSE", "CRONOS", "TORO", "UNO", "500", "STRADA", "FIORINO"};
-        String modelosRenault []= {" ","SANDERO", "LOGAN", "KANGOO", "KWID", "STEPWEY", "ALASKAN", "DUSTER"};
-        String modelosChevrolet []= {" ","CRUEZE", "ONIX", "TRACKER", "S10", "SPIN", "PRISMA", "COBALT"};
-        String modelosFord []= {" ","RANGER", "ECOSPORT", "KA", "FIESTA", "FOCUS", "MONDEO", "MUSTANG"};
-        String modelosPeugeot []= {" ","208", "207", "308", "408", "PARTNER", "PATAGONIC", "EXPERT"};
-        
+        String modelosFiat[] = {" ", "PULSE", "CRONOS", "TORO", "UNO", "500", "STRADA", "FIORINO"};
+        String modelosRenault[] = {" ", "SANDERO", "LOGAN", "KANGOO", "KWID", "STEPWEY", "ALASKAN", "DUSTER"};
+        String modelosChevrolet[] = {" ", "CRUEZE", "ONIX", "TRACKER", "S10", "SPIN", "PRISMA", "COBALT"};
+        String modelosFord[] = {" ", "RANGER", "ECOSPORT", "KA", "FIESTA", "FOCUS", "MONDEO", "MUSTANG"};
+        String modelosPeugeot[] = {" ", "208", "207", "308", "408", "PARTNER", "PATAGONIC", "EXPERT"};
+
         // El evento ItemEvent tiene dos estados posibles: ItemEvent.SELECTED y ItemEvent.DESELECTED, y ambos estados se generan cuando se 
         //selecciona o deselecciona un ítem en el JComboBox.
         // El código solo se ejecuta cuando el estado es ItemEvent.SELECTED
-        if(evt.getStateChange()==ItemEvent.SELECTED){
-            
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+
             int marca = jComboBox_marcas.getSelectedIndex();
             System.out.println(marca);
-            if(marca==1){
+            if (marca == 1) {
                 jComboBox_modelos.removeAllItems();
-                for(String modelo:modelosFiat){
+                for (String modelo : modelosFiat) {
                     jComboBox_modelos.addItem(modelo);
                     //marcaSelec="Fiat";
                 }
             }
-            if(marca==2){
+            if (marca == 2) {
                 jComboBox_modelos.removeAllItems();
-                for(String modelo:modelosRenault){
+                for (String modelo : modelosRenault) {
                     jComboBox_modelos.addItem(modelo);
                     //marcaSelec="Renault";                    
-                }            
+                }
             }
-            if(marca==3){
+            if (marca == 3) {
                 jComboBox_modelos.removeAllItems();
-                for(String modelo:modelosChevrolet){
+                for (String modelo : modelosChevrolet) {
                     jComboBox_modelos.addItem(modelo);
-                   // marcaSelec="Chevrolet";
-                }            
+                    // marcaSelec="Chevrolet";
+                }
             }
-            if(marca==4){
+            if (marca == 4) {
                 jComboBox_modelos.removeAllItems();
-                for(String modelo:modelosFord){
+                for (String modelo : modelosFord) {
                     jComboBox_modelos.addItem(modelo);
                     //marcaSelec="Ford";
-                }            
+                }
             }
-            if(marca==5){
+            if (marca == 5) {
                 jComboBox_modelos.removeAllItems();
-                for(String modelo:modelosPeugeot){
+                for (String modelo : modelosPeugeot) {
                     jComboBox_modelos.addItem(modelo);
                     //marcaSelec="Peugeot";
-                }            
+                }
             }
         }
-        
+
     }//GEN-LAST:event_jComboBox_marcasItemStateChanged
 
     private void jCheckBox_terceroCompletoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox_terceroCompletoItemStateChanged
-         if(jCheckBox_terceroCompleto.isSelected()){
-             jCheckBox_responsabilidadCivil.setSelected(true);
-         }else{
-             jCheckBox_responsabilidadCivil.setSelected(false);         
-         }
+        if (jCheckBox_terceroCompleto.isSelected()) {
+            jCheckBox_responsabilidadCivil.setSelected(true);
+        } else {
+            jCheckBox_responsabilidadCivil.setSelected(false);
+        }
     }//GEN-LAST:event_jCheckBox_terceroCompletoItemStateChanged
 
     private void jCheckBox_todoRiesgoSFItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox_todoRiesgoSFItemStateChanged
-        if(jCheckBox_todoRiesgoSF.isSelected()){
+        if (jCheckBox_todoRiesgoSF.isSelected()) {
             jCheckBox_responsabilidadCivil.setSelected(true);
-        }else{
+        } else {
             jCheckBox_responsabilidadCivil.setSelected(false);
         }
     }//GEN-LAST:event_jCheckBox_todoRiesgoSFItemStateChanged
 
     private void jCheckBox_todoRiesgoCFItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox_todoRiesgoCFItemStateChanged
-        if(jCheckBox_todoRiesgoCF.isSelected()){
+        if (jCheckBox_todoRiesgoCF.isSelected()) {
             jCheckBox_responsabilidadCivil.setSelected(true);
             jComboBox_franquicia.setEnabled(true);
-        }else{
+        } else {
             jCheckBox_responsabilidadCivil.setSelected(false);
             jComboBox_franquicia.setEnabled(false);
         }
     }//GEN-LAST:event_jCheckBox_todoRiesgoCFItemStateChanged
 
     private void jCheckBox_granizoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox_granizoItemStateChanged
-        if(jCheckBox_granizo.isSelected()){
+        if (jCheckBox_granizo.isSelected()) {
             jCheckBox_todoRiesgoSF.setSelected(true);
-        }else{
+        } else {
             jCheckBox_todoRiesgoSF.setSelected(true);
         }
     }//GEN-LAST:event_jCheckBox_granizoItemStateChanged
 
     private void jButton_seguroVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_seguroVehiculosActionPerformed
-        if(jTextField_nombreCliente.getText().equals("")){
+        if (jTextField_nombreCliente.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Ingrese su Cuit");
-        }else{
-            String seguro= "seguro vehicular";
-            getData(seguro);        
-        }        
+        } else {
+            String seguro = "seguro vehicular";
+            getData(seguro);
+        }
     }//GEN-LAST:event_jButton_seguroVehiculosActionPerformed
 
     private void jButton_contratarHogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_contratarHogarActionPerformed
-    
-        if(jTextField_nombreCliente.getText().equals("")){
+
+        if (jTextField_nombreCliente.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Ingrese su Cuit");
-        }else{
-            String seguro= "seguro hogar";
-            getData(seguro);    
-        }            
+        } else {
+            String seguro = "seguro hogar";
+            getData(seguro);
+        }
     }//GEN-LAST:event_jButton_contratarHogarActionPerformed
 
     private void jCheckBox_incendioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox_incendioItemStateChanged
-       if(jCheckBox_incendio.isSelected()){
+        if (jCheckBox_incendio.isSelected()) {
             jComboBox_incendio.setEnabled(true);
-        }else{jComboBox_incendio.setEnabled(false);}
+        } else {
+            jComboBox_incendio.setEnabled(false);
+        }
     }//GEN-LAST:event_jCheckBox_incendioItemStateChanged
 
     private void jCheckBox_roboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox_roboItemStateChanged
-        if(jCheckBox_robo.isSelected()){
+        if (jCheckBox_robo.isSelected()) {
             jComboBox_robo.setEnabled(true);
-        }else{jComboBox_robo.setEnabled(false);}
+        } else {
+            jComboBox_robo.setEnabled(false);
+        }
     }//GEN-LAST:event_jCheckBox_roboItemStateChanged
 
     private void jCheckBox_inundacionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox_inundacionItemStateChanged
-        if(jCheckBox_inundacion.isSelected()){
+        if (jCheckBox_inundacion.isSelected()) {
             jComboBox_inundacion.setEnabled(true);
-        }else{jComboBox_inundacion.setEnabled(false);}
+        } else {
+            jComboBox_inundacion.setEnabled(false);
+        }
     }//GEN-LAST:event_jCheckBox_inundacionItemStateChanged
 
     private void jCheckBox_notebooksItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox_notebooksItemStateChanged
-        if(jCheckBox_notebooks.isSelected()){
+        if (jCheckBox_notebooks.isSelected()) {
             jTextField_notebooksCantidad.setEnabled(true);
-        }else{
+        } else {
             jTextField_notebooksCantidad.setEnabled(false);
         }
     }//GEN-LAST:event_jCheckBox_notebooksItemStateChanged
 
     private void jCheckBox_televisorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox_televisorItemStateChanged
-        if(jCheckBox_televisor.isSelected()){
+        if (jCheckBox_televisor.isSelected()) {
             jTextField_televisorCantidad.setEnabled(true);
-        }else{
+        } else {
             jTextField_televisorCantidad.setEnabled(false);
         }
     }//GEN-LAST:event_jCheckBox_televisorItemStateChanged
 
     private void jCheckBox_internacionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox_internacionItemStateChanged
-        if(jCheckBox_internacion.isSelected()){
+        if (jCheckBox_internacion.isSelected()) {
             jTextField_internacionDias.setEnabled(true);
-        }else{
+        } else {
             jTextField_internacionDias.setEnabled(false);
         }
     }//GEN-LAST:event_jCheckBox_internacionItemStateChanged
 
     private void jTextField_beneficiario1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_beneficiario1KeyTyped
-        if(jTextField_beneficiario1.equals("")){
+        if (jTextField_beneficiario1.equals("")) {
             jComboBox_beneficiario1.setEnabled(false);
-        }else{
+        } else {
             jComboBox_beneficiario1.setEnabled(true);
         }
     }//GEN-LAST:event_jTextField_beneficiario1KeyTyped
 
     private void jTextField_beneficiario2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_beneficiario2KeyPressed
-         if(jTextField_beneficiario2.equals("")){
+        if (jTextField_beneficiario2.equals("")) {
             jComboBox_beneficiario2.setEnabled(false);
-        }else{
+        } else {
             jComboBox_beneficiario2.setEnabled(true);
         }
     }//GEN-LAST:event_jTextField_beneficiario2KeyPressed
 
     private void jTextField_beneficiario3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_beneficiario3KeyPressed
-         if(jTextField_beneficiario3.equals("")){
+        if (jTextField_beneficiario3.equals("")) {
             jComboBox_beneficiario3.setEnabled(false);
-        }else{
+        } else {
             jComboBox_beneficiario3.setEnabled(true);
         }
     }//GEN-LAST:event_jTextField_beneficiario3KeyPressed
 
     private void jTextField_beneficiario4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_beneficiario4KeyPressed
-         if(jTextField_beneficiario4.equals("")){
+        if (jTextField_beneficiario4.equals("")) {
             jComboBox_beneficiario4.setEnabled(false);
-        }else{
+        } else {
             jComboBox_beneficiario4.setEnabled(true);
         }
     }//GEN-LAST:event_jTextField_beneficiario4KeyPressed
 
     private void jTextField_nombreClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_nombreClienteKeyTyped
-        int key=evt.getKeyChar();
-        boolean minuscula=key>=97 && key<=122;
-        boolean mayuscula=key>=65 && key<=90;
-        boolean espacio=key==32;
-        
-        if(!(minuscula||espacio||mayuscula)){
+        int key = evt.getKeyChar();
+        boolean minuscula = key >= 97 && key <= 122;
+        boolean mayuscula = key >= 65 && key <= 90;
+        boolean espacio = key == 32;
+
+        if (!(minuscula || espacio || mayuscula)) {
             evt.consume();
         }
-        if(jTextField_nombreCliente.getText().length()>=50){
+        if (jTextField_nombreCliente.getText().length() >= 50) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextField_nombreClienteKeyTyped
 
     private void jTextField_idKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_idKeyTyped
-       int key = evt.getKeyChar();
-       boolean numeros=key>=48&&key<=57;
-       
-       if(!numeros){
-           evt.consume();
-       }
-       if(jTextField_id.getText().length()>=11){
-           evt.consume();
-       }
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+        if (jTextField_id.getText().length() >= 11) {
+            evt.consume();
+        }
     }//GEN-LAST:event_jTextField_idKeyTyped
 
     private void jTextField_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_idActionPerformed
-        
+
     }//GEN-LAST:event_jTextField_idActionPerformed
 
     private void jButton_contratacionesHogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_contratacionesHogarActionPerformed
-        String seguro="seguro hogar";
+        String seguro = "seguro hogar";
         Contrataciones contrataciones = new Contrataciones(seguro);
-        contrataciones.setVisible(true);        
+        contrataciones.setVisible(true);
     }//GEN-LAST:event_jButton_contratacionesHogarActionPerformed
 
     private void jButton_contratacionesVidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_contratacionesVidaActionPerformed
-        String seguro="seguro vida";
+        String seguro = "seguro vida";
         Contrataciones contrataciones = new Contrataciones(seguro);
-        contrataciones.setVisible(true);        
+        contrataciones.setVisible(true);
     }//GEN-LAST:event_jButton_contratacionesVidaActionPerformed
 
     private void jButton_contratacinonesVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_contratacinonesVehiculosActionPerformed
-        String seguro="seguro vehiculos";
+        String seguro = "seguro vehiculos";
         Contrataciones contrataciones = new Contrataciones(seguro);
-        contrataciones.setVisible(true);        
+        contrataciones.setVisible(true);
     }//GEN-LAST:event_jButton_contratacinonesVehiculosActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1955,12 +1986,12 @@ public class Gestor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTextField_notebooksCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_notebooksCantidadKeyTyped
-        int key=evt.getKeyChar();
-        boolean numeros= key>=48&&key<=57;
-        if(!numeros){
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        if (!numeros) {
             evt.consume();
         }
-        if(jTextField_notebooksCantidad.getText().length()>=2){
+        if (jTextField_notebooksCantidad.getText().length() >= 2) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextField_notebooksCantidadKeyTyped
@@ -1971,23 +2002,23 @@ public class Gestor extends javax.swing.JInternalFrame {
 
     private void jTextField_televisorCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_televisorCantidadKeyTyped
         int key = evt.getKeyChar();
-        boolean numeros = key>=48&&key<=57;
-        if(!numeros){
+        boolean numeros = key >= 48 && key <= 57;
+        if (!numeros) {
             evt.consume();
         }
-        if(jTextField_televisorCantidad.getText().length()>=2){
+        if (jTextField_televisorCantidad.getText().length() >= 2) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextField_televisorCantidadKeyTyped
 
     private void jTextField_anioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_anioKeyTyped
-        int key=evt.getKeyChar();
-        boolean numeros=key>=48&&key<=57;
-        
-        if(!numeros){
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
             evt.consume();
         }
-        if(jTextField_anio.getText().length()>=4){
+        if (jTextField_anio.getText().length() >= 4) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextField_anioKeyTyped
@@ -2005,7 +2036,7 @@ public class Gestor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCheckBox_heladeraStateChanged
 
     private void jTextField_idFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField_idFocusLost
-        if(jTextField_id.getText().length()==11){
+        if (jTextField_id.getText().length() == 11) {
             System.out.println("11");
             cliente = ArchivoClientes.buscarCliente(jTextField_id.getText());
             clienteId = ArchivoClientes.buscarIdCliente(jTextField_id.getText());
@@ -2050,8 +2081,7 @@ public class Gestor extends javax.swing.JInternalFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Gestor().setVisible(true);
-                
-                
+
             }
         });
     }
