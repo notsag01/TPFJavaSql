@@ -12,13 +12,12 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Prestamos/PrestamosConexion.java</file>
-            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Clientes/Altas.java</file>
-            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Cambio/ConexionCambio.java</file>
-            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Prestamos/Prestamos.java</file>
-            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Prestamos/PrestamoCliente.java</file>
+            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Archivo/Archivo.java</file>
+            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Seguros/Gestor.java</file>
+            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Seguros/Personas.java</file>
+            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Clientes/ArchivoClientes.java</file>
             <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Escritorio.java</file>
-            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Clientes/BajasModifi.java</file>
+            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Archivo/TablasInformacion.java</file>
         </group>
     </open-files>
 </project-private>

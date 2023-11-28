@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3307
--- Tiempo de generación: 24-11-2023 a las 21:13:15
+-- Tiempo de generación: 27-11-2023 a las 21:16:33
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -69,8 +69,7 @@ INSERT INTO `clientes` (`ClienteID`, `Nombre`, `Apellido`, `FechaNacimiento`, `G
 (2, 'María', 'García', '1990-08-15', 'Femenino', '20456789012', 'Avenida 456', 'Ciudad B', 'Provincia Y', 'Soltera', 0, 'maria@example.com'),
 (3, 'Pedro', 'López', '1982-02-20', 'Masculino', '20567890123', 'Boulevard 789', 'Ciudad C', 'Provincia Z', 'Viudo', 3, 'pedro@example.com'),
 (4, 'Ana', 'Martínez', '1978-11-25', 'Femenino', '20678901234', 'Ruta 101', 'Ciudad D', 'Provincia W', 'Casado', 1, 'ana@example.com'),
-(5, 'Carlos', 'Fernández', '1989-07-05', 'Masculino', '20789012345', 'Calle Principal', 'Ciudad E', 'Provincia V', 'Soltero', 0, 'carlos@example.com'),
-(6, 'Valeria', 'Gomez', '1983-12-27', 'FEMENINO', '27034567890', 'Los Patos 3000', 'Capital Federal', 'Capital Federal', 'SOLTERO', 1, 'Valeria@Gomez.com');
+(5, 'Carlos', 'Fernández', '1989-07-05', 'Masculino', '20789012345', 'Calle Principal', 'Ciudad E', 'Provincia V', 'Soltero', 0, 'carlos@example.com');
 
 -- --------------------------------------------------------
 
@@ -109,8 +108,26 @@ CREATE TABLE `segurohogar` (
   `SeguroHogarID` int(11) NOT NULL,
   `UsuarioID` int(11) DEFAULT NULL,
   `ClienteID` int(11) DEFAULT NULL,
-  `ServicioID` int(11) DEFAULT NULL
+  `ServicioID` int(11) DEFAULT NULL,
+  `incendio` tinyint(4) DEFAULT NULL,
+  `robo` tinyint(4) DEFAULT NULL,
+  `inundacion` tinyint(4) DEFAULT NULL,
+  `heladera` tinyint(4) DEFAULT NULL,
+  `lavarropas` tinyint(4) DEFAULT NULL,
+  `cocina` tinyint(4) DEFAULT NULL,
+  `notebooks` tinyint(4) DEFAULT NULL,
+  `cantNotebooks` int(11) DEFAULT NULL,
+  `consola` tinyint(4) DEFAULT NULL,
+  `televisor` tinyint(4) DEFAULT NULL,
+  `cantTelevisor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `segurohogar`
+--
+
+INSERT INTO `segurohogar` (`SeguroHogarID`, `UsuarioID`, `ClienteID`, `ServicioID`, `incendio`, `robo`, `inundacion`, `heladera`, `lavarropas`, `cocina`, `notebooks`, `cantNotebooks`, `consola`, `televisor`, `cantTelevisor`) VALUES
+(1, 1, 1, 5, 1, 1, 0, 1, 1, 0, 1, 5, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -266,7 +283,7 @@ ALTER TABLE `cambiomoneda`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamos`
@@ -278,7 +295,7 @@ ALTER TABLE `prestamos`
 -- AUTO_INCREMENT de la tabla `segurohogar`
 --
 ALTER TABLE `segurohogar`
-  MODIFY `SeguroHogarID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `SeguroHogarID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `segurovehiculo`

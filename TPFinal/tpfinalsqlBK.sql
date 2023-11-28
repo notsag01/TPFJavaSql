@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3307
--- Tiempo de generación: 27-11-2023 a las 21:16:33
+-- Tiempo de generación: 28-11-2023 a las 21:10:37
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -152,8 +152,19 @@ CREATE TABLE `segurovida` (
   `SeguroVidaID` int(11) NOT NULL,
   `UsuarioID` int(11) DEFAULT NULL,
   `ClienteID` int(11) DEFAULT NULL,
-  `ServicioID` int(11) DEFAULT NULL
+  `ServicioID` int(11) DEFAULT NULL,
+  `muerte` tinyint(4) DEFAULT NULL,
+  `muerteAccidental` tinyint(4) DEFAULT NULL,
+  `diasInternacion` tinyint(4) DEFAULT NULL,
+  `paralisis` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `segurovida`
+--
+
+INSERT INTO `segurovida` (`SeguroVidaID`, `UsuarioID`, `ClienteID`, `ServicioID`, `muerte`, `muerteAccidental`, `diasInternacion`, `paralisis`) VALUES
+(1, 1, 2, 3, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -307,7 +318,7 @@ ALTER TABLE `segurovehiculo`
 -- AUTO_INCREMENT de la tabla `segurovida`
 --
 ALTER TABLE `segurovida`
-  MODIFY `SeguroVidaID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `SeguroVidaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios`
