@@ -90,6 +90,55 @@ public class TablasInformacion extends javax.swing.JFrame {
     }
     
     private void tablaSegVida(){
+        dtm.addColumn("TIPO SEGURO");
+        dtm.addColumn("USUARIO");
+        dtm.addColumn("CLIENTE NOMBRE");
+        dtm.addColumn("CLIENTE APELLIDO");
+        dtm.addColumn("N° CONTRATO");
+        dtm.addColumn("MUERTE");
+        dtm.addColumn("MUERTE ACC.");
+        dtm.addColumn("INTERNACION");
+        dtm.addColumn("PARALISIS");
+        
+        try {
+            Connection conexion = Conexion.obtenerConexion();
+            String query="SELECT  " +
+                             "s.TipoServicio,\n" +
+                            "        u.UserName,\n" +
+                            "        c.Nombre,\n" +
+                            "        c.Apellido,\n" +
+                            "        sv.SeguroVidaID,\n" +
+                            "        CASE sv.muerte WHEN 1 THEN 'Contratado' ELSE 'No Contratado' END AS Muerte,\n" +
+                            "        CASE sv.muerteAccidental WHEN 1 THEN 'Contratado' ELSE 'No Contratado' END AS Muerte_Accidental,\n" +
+                            "        CASE sv.diasInternacion WHEN 1 THEN 'Contratado' ELSE 'No Contratado' END AS Internacion,\n" +
+                            "        CASE sv.paralisis WHEN 1 THEN 'Contratado' ELSE 'No Contratado' END AS Paralisis\n" +
+                            "FROM segurovida AS sv\n" +
+                            "JOIN usuarios AS u ON sv.UsuarioID=u.UsuarioID\n" +
+                            "JOIN clientes AS c ON sv.ClienteID=c.ClienteID\n" +
+                            "JOIN servicios AS s ON sv.ServicioID=s.ServicioID;";
+            PreparedStatement sq = conexion.prepareStatement(query);
+            
+            ResultSet rs = sq.executeQuery();
+            
+            while(rs.next()){
+                Object[]fila={
+                    rs.getString("TipoServicio"),
+                    rs.getString("UserName"),
+                    rs.getString("Nombre"),
+                    rs.getString("Apellido"),
+                    rs.getString("SeguroVidaID"),
+                    rs.getString("Muerte"),
+                    rs.getString("Muerte_Accidental"),
+                    rs.getString("Internacion"),
+                    rs.getString("Paralisis"),                    
+                };
+                dtm.addRow(fila);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TablasInformacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
   
         //return dtm;
 //        try {

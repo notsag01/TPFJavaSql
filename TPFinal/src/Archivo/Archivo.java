@@ -106,8 +106,6 @@ public class Archivo {
 
             case "Seguro Vida":
             {   
-                System.out.println("usuario: " + persona.getIdUsuario());
-                System.out.println("cliente: " + persona.getClienteId());
                 try {
                     Connection conexion = Conexion.obtenerConexion();
                     String query="INSERT INTO segurovida VALUES(?,?,?,?,?,?,?,?)";
