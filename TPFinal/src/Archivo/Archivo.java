@@ -179,54 +179,80 @@ public class Archivo {
             }
             break;
             case "Seguro Automotor":
-            {
+            {   
                 try {
-                    BufferedWriter escribir = new BufferedWriter(new FileWriter("seguros.txt",true));
-                    BufferedWriter escribirAutomotor = new BufferedWriter(new FileWriter("segurosAutomotor.txt",true));
-                    escribir.write(persona.getTipoSeguro()+ "," +
-                            persona.getCuit() + "," +
-                            persona.getNombre() + "," +
-                            persona.getTelefono() + "," +
-                            persona.getMail() + "," +
-                            persona.getDominio()+ "," +
-                            persona.getMarcaSelec()+ "," +
-                            persona.getModeloSelec()+ "," +
-                            persona.getAnio()+ "," +
-                            persona.getTerceroCompleto() + "," +
-                            persona.getResponsabilidadCivil()+ "," +
-                            persona.getTodoRiesgoCF()+ "," +
-                            persona.getTodoRiesgoSF()+ "," +
-                            persona.getGranizo()+ "," +
-                            persona.getFranquicia()
-                            
-                    );
+                    Connection conexion = Conexion.obtenerConexion();
+                    String query="INSERT INTO segurovehiculo VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    PreparedStatement sq = conexion.prepareStatement(query);
+                    
+                    sq.setString(1, "0");
+                    sq.setInt(2, persona.getIdUsuario());
+                    sq.setInt(3, Integer.parseInt(persona.getClienteId()));
+                    sq.setInt(4, 4);
+                    sq.setString(5, persona.getDominio());
+                    sq.setString(6, persona.getMarcaSelec());
+                    sq.setString(7, persona.getModeloSelec());
+                    sq.setInt(8, Integer.parseInt(persona.getAnio()));
+                    sq.setBoolean(9, persona.getTerceroCompleto());
+                    sq.setBoolean(10, persona.getResponsabilidadCivil());
+                    sq.setBoolean(11, persona.getTodoRiesgoSF());
+                    sq.setBoolean(12, persona.getTodoRiesgoCF());
+                    sq.setBoolean(13, persona.getGranizo());                    
+                    
+                    sq.executeUpdate();
 
-                escribir.newLine();
-                escribir.close();
-                    escribirAutomotor.write(persona.getTipoSeguro()+ "," +
-                            persona.getCuit() + "," +
-                            persona.getNombre() + "," +
-                            persona.getTelefono() + "," +
-                            persona.getMail() + "," +
-                            persona.getDominio()+ "," +
-                            persona.getMarcaSelec()+ "," +
-                            persona.getModeloSelec()+ "," +
-                            persona.getAnio()+ "," +
-                            persona.getTerceroCompleto() + "," +
-                            persona.getResponsabilidadCivil()+ "," +
-                            persona.getTodoRiesgoCF()+ "," +
-                            persona.getTodoRiesgoSF()+ "," +
-                            persona.getGranizo()+ "," +
-                            persona.getFranquicia()
-                            
-                    );
-
-                escribirAutomotor.newLine();
-                escribirAutomotor.close();
-                } catch (IOException ex) {
-                    System.out.println(ex);
+                    
+                }catch (SQLException ex) {
+                    Logger.getLogger(Archivo.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+//                try {
+//                    BufferedWriter escribir = new BufferedWriter(new FileWriter("seguros.txt",true));
+//                    BufferedWriter escribirAutomotor = new BufferedWriter(new FileWriter("segurosAutomotor.txt",true));
+//                    escribir.write(persona.getTipoSeguro()+ "," +
+//                            persona.getCuit() + "," +
+//                            persona.getNombre() + "," +
+//                            persona.getTelefono() + "," +
+//                            persona.getMail() + "," +
+//                            persona.getDominio()+ "," +
+//                            persona.getMarcaSelec()+ "," +
+//                            persona.getModeloSelec()+ "," +
+//                            persona.getAnio()+ "," +
+//                            persona.getTerceroCompleto() + "," +
+//                            persona.getResponsabilidadCivil()+ "," +
+//                            persona.getTodoRiesgoCF()+ "," +
+//                            persona.getTodoRiesgoSF()+ "," +
+//                            persona.getGranizo()+ "," +
+//                            persona.getFranquicia()
+//                            
+//                    );
+//
+//                escribir.newLine();
+//                escribir.close();
+//                    escribirAutomotor.write(persona.getTipoSeguro()+ "," +
+//                            persona.getCuit() + "," +
+//                            persona.getNombre() + "," +
+//                            persona.getTelefono() + "," +
+//                            persona.getMail() + "," +
+//                            persona.getDominio()+ "," +
+//                            persona.getMarcaSelec()+ "," +
+//                            persona.getModeloSelec()+ "," +
+//                            persona.getAnio()+ "," +
+//                            persona.getTerceroCompleto() + "," +
+//                            persona.getResponsabilidadCivil()+ "," +
+//                            persona.getTodoRiesgoCF()+ "," +
+//                            persona.getTodoRiesgoSF()+ "," +
+//                            persona.getGranizo()+ "," +
+//                            persona.getFranquicia()
+//                            
+//                    );
+//
+//                escribirAutomotor.newLine();
+//                escribirAutomotor.close();
+//                } catch (IOException ex) {
+//                    System.out.println(ex);
+//                }
+//            }
             break;
         }    
     }

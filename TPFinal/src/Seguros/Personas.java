@@ -12,7 +12,7 @@ public class Personas {
     String internacionDias,beneficiario1,beneficiario2,beneficiario3,beneficiario4;
     String beneficiario1_parentesco,beneficiario2_parentesco,beneficiario3_parentesco,beneficiario4_parentesco;
     String dominio, marcaSelec,modeloSelec,anio;
-    String terceroCompleto,responsabilidadCivil, todoRiesgoCF,todoRiesgoSF,granizo;
+    boolean terceroCompleto,responsabilidadCivil, todoRiesgoCF,todoRiesgoSF,granizo;
     String franquicia;
     
     public Personas(String tipoSeguro,
@@ -105,6 +105,8 @@ public class Personas {
     
     public Personas(
             String tipoSeguro,
+            int idUsuario,
+            String clienteId,            
             String cuit,
             String nombre,
             String telefono,
@@ -113,14 +115,16 @@ public class Personas {
             String marcaSelec,
             String modeloSelec,
             String anio,
-            String terceroCompleto,
-            String responsabilidadCivil,
-            String todoRiesgoCF,
-            String todoRiesgoSF,
-            String granizo,
+            boolean terceroCompleto,
+            boolean responsabilidadCivil,
+            boolean todoRiesgoCF,
+            boolean todoRiesgoSF,
+            boolean granizo,
             String franquicia
     ){
         this.tipoSeguro=tipoSeguro;
+        this.idUsuario=idUsuario;
+        this.clienteId=clienteId;
         this.cuit=cuit;
         this.nombre=nombre;
         this.telefono=telefono;
@@ -313,23 +317,23 @@ public class Personas {
         return anio;
     }
 
-    public String getTerceroCompleto() {
+    public boolean getTerceroCompleto() {
         return terceroCompleto;
     }
 
-    public String getResponsabilidadCivil() {
+    public boolean getResponsabilidadCivil() {
         return responsabilidadCivil;
     }
 
-    public String getTodoRiesgoCF() {
+    public boolean getTodoRiesgoCF() {
         return todoRiesgoCF;
     }
 
-    public String getTodoRiesgoSF() {
+    public boolean getTodoRiesgoSF() {
         return todoRiesgoSF;
     }
 
-    public String getGranizo() {
+    public boolean getGranizo() {
         return granizo;
     }
 

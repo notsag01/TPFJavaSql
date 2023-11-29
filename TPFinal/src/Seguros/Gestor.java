@@ -74,8 +74,8 @@ public class Gestor extends javax.swing.JInternalFrame {
     boolean muerte, muerteAccidental, internacion, paralisis;
     String internacionDias, beneficiario1, beneficiario2, beneficiario3, beneficiario4;
     String beneficiario1_parentesco, beneficiario2_parentesco, beneficiario3_parentesco, beneficiario4_parentesco;
-    String dominio, marcaSelec, modeloSelec, anio;
-    String terceroCompleto, responsabilidadCivil, todoRiesgoCF, todoRiesgoSF, granizo, franquicia;
+    String dominio, marcaSelec, modeloSelec, anio,franquicia;
+    boolean terceroCompleto, responsabilidadCivil, todoRiesgoCF, todoRiesgoSF, granizo;
     boolean arroba = false, punto = false;
     String id;
 
@@ -296,34 +296,36 @@ public class Gestor extends javax.swing.JInternalFrame {
         anio = jTextField_anio.getText();
         //String terceroCompleto,responsabilidadCivil, trFranquicia,trsFranquicia,granizo;
         if (jCheckBox_terceroCompleto.isSelected()) {
-            terceroCompleto = jCheckBox_terceroCompleto.getText();
+            terceroCompleto = true;
         } else {
-            terceroCompleto = "-";
+            terceroCompleto = false;
         }
         if (jCheckBox_responsabilidadCivil.isSelected()) {
-            responsabilidadCivil = jCheckBox_responsabilidadCivil.getText();
+            responsabilidadCivil = true;
         } else {
-            responsabilidadCivil = "-";
+            responsabilidadCivil = false;
         }
         if (jCheckBox_todoRiesgoCF.isSelected()) {
-            todoRiesgoCF = jCheckBox_todoRiesgoCF.getText();
+            todoRiesgoCF = true;
         } else {
-            todoRiesgoCF = "-";
+            todoRiesgoCF = false;
         }
         if (jCheckBox_todoRiesgoSF.isSelected()) {
-            todoRiesgoSF = jCheckBox_todoRiesgoSF.getText();
+            todoRiesgoSF = true;
         } else {
-            todoRiesgoSF = "-";
+            todoRiesgoSF = false;
         }
         if (jCheckBox_granizo.isSelected()) {
-            granizo = jCheckBox_granizo.getText();
+            granizo = true;
         } else {
-            granizo = "-";
+            granizo = false;
         }
         franquicia = (String) jComboBox_franquicia.getSelectedItem();
 
         Personas persona = new Personas(
                 tipoSeguro,
+                idUsuario,
+                clienteId,
                 cuit,
                 nombre,
                 telefono,
@@ -1199,6 +1201,11 @@ public class Gestor extends javax.swing.JInternalFrame {
                 jComboBox_marcasItemStateChanged(evt);
             }
         });
+        jComboBox_marcas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_marcasActionPerformed(evt);
+            }
+        });
 
         jComboBox_modelos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -2048,6 +2055,10 @@ public class Gestor extends javax.swing.JInternalFrame {
     private void jTextField_clienteIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_clienteIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_clienteIdActionPerformed
+
+    private void jComboBox_marcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_marcasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox_marcasActionPerformed
 
     /**
      * @param args the command line arguments
