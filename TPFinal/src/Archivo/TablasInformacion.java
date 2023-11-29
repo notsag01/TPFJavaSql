@@ -162,28 +162,69 @@ public class TablasInformacion extends javax.swing.JFrame {
     }
     private void tablaSegAuto(){
         dtm.addColumn("TIPO SEGURO");
-        dtm.addColumn("CUIT");
-        dtm.addColumn("NOMBRE Y APELLIDO");
-        dtm.addColumn("TELEFONO");
+        dtm.addColumn("USUARIO");
+        dtm.addColumn("CLIENTE NOMBRE");
+        dtm.addColumn("CLIENTE APELLIDO");
+        dtm.addColumn("N° CONTRATO");
+        dtm.addColumn("DOMINIO");
         dtm.addColumn("MAIL");
         dtm.addColumn("DOMINIO");
-        dtm.addColumn("MARCA");
-        dtm.addColumn("dtm");
-        dtm.addColumn("AÑO");
         dtm.addColumn("TERCERO COMPLETO");
         dtm.addColumn("RESP. CIVIL");
         dtm.addColumn("TODO RIESGO CF");
         dtm.addColumn("TODO RIESGO SF");
-        dtm.addColumn("GRANIZO");
-        dtm.addColumn("FRANQUICIA");
-        
+        dtm.addColumn("GRANIZO");        
 
         jTable_tabla.setModel(dtm);
         
-        //cargarFilas();
-        
-        String fila[];
-        String linea;
+        try {
+            Connection conexion = Conexion.obtenerConexion();
+            String query="SELECT "
+                    + "s.TipoServicio, "
+                    + "u.UserName, "
+                    + "c.Nombre, "
+                    + "c.Apellido, "
+                    + "sv.SeguroVehiculoID, "
+                    + "sv.dominio, "
+                    + "CASE sv.terceroCompleto WHEN 1 THEN 'Contratado'ELSE 'No Contratado' END AS Tercero_Completo, "
+                    + "CASE sv.respnsabilidadCivil WHEN 1 THEN 'Contratado'ELSE 'No Contratado' END AS Responsabilidad_Civil, "
+                    + "CASE sv.todoRiesgoCF WHEN 1 THEN 'Contratado'ELSE 'No Contratado' END AS TodoRiesgo_ConFranquicia, "
+                    + "CASE sv.todoRiesgoSF WHEN 1 THEN 'Contratado'ELSE 'No Contratado' END AS TodoRiesgo_SinFranquicia, "
+                    + "CASE sv.granizo WHEN 1 THEN 'Contratado'ELSE 'No Contratado' END AS Granizo "
+                    + "FROM segurovehiculo AS sv "
+                    + "JOIN usuarios AS u ON sv.UsuarioID=u.UsuarioID "
+                    + "JOIN clientes AS c ON sv.ClienteID=c.ClienteID JOIN "
+                    + "servicios AS s ON sv.ServicioID=s.ServicioID;";
+            PreparedStatement sq = conexion.prepareStatement(query);
+            
+            ResultSet rs = sq.executeQuery();
+
+            
+            while(rs.next()){
+                Object[]fila={
+                    rs.getString("TipoServicio"),
+                    rs.getString("UserName"),
+                    rs.getString("Nombre"),
+                    rs.getString("Apellido"),
+                    rs.getString("Responsabilidad_Civil"),
+                    rs.getString("SeguroVehiculoID"),
+                    rs.getString("dominio"),
+                    rs.getString("Tercero_Completo"),
+                    rs.getString("TodoRiesgo_ConFranquicia"),
+                    rs.getString("TodoRiesgo_SinFranquicia"),
+                    rs.getString("Granizo"),
+                
+                };
+                dtm.addRow(fila);
+            }
+            
+            
+            
+            
+            //cargarFilas();
+            
+//        String fila[];
+//        String linea;
 //        try {
 //            BufferedReader escribir = new BufferedReader(new FileReader("segurosAutomotor.txt"));            
 //            try {
@@ -199,6 +240,9 @@ public class TablasInformacion extends javax.swing.JFrame {
 //        } catch (FileNotFoundException ex) {
 //            System.out.println(ex);
 //        }
+        } catch (SQLException ex) {
+            Logger.getLogger(TablasInformacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private void tablaSegHogar(){
