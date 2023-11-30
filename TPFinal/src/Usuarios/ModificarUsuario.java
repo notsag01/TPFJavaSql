@@ -17,6 +17,15 @@ public class ModificarUsuario extends javax.swing.JFrame {
         jTextField_userName.setText(usuario.getUserName());
         jTextField_contrasenia.setText(usuario.getContrasenia());
     }
+    private void modificar(){
+        id=jTextField_id.getText();
+        nombre=jTextField_nombre.getText();
+        apellido=jTextField_apellido.getText();
+        userName=jTextField_userName.getText();
+        contrasenia=jTextField_contrasenia.getText();
+        
+        Usuarios usuario = ConexionUsuarios.modificarUsuario(id,nombre,apellido,userName,contrasenia);
+    }
     
     public ModificarUsuario() {
         initComponents();
@@ -90,7 +99,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
             }
         });
 
-        jButton_cerrar.setText("Cerrar");
+        jButton_cerrar.setText("Modificar");
         jButton_cerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_cerrarActionPerformed(evt);
@@ -175,7 +184,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton_cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cerrarActionPerformed
-        this.setVisible(false);
+        modificar();
     }//GEN-LAST:event_jButton_cerrarActionPerformed
 
     /**

@@ -141,4 +141,34 @@ public class ConexionUsuarios {
         }
         return null;
     }
+    
+    public static Usuarios modificarUsuario(
+            String id,
+            String nombre,
+            String apellido,
+            String userName,
+            String contrasenia
+        ){
+        Usuarios usuario = new Usuarios(nombre,apellido,userName,contrasenia);
+        
+        try {
+            Connection conexion = Conexion.obtenerConexion();
+            String query="UPDATE usuarios SET UserName=?, Contraseña=? WHERE UsuarioID=?";
+            PreparedStatement sq = conexion.prepareStatement(query);
+            
+            sq.setString(1, usuario.getUserName());
+            sq.setString(2, usuario.getContrasenia());
+            sq.setString(3, id);
+             
+            int rs=  sq.executeUpdate();
+            System.out.println("Resultado: " + rs);
+             
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexionUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return null;
+        
+    }
 }
