@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3307
--- Tiempo de generación: 28-11-2023 a las 21:10:37
+-- Tiempo de generación: 29-11-2023 a las 17:04:10
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -65,11 +65,11 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`ClienteID`, `Nombre`, `Apellido`, `FechaNacimiento`, `Genero`, `Cuil`, `Domicilio`, `Localidad`, `Provincia`, `EstadoCivil`, `CantHijos`, `Mail`) VALUES
-(1, 'Juan', 'Pérez', '0002-01-19', 'MASCULINO', '20345678901', 'Calle 123', 'Ciudad A', 'Capital Federal', 'SOLTERO', 3, 'juan@example.com'),
-(2, 'María', 'García', '1990-08-15', 'Femenino', '20456789012', 'Avenida 456', 'Ciudad B', 'Provincia Y', 'Soltera', 0, 'maria@example.com'),
-(3, 'Pedro', 'López', '1982-02-20', 'Masculino', '20567890123', 'Boulevard 789', 'Ciudad C', 'Provincia Z', 'Viudo', 3, 'pedro@example.com'),
-(4, 'Ana', 'Martínez', '1978-11-25', 'Femenino', '20678901234', 'Ruta 101', 'Ciudad D', 'Provincia W', 'Casado', 1, 'ana@example.com'),
-(5, 'Carlos', 'Fernández', '1989-07-05', 'Masculino', '20789012345', 'Calle Principal', 'Ciudad E', 'Provincia V', 'Soltero', 0, 'carlos@example.com');
+(1, 'Juan', 'Pérez', '0002-01-19', 'MASCULINO', '20345678901', 'San Martín 123', 'Caba', 'Capital Federal', 'SOLTERO', 3, 'juan@example.com'),
+(2, 'María', 'García', '1990-08-15', 'Femenino', '20456789012', 'Avenida San Juan 456', 'Cordóba', 'Cordoba', 'Soltera', 0, 'maria@example.com'),
+(3, 'Pedro', 'López', '1982-02-20', 'Masculino', '20567890123', 'Cortazar 789', 'Mar del Plata', 'Buenos Aires', 'Viudo', 3, 'pedro@example.com'),
+(4, 'Ana', 'Martínez', '1978-11-25', 'Femenino', '20678901234', 'Borges 101', 'Bell Ville', 'Cordoba', 'Casado', 1, 'ana@example.com'),
+(5, 'Carlos', 'Fernández', '1989-07-05', 'Masculino', '20789012345', 'Solis 789', 'Chascomús', 'Buenos Aires', 'Soltero', 0, 'carlos@example.com');
 
 -- --------------------------------------------------------
 
@@ -139,8 +139,24 @@ CREATE TABLE `segurovehiculo` (
   `SeguroVehiculoID` int(11) NOT NULL,
   `UsuarioID` int(11) DEFAULT NULL,
   `ClienteID` int(11) DEFAULT NULL,
-  `ServicioID` int(11) DEFAULT NULL
+  `ServicioID` int(11) DEFAULT NULL,
+  `dominio` varchar(6) NOT NULL,
+  `marca` varchar(45) NOT NULL,
+  `modelo` varchar(45) NOT NULL,
+  `anio` int(11) NOT NULL,
+  `terceroCompleto` tinyint(4) DEFAULT NULL,
+  `respnsabilidadCivil` tinyint(4) DEFAULT NULL,
+  `todoRiesgoSF` tinyint(4) DEFAULT NULL,
+  `todoRiesgoCF` tinyint(4) DEFAULT NULL,
+  `granizo` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `segurovehiculo`
+--
+
+INSERT INTO `segurovehiculo` (`SeguroVehiculoID`, `UsuarioID`, `ClienteID`, `ServicioID`, `dominio`, `marca`, `modelo`, `anio`, `terceroCompleto`, `respnsabilidadCivil`, `todoRiesgoSF`, `todoRiesgoCF`, `granizo`) VALUES
+(1, 1, 2, 4, 'ABC123', 'FIAT', 'PULSE', 2023, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -312,7 +328,7 @@ ALTER TABLE `segurohogar`
 -- AUTO_INCREMENT de la tabla `segurovehiculo`
 --
 ALTER TABLE `segurovehiculo`
-  MODIFY `SeguroVehiculoID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `SeguroVehiculoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `segurovida`

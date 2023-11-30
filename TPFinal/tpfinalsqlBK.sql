@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3307
--- Tiempo de generación: 29-11-2023 a las 17:04:10
+-- Tiempo de generación: 30-11-2023 a las 21:17:33
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -69,7 +69,8 @@ INSERT INTO `clientes` (`ClienteID`, `Nombre`, `Apellido`, `FechaNacimiento`, `G
 (2, 'María', 'García', '1990-08-15', 'Femenino', '20456789012', 'Avenida San Juan 456', 'Cordóba', 'Cordoba', 'Soltera', 0, 'maria@example.com'),
 (3, 'Pedro', 'López', '1982-02-20', 'Masculino', '20567890123', 'Cortazar 789', 'Mar del Plata', 'Buenos Aires', 'Viudo', 3, 'pedro@example.com'),
 (4, 'Ana', 'Martínez', '1978-11-25', 'Femenino', '20678901234', 'Borges 101', 'Bell Ville', 'Cordoba', 'Casado', 1, 'ana@example.com'),
-(5, 'Carlos', 'Fernández', '1989-07-05', 'Masculino', '20789012345', 'Solis 789', 'Chascomús', 'Buenos Aires', 'Soltero', 0, 'carlos@example.com');
+(5, 'Carlos', 'Fernández', '1989-07-05', 'Masculino', '20789012345', 'Solis 789', 'Chascomús', 'Buenos Aires', 'Soltero', 0, 'carlos@example.com'),
+(8, 'Romina', 'Sanchez', '0004-06-30', 'Femenino', '27987654321', 'San Pepito 333', 'Resistencia', 'Chaco', 'Casado', 3, 'Romina@Sanchez.com');
 
 -- --------------------------------------------------------
 
@@ -226,8 +227,8 @@ INSERT INTO `usuarios` (`UsuarioID`, `UserName`, `Contraseña`, `Nombre`, `Apell
 (1, 'admin', 'admin', 'Admin', 'Admin'),
 (2, 'juanito', 'juan123', 'Juan', 'Gómez'),
 (3, 'maria123', 'maria456', 'María', 'Rodríguez'),
-(4, 'carlitos', 'carlos789', 'Carlos', 'Fernández'),
-(5, 'Gaston', 'Cordoba', 'Gast10', 'Gast123');
+(4, 'carlitos', 'carlos7890', 'Carlos', 'Fernández'),
+(9, 'Gast', 'Gast12345', 'Gaston', 'Cordoba');
 
 --
 -- Índices para tablas volcadas
@@ -310,7 +311,7 @@ ALTER TABLE `cambiomoneda`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamos`
@@ -346,7 +347,7 @@ ALTER TABLE `servicios`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `UsuarioID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `UsuarioID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
