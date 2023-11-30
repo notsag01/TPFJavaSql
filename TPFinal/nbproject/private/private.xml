@@ -14,11 +14,16 @@
         <group>
             <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Archivo/Archivo.java</file>
             <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Seguros/Gestor.java</file>
+            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Usuarios/ModificarUsuario.java</file>
             <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Usuarios/TablaUsuarios.java</file>
+            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Usuarios/ConexionUsuarios.java</file>
+            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Clientes/Altas.java</file>
             <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Seguros/Personas.java</file>
             <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Clientes/ArchivoClientes.java</file>
             <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Escritorio.java</file>
             <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Archivo/TablasInformacion.java</file>
+            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Usuarios/Usuarios.java</file>
+            <file>file:/C:/Users/Administrador/Desktop/DESCARTAR/TPFJavaSql/TPFinal/src/Clientes/BajasModifi.java</file>
         </group>
     </open-files>
 </project-private>
