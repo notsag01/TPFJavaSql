@@ -123,15 +123,22 @@ public class ArchivoClientes {
                 sq.setString(11, cliente.getMail());
                 sq.setString(12, cliente.getCuil());
 
-            sq.executeUpdate();
+            int resultado=sq.executeUpdate();
+            
+            if(resultado>0){
+                JOptionPane.showMessageDialog(null, "El Cliente se modifico correctamente");
+            }
             
         } catch (SQLException ex) {
-            Logger.getLogger(ArchivoClientes.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showConfirmDialog(null, "El Cliente no ha podido ser Modificado");
         }
         
         
         return null;
     }
+    
+    
+    //**************************  BUSCAR CLIENTES ***********************************************************
     public static String buscarCliente(String cuil){
 
         try {
@@ -178,6 +185,8 @@ public class ArchivoClientes {
         }
         return null;
     }
+    
+    //*********************************** OBTENER TODOS LOS DATOS DEL CLIENTE *********************************
     public static Clientes obtenerDatosCliente(String cuil){
         Clientes cliente = null;
         try {
@@ -209,7 +218,8 @@ public class ArchivoClientes {
             sq.executeUpdate();
             
         } catch (SQLException ex) {
-            Logger.getLogger(ArchivoClientes.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "No se ha encontrado el cliente");
+            //Logger.getLogger(ArchivoClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
         return cliente;
     }

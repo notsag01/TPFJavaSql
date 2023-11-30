@@ -93,8 +93,8 @@ public class Altas extends javax.swing.JInternalFrame {
             
         }
         if(arroba&&punto){
-            JOptionPane.showMessageDialog(null, "El formularioa fue ingresado correctamente",
-                    "Validacion Confirmada",JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "El formularioa fue ingresado correctamente",
+              //      "Validacion Confirmada",JOptionPane.INFORMATION_MESSAGE);
                     getDatosClientes();
                     arroba=false;
                     punto=false;
@@ -382,7 +382,7 @@ public class Altas extends javax.swing.JInternalFrame {
                         .addComponent(jTextField_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jTextField_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)

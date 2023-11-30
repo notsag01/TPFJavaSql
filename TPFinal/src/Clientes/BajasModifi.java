@@ -193,6 +193,7 @@ public class BajasModifi extends javax.swing.JInternalFrame {
             String mail
     ){
         Clientes cliente = ArchivoClientes.modificarCliente(id, nombre, apellido, fechaNacimiento, genero, cuil, domicilio, localidad, provincia, estadoCivil, hijos, mail);
+        limpiarFormulario();
     }
     private void confirmarEliminar(){
         int respuesta = JOptionPane.showConfirmDialog(null, "Está seguro de eliminar el registro?");

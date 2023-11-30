@@ -117,6 +117,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         jLabel1.setText("INGRESE EL ID");
 
         jButton2.setText("Eliminar");
+        jButton2.setEnabled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
