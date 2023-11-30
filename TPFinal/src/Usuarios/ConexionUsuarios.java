@@ -23,10 +23,10 @@ public class ConexionUsuarios {
             PreparedStatement sq = conexion.prepareStatement(query);
 
             sq.setString(1, "0");
-            sq.setString(2, usuario.getNombre() );
-            sq.setString(3, usuario.getApellido() );
-            sq.setString(4, usuario.getUserName());
-            sq.setString(5, usuario.getContrasenia());
+            sq.setString(2, usuario.getUserName());
+            sq.setString(3, usuario.getContrasenia());
+            sq.setString(4, usuario.getNombre() );
+            sq.setString(5, usuario.getApellido() );
             
             int resultado = sq.executeUpdate();
             
@@ -161,7 +161,12 @@ public class ConexionUsuarios {
             sq.setString(3, id);
              
             int rs=  sq.executeUpdate();
-            System.out.println("Resultado: " + rs);
+            
+            if(rs>0){
+                JOptionPane.showMessageDialog(null, "El Usuario fue modificado correctamente");
+            }else{
+                JOptionPane.showMessageDialog(null, "El Usuario no pudo ser modificado");
+            }
              
         } catch (SQLException ex) {
             Logger.getLogger(ConexionUsuarios.class.getName()).log(Level.SEVERE, null, ex);

@@ -62,7 +62,13 @@ public class ArchivoClientes {
             sq.setString(11, cliente.getHijos());
             sq.setString(12, cliente.getMail());
             
-            sq.executeUpdate();
+            int sr = sq.executeUpdate();
+            
+            if(sr>0){
+                JOptionPane.showMessageDialog(null, "El Cliente fue dado de Alta exitosamente");
+            }else{
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error, revise los datos nuevamente");
+            }
             
         } catch (SQLException ex) {
             Logger.getLogger(ArchivoClientes.class.getName()).log(Level.SEVERE, null, ex);
