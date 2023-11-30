@@ -93,6 +93,16 @@ public class Escritorio extends javax.swing.JFrame {
         bm.setLocation(750, 10);
         jPanel_escritorio.add(bm);
     }
+    private void verListaUsuarios(){
+        if(usuario.equals("ADMIN")){
+            TablasInformacion tablaClientes = new TablasInformacion("Usuarios");
+            tablaClientes.setVisible(true);
+            jPanel_escritorio.add(tablaClientes);
+        }else{
+            JOptionPane.showMessageDialog(null, "No tiene acceso a está del código");
+        }   
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -116,6 +126,9 @@ public class Escritorio extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -267,6 +280,19 @@ public class Escritorio extends javax.swing.JFrame {
         jMenu4.add(jMenuItem7);
 
         jMenu3.add(jMenu4);
+        jMenu3.add(jSeparator1);
+
+        jMenu5.setText("Usuarios");
+
+        jMenuItem9.setText("Lista");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem9);
+
+        jMenu3.add(jMenu5);
 
         jMenuBar1.add(jMenu3);
 
@@ -326,6 +352,10 @@ public class Escritorio extends javax.swing.JFrame {
         consultaCliente();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        verListaUsuarios();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -368,6 +398,7 @@ public class Escritorio extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -377,8 +408,10 @@ public class Escritorio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItem_altas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel_escritorio;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

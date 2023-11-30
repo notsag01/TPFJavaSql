@@ -40,6 +40,9 @@ public class TablasInformacion extends javax.swing.JFrame {
             break;
             case "Seguro Hogar": tablaSegHogar();
             break;
+            case "Usuarios": tablaUsuarios();
+            break;
+            
         }
    }
     //id,nombre,apellido,mail,fechaNacimiento,genero,domicilio,localidad,provincia,estadoCivil,hijos
@@ -334,6 +337,38 @@ public class TablasInformacion extends javax.swing.JFrame {
 //        } catch (FileNotFoundException ex) {
 //            System.out.println(ex);
 //        }
+    }
+    private void tablaUsuarios(){
+        dtm.addColumn("ID");
+        dtm.addColumn("USER NAME");
+        dtm.addColumn("CONTRASEÑA");
+        dtm.addColumn("NOMBRE");
+        dtm.addColumn("APELLIDO");
+
+        
+        jTable_tabla.setModel(dtm);
+        
+         try {
+            Connection conexion = Conexion.obtenerConexion();
+            String query="SELECT * FROM usuarios";
+            PreparedStatement sq = conexion.prepareStatement(query);
+            
+            ResultSet rs = sq.executeQuery();
+            
+            while(rs.next()){
+                Object[]fila={
+                    rs.getString("UsuarioId"),
+                    rs.getString("UserNAme"),
+                    rs.getString("Contraseña"),
+                    rs.getString("Nombre"),
+                    rs.getString("Apellido"),
+                };
+                dtm.addRow(fila);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TablasInformacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
         
     
