@@ -114,4 +114,31 @@ public class ConexionUsuarios {
         
         return userName;
     }
+    public static Usuarios traerUsusario(String id){
+        Usuarios  usuario = null;
+        try {
+            Connection conexion = Conexion.obtenerConexion();
+            String query="SELECT Nombre,Apellido,UserName,Contraseña FROM usuarios WHERE UsuarioID=?";
+            PreparedStatement sq = conexion.prepareStatement(query);
+            
+            sq.setString(1,id);
+            ResultSet rs = sq.executeQuery();
+            
+            if(rs.next()){
+                usuario = new Usuarios(
+                        rs.getString("Nombre"),
+                        rs.getString("Apellido"),
+                        rs.getString("UserName"),
+                        rs.getString("Contraseña")
+                );
+                        return usuario;
+            }else{
+                //return false;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexionUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

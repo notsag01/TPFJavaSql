@@ -12,6 +12,8 @@ public class Usuarios {
         this.contrasenia=contrasenia;
     }
 
+
+
     public String getNombre() {
         return nombre;
     }
