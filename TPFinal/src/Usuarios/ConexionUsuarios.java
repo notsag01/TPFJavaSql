@@ -176,4 +176,33 @@ public class ConexionUsuarios {
         return null;
         
     }
+    
+    
+    public static Usuarios eliminarUsuario(String id){
+        Usuarios usuarios=null;
+        
+        try {
+            Connection conexion = Conexion.obtenerConexion();
+            String query="DELETE FROM usuarios WHERE UsuarioID=?";
+            PreparedStatement sq = conexion.prepareStatement(query);
+            
+            sq.setString(1, id);
+            
+            int respuesta=sq.executeUpdate();
+            
+            if(respuesta > 0 ){
+                JOptionPane.showMessageDialog(null, "El usuario fue eliminado");
+            }else{
+                JOptionPane.showMessageDialog(null, "No se ha podido elminiar el Usuario");
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexionUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return null;
+        
+    }
 }
