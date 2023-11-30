@@ -8,12 +8,14 @@ public class ModificarUsuario extends javax.swing.JFrame {
         id=jTextField_id.getText();        
         
         Usuarios usuario = ConexionUsuarios.traerUsusario(id);            
-        System.out.println("Nombre: " + usuario.getNombre());
         
         rellenarCampos(usuario);
     }
     private void rellenarCampos(Usuarios usuario){
         jTextField_nombre.setText(usuario.getNombre());
+        jTextField_apellido.setText(usuario.getApellido());
+        jTextField_userName.setText(usuario.getUserName());
+        jTextField_contrasenia.setText(usuario.getContrasenia());
     }
     
     public ModificarUsuario() {
@@ -49,8 +51,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
         jButton_cerrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTextField_id = new javax.swing.JTextField();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
