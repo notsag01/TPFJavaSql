@@ -57,7 +57,7 @@ public class ConexionCambio {
             int resultado = sq.executeUpdate();
             
             if(resultado>0){
-                JOptionPane.showMessageDialog(null, "El Usuario fue registrado Correctamente");                
+                JOptionPane.showMessageDialog(null, "La transacción fue realizada \n Existosamente");          
             }else{
                 JOptionPane.showMessageDialog(null, "El Usuario no a podido ser registrado Correctamente");
             }

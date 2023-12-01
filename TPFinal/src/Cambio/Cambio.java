@@ -86,10 +86,7 @@ public class Cambio extends javax.swing.JInternalFrame {
             impGcias=convertir(jTextField_impuestosGcias.getText());
             cambio=convertir(jTextField_cambio.getText());
             CambioClientes cc = ConexionCambio.cargar(usuario, idUsuario, clienteId, servicioId, eleccionMoneda, tasaCambio,
-                    cantidadPesos, impPais, impGcias, cambio);
-            
-            
-            JOptionPane.showMessageDialog(null, "La transacción fue realizada \n Existosamente");
+                    cantidadPesos, impPais, impGcias, cambio);            
             
             limpiarInformacion();
         }
