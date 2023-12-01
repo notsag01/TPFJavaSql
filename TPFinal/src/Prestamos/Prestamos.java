@@ -113,8 +113,19 @@ public class Prestamos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Todos los Campos deben estar completos");
         }else{
             solicitarPrestamo();
+            limpiarFormulario();
         }
         
+    }
+    private void limpiarFormulario(){
+        jTextField_id.setText("");
+        jTextField_idCliente.setText("");
+        jTextField_nombreCliente.setText("");
+        jComboBox_tiempo.setSelectedIndex(0);
+        jTextField_capital.setText("");
+        jTextField_intereses.setText("");
+        jTextField_cuota.setText("");
+        jTextField_deuda.setText("");
     }
 
     /**
@@ -432,7 +443,7 @@ public class Prestamos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton_calcualarActionPerformed
 
     private void jButton_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_limpiarActionPerformed
-
+        limpiarFormulario();
     }//GEN-LAST:event_jButton_limpiarActionPerformed
 
     private void jComboBox_tiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_tiempoActionPerformed
