@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3307
--- Tiempo de generación: 30-11-2023 a las 21:17:33
+-- Tiempo de generación: 01-12-2023 a las 19:24:03
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -39,6 +39,14 @@ CREATE TABLE `cambiomoneda` (
   `Cambio` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `cambiomoneda`
+--
+
+INSERT INTO `cambiomoneda` (`CambioMonedaID`, `UsuarioID`, `ClienteID`, `ServicioID`, `CantPesos`, `TipoMoneda`, `ImpPais`, `ImpGcias`, `Cambio`) VALUES
+(1, 1, 2, 1, 1280000, '1', 108096000, 126112000, 594528000),
+(2, 1, 4, 1, 2000, '2', 178368, 208096, 981024);
+
 -- --------------------------------------------------------
 
 --
@@ -65,12 +73,12 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`ClienteID`, `Nombre`, `Apellido`, `FechaNacimiento`, `Genero`, `Cuil`, `Domicilio`, `Localidad`, `Provincia`, `EstadoCivil`, `CantHijos`, `Mail`) VALUES
-(1, 'Juan', 'Pérez', '0002-01-19', 'MASCULINO', '20345678901', 'San Martín 123', 'Caba', 'Capital Federal', 'SOLTERO', 3, 'juan@example.com'),
-(2, 'María', 'García', '1990-08-15', 'Femenino', '20456789012', 'Avenida San Juan 456', 'Cordóba', 'Cordoba', 'Soltera', 0, 'maria@example.com'),
-(3, 'Pedro', 'López', '1982-02-20', 'Masculino', '20567890123', 'Cortazar 789', 'Mar del Plata', 'Buenos Aires', 'Viudo', 3, 'pedro@example.com'),
-(4, 'Ana', 'Martínez', '1978-11-25', 'Femenino', '20678901234', 'Borges 101', 'Bell Ville', 'Cordoba', 'Casado', 1, 'ana@example.com'),
+(1, 'Juan', 'Pérez', '1995-01-02', 'MASCULINO', '20345678901', 'San Martín 123', 'Caba', 'Capital Federal', 'SOLTERO', 3, 'juan@example.com'),
+(2, 'María', 'García', '1992-06-02', 'Femenino', '27456789012', 'Avenida San Juan 456', 'Cordóba', 'Córdoba', 'Soltero', 0, 'maria@example.com'),
+(3, 'Pedro', 'López', '1982-02-20', 'Masculino', '20567890123', 'Cortazar 789', 'Mar del Plata', 'Buenos Aires', 'Casado', 3, 'pedro@example.com'),
+(4, 'Ana', 'Martínez', '1978-11-25', 'Femenino', '27678901234', 'Borges 101', 'Bell Ville', 'Cordoba', 'Casado', 1, 'ana@example.com'),
 (5, 'Carlos', 'Fernández', '1989-07-05', 'Masculino', '20789012345', 'Solis 789', 'Chascomús', 'Buenos Aires', 'Soltero', 0, 'carlos@example.com'),
-(8, 'Romina', 'Sanchez', '0004-06-30', 'Femenino', '27987654321', 'San Pepito 333', 'Resistencia', 'Chaco', 'Casado', 3, 'Romina@Sanchez.com');
+(8, 'Romina', 'Sanchez', '1999-01-01', 'Femenino', '27987654321', 'San Pepito 333', 'Resistencia', 'Chaco', 'Casado', 4, 'Romina@Sanchez.com');
 
 -- --------------------------------------------------------
 
@@ -97,7 +105,10 @@ CREATE TABLE `prestamos` (
 INSERT INTO `prestamos` (`PrestamoID`, `UsuarioID`, `ClienteID`, `ServicioID`, `Capital`, `Tiempo`, `Interes`, `Cuota`, `Monto`) VALUES
 (1, 1, 1, 2, 250000, 24, 100, 20833, 500000),
 (2, 1, 1, 2, 450000, 9, 150, 125000, 1125000),
-(3, 2, 2, 2, 800000, 9, 150, 222222, 2000000);
+(3, 2, 2, 2, 800000, 9, 150, 222222, 2000000),
+(4, 1, 5, 2, 2000000, 36, 100, 111111, 4000000),
+(5, 1, 8, 2, 1200000, 24, 100, 100000, 2400000),
+(6, 3, 3, 2, 2500000, 36, 100, 138889, 5000000);
 
 -- --------------------------------------------------------
 
@@ -128,7 +139,11 @@ CREATE TABLE `segurohogar` (
 --
 
 INSERT INTO `segurohogar` (`SeguroHogarID`, `UsuarioID`, `ClienteID`, `ServicioID`, `incendio`, `robo`, `inundacion`, `heladera`, `lavarropas`, `cocina`, `notebooks`, `cantNotebooks`, `consola`, `televisor`, `cantTelevisor`) VALUES
-(1, 1, 1, 5, 1, 1, 0, 1, 1, 0, 1, 5, 0, 0, 0);
+(1, 1, 1, 5, 1, 1, 0, 1, 1, 0, 1, 5, 0, 0, 0),
+(2, 9, 8, 5, 1, 0, 1, 0, 0, 0, 1, 2, 0, 1, 2),
+(3, 3, 4, 5, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0),
+(4, 4, 5, 5, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0),
+(5, 2, 4, 5, 0, 1, 0, 1, 1, 1, 1, 2, 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -157,7 +172,8 @@ CREATE TABLE `segurovehiculo` (
 --
 
 INSERT INTO `segurovehiculo` (`SeguroVehiculoID`, `UsuarioID`, `ClienteID`, `ServicioID`, `dominio`, `marca`, `modelo`, `anio`, `terceroCompleto`, `respnsabilidadCivil`, `todoRiesgoSF`, `todoRiesgoCF`, `granizo`) VALUES
-(1, 1, 2, 4, 'ABC123', 'FIAT', 'PULSE', 2023, 1, 1, 1, 1, 1);
+(1, 1, 2, 4, 'ABC123', 'FIAT', 'PULSE', 2023, 1, 1, 1, 1, 1),
+(2, 2, 4, 4, 'CBA321', 'PEUGEOT', '207', 2011, 1, 1, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -181,7 +197,9 @@ CREATE TABLE `segurovida` (
 --
 
 INSERT INTO `segurovida` (`SeguroVidaID`, `UsuarioID`, `ClienteID`, `ServicioID`, `muerte`, `muerteAccidental`, `diasInternacion`, `paralisis`) VALUES
-(1, 1, 2, 3, 1, 1, 1, 1);
+(1, 1, 2, 3, 1, 1, 1, 1),
+(2, 9, 5, 3, 1, 1, 0, 0),
+(3, 2, 4, 3, 1, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -305,7 +323,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `cambiomoneda`
 --
 ALTER TABLE `cambiomoneda`
-  MODIFY `CambioMonedaID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `CambioMonedaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
@@ -317,25 +335,25 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `PrestamoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `PrestamoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `segurohogar`
 --
 ALTER TABLE `segurohogar`
-  MODIFY `SeguroHogarID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `SeguroHogarID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `segurovehiculo`
 --
 ALTER TABLE `segurovehiculo`
-  MODIFY `SeguroVehiculoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `SeguroVehiculoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `segurovida`
 --
 ALTER TABLE `segurovida`
-  MODIFY `SeguroVidaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `SeguroVidaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios`
