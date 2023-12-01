@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 public class Archivo {
@@ -48,7 +49,11 @@ public class Archivo {
                     sq.setBoolean(14, persona.getTelevisor());
                     sq.setInt(15, persona.getTelevisorCantidad());
                     
-                    sq.executeUpdate();
+                    int resultado = sq.executeUpdate();
+                     
+                    if(resultado>0){
+                        JOptionPane.showMessageDialog(null, "La Operación ha sido exitosa.");
+                    }
                     
                 } catch (SQLException ex) {
                     Logger.getLogger(Archivo.class.getName()).log(Level.SEVERE, null, ex);
@@ -121,7 +126,11 @@ public class Archivo {
                     sq.setBoolean(8, persona.getParalisis());
                     
                     
-                    sq.executeUpdate();
+                    int resultado = sq.executeUpdate();
+                    
+                    if(resultado>0){
+                        JOptionPane.showMessageDialog(null, "La Operación ha sido exitosa.");
+                    }                    
                     
                 } catch (SQLException ex) {
                     Logger.getLogger(Archivo.class.getName()).log(Level.SEVERE, null, ex);
@@ -199,9 +208,12 @@ public class Archivo {
                     sq.setBoolean(12, persona.getTodoRiesgoCF());
                     sq.setBoolean(13, persona.getGranizo());                    
                     
-                    sq.executeUpdate();
-
+                    int resultado = sq.executeUpdate();
                     
+                    if(resultado>0){
+                        JOptionPane.showMessageDialog(null, "La Operación ha sido exitosa.");
+                    }                    
+
                 }catch (SQLException ex) {
                     Logger.getLogger(Archivo.class.getName()).log(Level.SEVERE, null, ex);
                 }

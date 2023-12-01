@@ -197,7 +197,7 @@ public class Gestor extends javax.swing.JInternalFrame {
         prima = shp.calcularPrima();
 
         limpiarDatosPersonaHogar();
-
+        limpiarDatos();
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -281,6 +281,7 @@ public class Gestor extends javax.swing.JInternalFrame {
         archivo.escribirArchivo(persona);
 
         limpiarDatosPerosonaVida();
+        limpiarDatos();
 
     }
     //////////////////////////////////////////////////////////////////////////////
@@ -337,11 +338,13 @@ public class Gestor extends javax.swing.JInternalFrame {
         archivo.escribirArchivo(persona);
 
         limpiarDatosPerosonaVehiculos();
+        limpiarDatos();
     }
 
     public void limpiarDatos() {
         jTextField_id.setText("");
         jTextField_nombreCliente.setText("");
+        jTextField_clienteId.setText("");
     }
 
     public void limpiarDatosPersonaHogar() {
@@ -1623,6 +1626,7 @@ public class Gestor extends javax.swing.JInternalFrame {
             }
         });
 
+        jTextField_clienteId.setEditable(false);
         jTextField_clienteId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_clienteIdActionPerformed(evt);
